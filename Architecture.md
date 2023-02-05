@@ -8,6 +8,7 @@ The website is a content management system. It is through the website, that user
 - **HTML/CSS** => Goes without saying
 - **Google Firestore** => Database. It'll store the articles and links to images.
 - **Puppeteer** => Server render the articles and store them as HTML files
+- **AWS** => For hosting
 
 ## Pages
 Here is the list of pages that are required on the frontend.
@@ -27,6 +28,11 @@ Contains the article and a wall paper.
 
 ### About us & Policies
 Simple pages with information on who we are.
+
+### Admin Pages
+- Login and Signup page. Passwords are encrypted. You need an admin password to sign up.
+- Article upload page
+- Image upload
 
 ## Server
 The server architecture should make it simple to add features. I will stick to a functional style of programming. I will use Classes only when necessary.
