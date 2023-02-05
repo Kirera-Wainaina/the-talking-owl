@@ -1,0 +1,9 @@
+{
+  "name": "the-talking-owl",
+  "version": "1.0.0",
+  "description": "Web code for The Talking Owl(TTO) website.",
+  "main": "index.js",
+  "repository": "https://github.com/Kirera-Wainaina/the-talking-owl.git",
+  "author": "Kirera Wainaina <richardwainainak@gmail.com>",
+  "license": "MIT"
+}
