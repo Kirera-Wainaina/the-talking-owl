@@ -3,6 +3,7 @@ const http2 = require('http2');
 const fs = require('fs');
 
 const dotenv = require('dotenv');
+const path = require('path');
 dotenv.config()
 
 const httpPort = 80;
@@ -50,7 +51,8 @@ function handleHTTP2Request(stream, headers) {
 }
 
 function routeRequests(stream, route) {
-    if (isAPIRoute(route)) { // api routes request for data
+    if (isAPIRequest(route)) { // api routes request for data
+    } else if (isFileRequest(route)) { 
     } else { // process as files
         stream.respond({
             ':status': 200,
@@ -60,11 +62,20 @@ function routeRequests(stream, route) {
     }
 }
 
-function isAPIRoute(route) {
+function isAPIRequest(route) {
     const re = /^\/api\/.+/;
     return re.test(route);
 }
 
+function isFileRequest(route) {
+    return Boolean(path.extname(route));
+}
+
+function respondWithFile(stream, route) {
+
+}
+
 exports.createLogMessage = createLogMessage;
 exports.redirectHTTPRequests = redirectHTTPRequests;
-exports.isAPIRoute = isAPIRoute;
+exports.isAPIRequest = isAPIRequest;
+exports.isFileRequest = isFileRequest;
