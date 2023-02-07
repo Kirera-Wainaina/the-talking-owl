@@ -52,13 +52,9 @@ function handleHTTP2Request(stream, headers) {
 
 function routeRequests(stream, route) {
     if (isAPIRequest(route)) { // api routes request for data
-    } else if (isFileRequest(route)) { 
-    } else { // process as files
-        stream.respond({
-            ':status': 200,
-            'content-type': 'text/html'
-        })
-        stream.end('<p>hello world</p>')
+    } else if (isFileRequest(route)) {
+    } else { // browser request
+
     }
 }
 
@@ -71,11 +67,23 @@ function isFileRequest(route) {
     return Boolean(path.extname(route));
 }
 
-function respondWithFile(stream, route) {
+function handlePageRequest(stream, route) {
+    // const route = createBrowserPageRoute(route);
+}
 
+function createBrowserPageRoute(route) {
+    if (isHomePage(route)) {
+    } else {
+    }
+}
+
+function isHomePage(route) {
+    if (route == '/') return true;
+    return false
 }
 
 exports.createLogMessage = createLogMessage;
 exports.redirectHTTPRequests = redirectHTTPRequests;
 exports.isAPIRequest = isAPIRequest;
 exports.isFileRequest = isFileRequest;
+exports.isHomePage = isHomePage;
