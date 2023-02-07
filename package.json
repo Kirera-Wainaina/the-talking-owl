@@ -9,7 +9,10 @@
   "devDependencies": {
     "jest": "^29.4.1"
   },
-  "scripts":{
+  "scripts": {
     "test": "jest"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3"
   }
 }
