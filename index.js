@@ -48,5 +48,19 @@ function handleHTTP2Request(stream, headers) {
     console.log(createLogMessage(headers[':method'], headers[':path']))
 }
 
+function routeRequests(stream) {
+    if (isAPIRoute) {
+
+    } else {
+
+    }
+}
+
+function isAPIRoute(route) {
+    const re = /^\/api\/.+/;
+    return re.test(route);
+}
+
 exports.createLogMessage = createLogMessage;
 exports.redirectHTTPRequests = redirectHTTPRequests;
+exports.isAPIRoute = isAPIRoute;
