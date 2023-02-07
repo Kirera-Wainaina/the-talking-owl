@@ -12,11 +12,10 @@ if (require.main == module) {
 
 function handleHTTPRequest(request, response) {
     //console.log(createLogMessage(request));
-    console.log(require.main)
 }
 
 function createLogMessage(request) {
-    //return `${new Date}, ${request.method}, ${request.url}`
+    return `${new Date}, ${request.method}, ${request.url}`
 }
 
 exports.createLogMessage = createLogMessage;
