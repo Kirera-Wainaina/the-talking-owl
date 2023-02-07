@@ -77,9 +77,9 @@ function handlePageRequest(stream, route) {
 
 function createFilePathFromPageRequest(route) {
     if (isHomePage(route)) {
-        return `/frontend/html/home.html`
+        return path.join(__dirname, `/frontend/html/home.html`)
     } else {
-        return `/frontend/html${route}.html`
+        return path.join(__dirname, `/frontend/html${route}.html`)
     }
 }
 

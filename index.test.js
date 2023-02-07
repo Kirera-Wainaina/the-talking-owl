@@ -1,4 +1,5 @@
-const index = require('./index')
+const path = require('path');
+const index = require('./index');
 
 test('Creates log message', () => {
     const method = 'GET', route = '/';
@@ -48,7 +49,10 @@ test('Is Home Page route', () => {
 test('Creation of browser page routes', () => {
     const a = '/', b = '/a', c = '/a/b';
 
-    expect(index.createFilePathFromPageRequest(a)).toBe(`/frontend/html/home.html`);
-    expect(index.createFilePathFromPageRequest(b)).toBe(`/frontend/html/a.html`);
-    expect(index.createFilePathFromPageRequest(c)).toBe(`/frontend/html/a/b.html`);
+    expect(index.createFilePathFromPageRequest(a))
+        .toBe(path.join(__dirname, `/frontend/html/home.html`));
+    expect(index.createFilePathFromPageRequest(b))
+        .toBe(path.join(__dirname, `/frontend/html/a.html`));
+    expect(index.createFilePathFromPageRequest(c))
+        .toBe(path.join(__dirname, `/frontend/html/a/b.html`));
 })
