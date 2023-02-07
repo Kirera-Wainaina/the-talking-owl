@@ -56,3 +56,10 @@ test('Creation of browser page routes', () => {
     expect(index.createFilePathFromPageRequest(c))
         .toBe(path.join(__dirname, `/frontend/html/a/b.html`));
 })
+
+test('Creation of file path for file requests', () => {
+    const a = '/a.js', b = '/a/home.js'
+
+    expect(index.createFilePathFromFileRequest(a)).toBe(path.join(__dirname, a));
+    expect(index.createFilePathFromFileRequest(b)).toBe(path.join(__dirname, b))
+})
