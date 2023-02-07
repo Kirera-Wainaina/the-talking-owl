@@ -36,3 +36,11 @@ test('Is file request', () => {
     expect(index.isFileRequest(c)).toBeTruthy();
     expect(index.isFileRequest(d)).toBeFalsy();
 })
+
+test('Is Home Page route', () => {
+    const a = '/', b = '/af', c = '/a/b';
+
+    expect(index.isHomePage(a)).toBeTruthy();
+    expect(index.isHomePage(b)).toBeFalsy();
+    expect(index.isHomePage(c)).toBeFalsy();
+})
