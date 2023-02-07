@@ -1,9 +1,12 @@
 const http = require('http');
 const http2 = require('http2');
 const fs = require('fs');
+const zlib = require('zlib')
 
 const dotenv = require('dotenv');
 const path = require('path');
+
+const mimes = require('./utils/MIMETypes')
 dotenv.config()
 
 const httpPort = 80;
@@ -54,7 +57,7 @@ function routeRequests(stream, route) {
     if (isAPIRequest(route)) { // api routes request for data
     } else if (isFileRequest(route)) {
     } else { // browser request
-
+        handlePageRequest(stream, route)
     }
 }
 
@@ -69,6 +72,7 @@ function isFileRequest(route) {
 
 function handlePageRequest(stream, route) {
     const filePath = createFilePathFromPageRequest(route);
+    respondWithFile(stream, filePath)   
 }
 
 function createFilePathFromPageRequest(route) {
@@ -82,6 +86,23 @@ function createFilePathFromPageRequest(route) {
 function isHomePage(route) {
     if (route == '/') return true;
     return false
+}
+
+function respondWithFile(stream, filePath) {
+    stream.respond({
+        ':status': 200,
+        'content-type': mimes.findMIMETypeFromExtension(filePath),
+        'content-encoding': 'gzip'
+    })
+
+    fs.createReadStream(filePath)
+        .pipe(zlib.createGzip())
+        .pipe(stream.end())
+        .on('error', handleError)
+}
+
+function handleError(error) {
+    console.log(error)
 }
 
 exports.createLogMessage = createLogMessage;
