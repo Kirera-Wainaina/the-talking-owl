@@ -20,9 +20,19 @@ test('Is API route', () => {
     const a = "abs/api/food", b = "/api/food/",
     c = "/api/food/dinner", d = "api", e = "/api/";
 
-    expect(index.isAPIRoute(a)).toBeFalsy();
-    expect(index.isAPIRoute(b)).toBeTruthy();
-    expect(index.isAPIRoute(c)).toBeTruthy();
-    expect(index.isAPIRoute(d)).toBeFalsy();
-    expect(index.isAPIRoute(e)).toBeFalsy();
+    expect(index.isAPIRequest(a)).toBeFalsy();
+    expect(index.isAPIRequest(b)).toBeTruthy();
+    expect(index.isAPIRequest(c)).toBeTruthy();
+    expect(index.isAPIRequest(d)).toBeFalsy();
+    expect(index.isAPIRequest(e)).toBeFalsy();
+})
+
+test('Is file request', () => {
+    const a = '/articles', b = '/art.css',
+    c = '/art/icle.js', d = '/art/b'
+
+    expect(index.isFileRequest(a)).toBeFalsy();
+    expect(index.isFileRequest(b)).toBeTruthy();
+    expect(index.isFileRequest(c)).toBeTruthy();
+    expect(index.isFileRequest(d)).toBeFalsy();
 })
