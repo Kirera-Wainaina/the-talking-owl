@@ -56,6 +56,7 @@ function handleHTTP2Request(stream, headers) {
 function routeRequests(stream, route) {
     if (isAPIRequest(route)) { // api routes request for data
     } else if (isFileRequest(route)) {
+        handleFileRequest(stream, route)
     } else { // browser request
         handlePageRequest(stream, route)
     }
@@ -75,12 +76,21 @@ function handlePageRequest(stream, route) {
     respondWithFile(stream, filePath)   
 }
 
+function handleFileRequest(stream, route) {
+    const filePath = '';
+}
+
 function createFilePathFromPageRequest(route) {
     if (isHomePage(route)) {
         return path.join(__dirname, `/frontend/html/home.html`)
     } else {
         return path.join(__dirname, `/frontend/html${route}.html`)
     }
+}
+
+function createFilePathFromFileRequest(route) {
+    // return filepath for files with extensions
+    return path.join(__dirname, route);
 }
 
 function isHomePage(route) {
@@ -111,3 +121,4 @@ exports.isAPIRequest = isAPIRequest;
 exports.isFileRequest = isFileRequest;
 exports.isHomePage = isHomePage;
 exports.createFilePathFromPageRequest = createFilePathFromPageRequest;
+exports.createFilePathFromFileRequest = createFilePathFromFileRequest;
