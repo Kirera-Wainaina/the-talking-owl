@@ -1,11 +1,13 @@
 const http = require('http');
+const http2 = require('http2');
+const fs = require('fs');
 
 const dotenv = require('dotenv');
 dotenv.config()
 
 const httpPort = 80;
 
-if (require.main == module) {
+if (require.main == module) { // create HTTP Server
     const httpServer = http.createServer();
     httpServer.listen(httpPort, 
         () => console.log(`Server listening on port ${httpPort}`));
@@ -27,6 +29,18 @@ function redirectHTTPRequests(response, route) {
         'location': `${process.env.DOMAIN}${route}`
     })
     response.end()
+}
+
+if (require.main == module) { // create HTTPS Server
+    const port = 443;
+    const options = {
+        key: fs.readFileSync(process.env.KEY),
+        cert: fs.readFileSync(process.env.CERT),
+        allowHTTP1: true
+    }
+
+    const server = http2.createSecureServer(options);
+    server.listen(port, () => console.log(`HTTP2 Server listening on port ${port}`))
 }
 
 exports.createLogMessage = createLogMessage;
