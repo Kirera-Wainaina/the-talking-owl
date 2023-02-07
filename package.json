@@ -5,5 +5,8 @@
   "main": "index.js",
   "repository": "https://github.com/Kirera-Wainaina/the-talking-owl.git",
   "author": "Kirera Wainaina <richardwainainak@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.4.1"
+  }
 }
