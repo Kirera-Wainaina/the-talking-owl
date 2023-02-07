@@ -77,7 +77,8 @@ function handlePageRequest(stream, route) {
 }
 
 function handleFileRequest(stream, route) {
-    const filePath = '';
+    const filePath = createFilePathFromFileRequest(route);
+    respondWithFile(stream, filePath)
 }
 
 function createFilePathFromPageRequest(route) {
@@ -89,7 +90,6 @@ function createFilePathFromPageRequest(route) {
 }
 
 function createFilePathFromFileRequest(route) {
-    // return filepath for files with extensions
     return path.join(__dirname, route);
 }
 
@@ -107,7 +107,7 @@ function respondWithFile(stream, filePath) {
 
     fs.createReadStream(filePath)
         .pipe(zlib.createGzip())
-        .pipe(stream.end())
+        .pipe(stream)
         .on('error', handleError)
 }
 
