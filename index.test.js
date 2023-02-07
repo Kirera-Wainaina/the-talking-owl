@@ -44,3 +44,11 @@ test('Is Home Page route', () => {
     expect(index.isHomePage(b)).toBeFalsy();
     expect(index.isHomePage(c)).toBeFalsy();
 })
+
+test('Creation of browser page routes', () => {
+    const a = '/', b = '/a', c = '/a/b';
+
+    expect(index.createBrowserPageRoute(a)).toBe(`/frontend/html/home.html`);
+    expect(index.createBrowserPageRoute(b)).toBe(`/frontend/html/a.html`);
+    expect(index.createBrowserPageRoute(c)).toBe(`/frontend/html/a/b.html`);
+})
