@@ -46,13 +46,17 @@ if (require.main == module) { // create HTTPS Server
 
 function handleHTTP2Request(stream, headers) {
     console.log(createLogMessage(headers[':method'], headers[':path']))
+    routeRequests(stream, headers[':path'])
 }
 
-function routeRequests(stream) {
-    if (isAPIRoute) {
-
-    } else {
-
+function routeRequests(stream, route) {
+    if (isAPIRoute(route)) { // api routes request for data
+    } else { // process as files
+        stream.respond({
+            ':status': 200,
+            'content-type': 'text/html'
+        })
+        stream.end('<p>hello world</p>')
     }
 }
 
