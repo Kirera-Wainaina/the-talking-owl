@@ -40,7 +40,12 @@ if (require.main == module) { // create HTTPS Server
     }
 
     const server = http2.createSecureServer(options);
-    server.listen(port, () => console.log(`HTTP2 Server listening on port ${port}`))
+    server.listen(port, () => console.log(`HTTP2 Server listening on port ${port}`));
+    server.on('stream', handleHTTP2Request);
+}
+
+function handleHTTP2Request(stream, headers) {
+    console.log(createLogMessage(headers[':method'], headers[':path']))
 }
 
 exports.createLogMessage = createLogMessage;
