@@ -1,11 +1,9 @@
 const index = require('./index')
 
 test('Creates log message', () => {
-    const request = {}
-    request.method = 'GET';
-    request.url = '/'
-    expect(index.createLogMessage(request))
-        .toBe(`${new Date}, ${request.method}, ${request.url}`)
+    const method = 'GET', route = '/';
+    expect(index.createLogMessage(method, route))
+        .toBe(`${new Date}, ${method}, ${route}`)
 })
 
 test('Redirect HTTP Requests', () => {
