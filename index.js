@@ -73,7 +73,9 @@ function handlePageRequest(stream, route) {
 
 function createBrowserPageRoute(route) {
     if (isHomePage(route)) {
+        return `/frontend/html/home.html`
     } else {
+        return `/frontend/html${route}.html`
     }
 }
 
@@ -87,3 +89,4 @@ exports.redirectHTTPRequests = redirectHTTPRequests;
 exports.isAPIRequest = isAPIRequest;
 exports.isFileRequest = isFileRequest;
 exports.isHomePage = isHomePage;
+exports.createBrowserPageRoute = createBrowserPageRoute;
