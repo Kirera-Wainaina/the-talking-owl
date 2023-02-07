@@ -14,12 +14,12 @@ if (require.main == module) {
 }
 
 function handleHTTPRequest(request, response) {
-    console.log(createLogMessage(request));
+    console.log(createLogMessage(request.method, request.url));
     redirectHTTPRequests(response, request.url)
 }
 
-function createLogMessage(request) {
-    return `${new Date}, ${request.method}, ${request.url}`
+function createLogMessage(method, route) {
+    return `${new Date}, ${method}, ${route}`
 }
 
 function redirectHTTPRequests(response, route) {
