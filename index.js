@@ -68,10 +68,10 @@ function isFileRequest(route) {
 }
 
 function handlePageRequest(stream, route) {
-    // const route = createBrowserPageRoute(route);
+    const filePath = createFilePathFromPageRequest(route);
 }
 
-function createBrowserPageRoute(route) {
+function createFilePathFromPageRequest(route) {
     if (isHomePage(route)) {
         return `/frontend/html/home.html`
     } else {
@@ -89,4 +89,4 @@ exports.redirectHTTPRequests = redirectHTTPRequests;
 exports.isAPIRequest = isAPIRequest;
 exports.isFileRequest = isFileRequest;
 exports.isHomePage = isHomePage;
-exports.createBrowserPageRoute = createBrowserPageRoute;
+exports.createFilePathFromPageRequest = createFilePathFromPageRequest;
