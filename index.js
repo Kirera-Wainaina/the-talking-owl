@@ -98,11 +98,21 @@ function isHomePage(route) {
     return false
 }
 
-function respondWithFile(stream, filePath) {
-    if (!isExistingFile(filePath)) {
-        // set file path to error file
-    } 
-    // respond with value of filePath
+async function respondWithFile(stream, filePath) {
+    const existing = await isExistingFile(filePath);
+    if (!existing) {
+        filePath = path.join(__dirname, 'frontend/html/error.html')
+    }
+
+    stream.respond({
+        ':status': existing ? 200 : 404,
+        'content-type': mimes.findMIMETypeFromExtension(filePath),
+        'content-encoding': 'gzip'
+    })
+
+    fs.createReadStream(filePath)
+        .pipe(zlib.createGzip())
+        .pipe(stream)
 }
 
 function isExistingFile(filePath) {
