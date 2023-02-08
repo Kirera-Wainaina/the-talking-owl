@@ -63,3 +63,11 @@ test('Creation of file path for file requests', () => {
     expect(index.createFilePathFromFileRequest(a)).toBe(path.join(__dirname, a));
     expect(index.createFilePathFromFileRequest(b)).toBe(path.join(__dirname, b))
 })
+
+test('Is Existing File', async () => {
+    const a = path.join(__dirname, 'index.js'),
+    b = path.join(__dirname, 'xys')
+
+    expect(await index.isExistingFile(a)).toBeTruthy();
+    expect(await index.isExistingFile(b)).toBeFalsy();
+})
