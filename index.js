@@ -99,20 +99,22 @@ function isHomePage(route) {
 }
 
 function respondWithFile(stream, filePath) {
-    stream.respond({
-        ':status': 200,
-        'content-type': mimes.findMIMETypeFromExtension(filePath),
-        'content-encoding': 'gzip'
-    })
-
-    fs.createReadStream(filePath)
-        .pipe(zlib.createGzip())
-        .pipe(stream)
-        .on('error', handleError)
+    if (!isExistingFile(filePath)) {
+        // set file path to error file
+    } 
+    // respond with value of filePath
 }
 
-function handleError(error) {
-    console.log(error)
+function isExistingFile(filePath) {
+    return new Promise((resolve, reject) => {
+        fs.access(filePath, (error) => {
+            if (error) {
+                resolve(false)
+            } else {
+                resolve(true)
+            }
+        })
+    })
 }
 
 exports.createLogMessage = createLogMessage;
@@ -122,3 +124,4 @@ exports.isFileRequest = isFileRequest;
 exports.isHomePage = isHomePage;
 exports.createFilePathFromPageRequest = createFilePathFromPageRequest;
 exports.createFilePathFromFileRequest = createFilePathFromFileRequest;
+exports.isExistingFile = isExistingFile;
