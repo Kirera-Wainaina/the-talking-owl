@@ -17,3 +17,14 @@ h1, h2, h3, h4, h5, h6 {
 p, a {
     font-family: 'Jost', sans-serif;
 }
+
+body {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+}
+
+@media (orientation: portrait) {
+    body {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
