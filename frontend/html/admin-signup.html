@@ -18,6 +18,15 @@
   <body>
     <h1>Create New Account</h1>
     <form id="signup">
+
+      <div id="unauthorized-error" class="error hide">
+        <p>You are unauthorized from creating an account.</p>
+      </div>
+
+      <div id="internal-server-error" class="error hide">
+        <p>Server Error: Please try again.</p>
+      </div>
+
       <label>
         Email:
         <input required type="text" name="email"/>
