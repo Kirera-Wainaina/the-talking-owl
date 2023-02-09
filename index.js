@@ -103,10 +103,10 @@ async function respondWithFile(stream, filePath) {
     if (!existing) {
         filePath = path.join(__dirname, 'frontend/html/error.html')
     }
-
+    
     stream.respond({
         ':status': existing ? 200 : 404,
-        'content-type': mimes.findMIMETypeFromExtension(filePath),
+        'content-type': mimes.findMIMETypeFromExtension(path.extname(filePath)),
         'content-encoding': 'gzip'
     })
 
