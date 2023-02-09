@@ -50,11 +50,14 @@ if (require.main == module) { // create HTTPS Server
 
 function handleHTTP2Request(stream, headers) {
     console.log(createLogMessage(headers[':method'], headers[':path']))
-    routeRequests(stream, headers[':path'])
+    routeRequests(stream, headers[':path'], headers[':method'])
 }
 
-function routeRequests(stream, route) {
+function routeRequests(stream, route, method) {
     if (isAPIRequest(route)) { // api routes request for data
+        if (method == 'GET') {
+            //handle get requests
+        }
     } else if (isFileRequest(route)) {
         handleFileRequest(stream, route)
     } else { // browser request
@@ -103,7 +106,7 @@ async function respondWithFile(stream, filePath) {
     if (!existing) {
         filePath = path.join(__dirname, 'frontend/html/error.html')
     }
-    
+
     stream.respond({
         ':status': existing ? 200 : 404,
         'content-type': mimes.findMIMETypeFromExtension(path.extname(filePath)),
