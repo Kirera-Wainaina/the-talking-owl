@@ -46,11 +46,20 @@ if (require.main == module) { // create HTTPS Server
     const server = http2.createSecureServer(options);
     server.listen(port, () => console.log(`HTTP2 Server listening on port ${port}`));
     server.on('stream', handleHTTP2Request);
+    server.on('request', handleAPIPostRequest);
 }
 
 function handleHTTP2Request(stream, headers) {
     console.log(createLogMessage(headers[':method'], headers[':path']))
     routeRequests(stream, headers[':path'], headers[':method'])
+}
+
+function handleAPIPostRequest(request, response) {
+    console.log(createLogMessage(request.method, request.url));
+
+    if (request.method == 'POST' && isAPIRequest(request.url)) {
+        getAPIModule(request.url)(request, response)
+    }
 }
 
 function routeRequests(stream, route, method) {
@@ -130,6 +139,10 @@ function isExistingFile(filePath) {
     })
 }
 
+function getAPIModule(route) {
+    return require(`./${route}`);
+}
+
 exports.createLogMessage = createLogMessage;
 exports.redirectHTTPRequests = redirectHTTPRequests;
 exports.isAPIRequest = isAPIRequest;
@@ -138,3 +151,4 @@ exports.isHomePage = isHomePage;
 exports.createFilePathFromPageRequest = createFilePathFromPageRequest;
 exports.createFilePathFromFileRequest = createFilePathFromFileRequest;
 exports.isExistingFile = isExistingFile;
+exports.getAPIModule = getAPIModule;
