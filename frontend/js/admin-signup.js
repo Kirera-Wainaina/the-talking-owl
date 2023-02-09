@@ -1,5 +1,7 @@
+var signupForm, loginForm;
+
 document.addEventListener('DOMContentLoaded', () => {
-    const signupForm = document.querySelector('#signup');
+    signupForm = document.querySelector('#signup');
     signupForm.addEventListener('submit', handleSignupSubmit);    
 })
 
@@ -11,6 +13,8 @@ function handleSignupSubmit(event) {
         displayPasswordMatchingError();
         return
     }
+
+    submitSignupData()
 }
 
 function passwordsMatch() {
@@ -24,4 +28,14 @@ function passwordsMatch() {
 function displayPasswordMatchingError() {
     const error = document.getElementById('password-error');
     error.classList.toggle('hide');
+}
+
+function submitSignupData() {
+    const formData = new FormData(signupForm);
+
+    fetch('/api/admin-signup', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => console.log(response))
 }
