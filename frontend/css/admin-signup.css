@@ -2,7 +2,6 @@
 
 h1 {
     grid-column: 5 / 9;
-    border: 1px solid black;
     font-size: 2em;
     color: var(---primary);
     text-align: center;
@@ -14,10 +13,12 @@ form {
     grid-column: 5 / 9;
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
+    border: 1px solid lightgrey;
     padding: 1em;
     margin-top: 1em;
     font-size: 1.2em;
+    color: var(---primary);
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
 }
 
 form label {
@@ -48,5 +49,7 @@ form button {
 
     form {
         grid-column: 1 / 7;
+        margin-left: 0.5em;
+        margin-right: 0.5em;
     }
 }
