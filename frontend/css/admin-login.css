@@ -1,9 +1,1 @@
-@import url('home.css');
-
-h1 {
-    grid-column: 5 / 9;
-    border: 1px solid black;
-    font-size: 2em;
-    color: var(---primary);
-    text-align: center;
-}
+@import url('admin-signup.css');
