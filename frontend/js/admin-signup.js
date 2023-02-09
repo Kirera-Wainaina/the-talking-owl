@@ -7,7 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
 function handleSignupSubmit(event) {
     event.preventDefault();
 
-    if (!passwordsMatch())
+    if (!passwordsMatch()) {
+        displayPasswordMatchingError();
+        return
+    }
 }
 
 function passwordsMatch() {
@@ -16,4 +19,9 @@ function passwordsMatch() {
 
     if (password === repeatPassword) return true;
     return false
+}
+
+function displayPasswordMatchingError() {
+    const error = document.getElementById('password-error');
+    error.classList.toggle('hide');
 }
