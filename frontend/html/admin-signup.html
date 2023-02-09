@@ -15,21 +15,26 @@
   </head>
 
   <body>
-    <h1>Admin Signup: Create new account</h1>
+    <h1>Create new account</h1>
     <form>
       <label>
         Email:
-        <input type="text"/>
+        <input type="text" name="email"/>
       </label>
 
       <label>
         Password:
-        <input type="password" />
+        <input type="password" name="password"/>
+      </label>
+
+      <label>
+        Repeat Password:
+        <input type="password" name="repeatPassword"/>
       </label>
 
       <label>
         Admin Password:
-        <input type="password" />
+        <input type="password" name="admin-password"/>
       </label>
 
       <button type="submit">Create Account</button>
