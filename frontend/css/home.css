@@ -23,18 +23,6 @@ body {
     grid-template-columns: repeat(12, 1fr);
 }
 
-.flex {
-    display: flex;
-}
-
-.grid {
-    display: grid;
-}
-
-.block {
-    display: block;
-}
-
 .hide {
     display: none;
 }
