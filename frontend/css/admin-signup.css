@@ -1,0 +1,38 @@
+@import url('home.css');
+
+h1 {
+    grid-column: 5 / 9;
+    border: 1px solid black;
+    font-size: 2em;
+    color: var(---primary);
+    text-align: center;
+    margin-top: 2em;
+}
+
+form {
+    grid-column: 5 / 9;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    padding: 1em;
+    margin-top: 1em;
+}
+
+form label {
+    margin: 1em;
+}
+
+form input, form button {
+    width: 100%;
+}
+
+
+@media (orientation: portrait) {
+    h1 {
+        grid-column: 1 / 7;
+    }
+
+    form {
+        grid-column: 1 / 7;
+    }
+}
