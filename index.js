@@ -58,7 +58,7 @@ function handleAPIPostRequest(request, response) {
     console.log(createLogMessage(request.method, request.url));
 
     if (request.method == 'POST' && isAPIRequest(request.url)) {
-        getAPIModule(request.url)(request, response)
+        getAPIModule(request.url).main(request, response)
     }
 }
 
