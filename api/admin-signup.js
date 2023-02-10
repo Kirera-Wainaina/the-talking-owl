@@ -7,14 +7,22 @@ const database = require('../utils/database')
 dotenv.config()
 
 exports.main = async function(request, response) {
-    const [fields] = await new FormDataHandler(request).run();
+    try {
+        const [fields] = await new FormDataHandler(request).run();
 
-    if (!await isAdminPassword(fields['adminPassword'])) {
-        responder.httpResponse(response, 'unauthorized');
-        return
+        if (!await isAdminPassword(fields['adminPassword'])) {
+            responder.httpResponse(response, 'unauthorized');
+            return
+        }
+        const data = await createDataToSave(fields)
+        const ref = await database.saveData(data, 'admins');
+        if (ref.id) {
+            console.log('Admin account created successfully')
+            responder.httpResponse(response, 'success');
+        }
+    } catch (e) {
+        responder.httpResponse(response, 'error')
     }
-
-    createDataToSave(fields)
 }
 
 function isAdminPassword(entry) {
