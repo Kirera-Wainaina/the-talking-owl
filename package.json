@@ -13,6 +13,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@google-cloud/firestore": "^6.4.2",
     "bcrypt": "^5.1.0",
     "busboy": "^1.6.0",
     "dotenv": "^16.0.3"
