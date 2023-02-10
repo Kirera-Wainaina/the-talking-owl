@@ -13,6 +13,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "busboy": "^1.6.0",
     "dotenv": "^16.0.3"
   }
 }
