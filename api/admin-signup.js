@@ -1,20 +1,21 @@
 const bcrypt = require('bcrypt')
-const FormDataHandler = require('../utils/formDataHandler');
 const dotenv = require('dotenv');
+
+const FormDataHandler = require('../utils/formDataHandler');
+const responder = require('../utils/responder')
 dotenv.config()
 
 module.exports = async function(request, response) {
     const [fields, files] = await new FormDataHandler(request).run();
 
     if (!await isAdminPassword(fields['adminPassword'])) {
-        
+        responder.httpResponse(response, 'unauthorized');
+        return
     }
-    console.log('fields: ', fields)
-    console.log('files', files);
 }
 
 function isAdminPassword(entry) {
-    return bcrypt.is(entry, process.env.ADMIN_PASSWORD);
+    return bcrypt.compare(entry, process.env.ADMIN_PASSWORD);
 }
 
 exports.isAdminPassword = isAdminPassword;
