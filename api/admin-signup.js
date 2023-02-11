@@ -55,3 +55,4 @@ function createJWT(email) {
 }
 
 exports.createDataToSave = createDataToSave;
+exports.createJWT = createJWT;
