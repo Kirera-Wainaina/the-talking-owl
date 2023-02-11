@@ -14,3 +14,9 @@ test('creates data to save', async () => {
     expect(results).toHaveProperty('password');
     expect(Object.keys(results).length).toBe(3)
 })
+
+test('creates JWT from email', async () => {
+    const email = 'xyz@gmail.com';
+
+    expect(await adminSignup.createJWT(email)).toMatch(/^.+\..+\..+$/)
+})
