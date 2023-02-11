@@ -1,5 +1,7 @@
 const bcrypt = require('bcrypt')
 const dotenv = require('dotenv');
+const jwt = require('jsonwebtoken')
+const utilities = require('util')
 
 const FormDataHandler = require('../utils/formDataHandler');
 const responder = require('../utils/responder');
@@ -18,6 +20,8 @@ exports.main = async function(request, response) {
         const ref = await database.saveData(data, 'admins');
         if (ref.id) {
             console.log('Admin account created successfully')
+            const token = await createJWT(fields.email);
+            response.setHeader('set-cookie', `auth=${token}; SameSite=Strict; HttpOnly; Path=/`)
             responder.httpResponse(response, 'success');
         }
     } catch (e) {
@@ -43,6 +47,11 @@ function hashPassword(password) {
             .then(result => resolve(result))
             .catch(error => reject(error))
     })
+}
+
+function createJWT(email) {
+    const sign = utilities.promisify(jwt.sign)
+    return sign({'email': email}, process.env.ADMIN_PASSWORD);
 }
 
 exports.createDataToSave = createDataToSave;
