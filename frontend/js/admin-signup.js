@@ -24,7 +24,7 @@ function handleSignupSubmit(event) {
         return
     }
 
-    submitSignupData()
+    submitData('/api/admin-signup', signupForm, handleSignupResponse);
 }
 
 function passwordsMatch() {
@@ -40,14 +40,13 @@ function displayPasswordMatchingError() {
     error.classList.toggle('hide');
 }
 
-function submitSignupData() {
-    const formData = new FormData(signupForm);
+function submitData(apiRoute, form, callback) {
+    const formData = new FormData(form);
 
-    fetch('/api/admin-signup', {
+    fetch(apiRoute, {
         method: 'POST',
         body: formData
-    })
-    .then(handleSignupResponse)
+    }).then(callback)
 }
 
 function handleSignupResponse(response) {
@@ -77,6 +76,12 @@ function redirectToAdminHome() {
     location.pathname = '/admin/home'
 }
 
-function handleLoginSubmit() {
-    
+function handleLoginSubmit(event) {
+    event.preventDefault();
+
+    submitData('/api/admin-login', loginForm, handleLoginResponse);
+}
+
+function handleLoginResponse() {
+
 }
