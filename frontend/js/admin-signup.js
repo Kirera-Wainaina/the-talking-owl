@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     if (location.pathname.includes('login')) {
-        loginForm = document.querySelector('#signup');
+        loginForm = document.querySelector('#login');
         loginForm.addEventListener('submit', handleLoginSubmit);
         loginForm.addEventListener('focusin', removeErrors)
     }
@@ -24,7 +24,7 @@ function handleSignupSubmit(event) {
         return
     }
 
-    submitData('/api/admin-signup', signupForm, handleSignupResponse);
+    submitData('/api/admin-signup', signupForm, handleResponse);
 }
 
 function passwordsMatch() {
@@ -49,7 +49,7 @@ function submitData(apiRoute, form, callback) {
     }).then(callback)
 }
 
-function handleSignupResponse(response) {
+function handleResponse(response) {
     if (response.status == 401) {
         toggleError(document.getElementById('unauthorized-error'))
     } else if (response.status == 200) {
@@ -79,9 +79,5 @@ function redirectToAdminHome() {
 function handleLoginSubmit(event) {
     event.preventDefault();
 
-    submitData('/api/admin-login', loginForm, handleLoginResponse);
-}
-
-function handleLoginResponse() {
-
+    submitData('/api/admin-login', loginForm, handleResponse);
 }
