@@ -43,24 +43,27 @@ function submitSignupData() {
 
 function handleSignupResponse(response) {
     if (response.status == 401) {
-        toggleUnauthorizedError()
+        toggleError(document.getElementById('unauthorized-error'))
+    } else if (response.status == 200) {
+        redirectToAdminHome()
+    } else {
+        toggleError(document.getElementById('server-error'));
     }
 }
 
-function toggleUnauthorizedError() {
-    const error = document.getElementById('unauthorized-error');
+function toggleError(error) {
     error.classList.toggle('hide')
 }
 
 function removeErrors(event) {
-    const errors = event.currentTarget.querySelectorAll('.error');
-    errors.forEach(error => {
-        hideElement(error)
+    const errorElements = event.currentTarget.querySelectorAll('.error');
+    errorElements.forEach(element => {
+        if (!element.classList.contains('hide')) {
+            toggleError(element)
+        }
     });
 }
 
-function hideElement(element) {
-    if (!element.classList.contains('hide')) {
-        element.classList.toggle('hide')
-    }
+function redirectToAdminHome() {
+    location.pathname = '/admin/home'
 }
