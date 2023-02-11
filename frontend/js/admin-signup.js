@@ -2,7 +2,8 @@ var signupForm, loginForm;
 
 document.addEventListener('DOMContentLoaded', () => {
     signupForm = document.querySelector('#signup');
-    signupForm.addEventListener('submit', handleSignupSubmit);    
+    signupForm.addEventListener('submit', handleSignupSubmit);
+    signupForm.addEventListener('focusin', removeErrors)
 })
 
 
@@ -37,5 +38,29 @@ function submitSignupData() {
         method: 'POST',
         body: formData
     })
-    .then(response => console.log(response))
+    .then(handleSignupResponse)
+}
+
+function handleSignupResponse(response) {
+    if (response.status == 401) {
+        toggleUnauthorizedError()
+    }
+}
+
+function toggleUnauthorizedError() {
+    const error = document.getElementById('unauthorized-error');
+    error.classList.toggle('hide')
+}
+
+function removeErrors(event) {
+    const errors = event.currentTarget.querySelectorAll('.error');
+    errors.forEach(error => {
+        hideElement(error)
+    });
+}
+
+function hideElement(element) {
+    if (!element.classList.contains('hide')) {
+        element.classList.toggle('hide')
+    }
 }
