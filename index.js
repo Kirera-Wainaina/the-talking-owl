@@ -143,6 +143,8 @@ function getAPIModule(route) {
     return require(`./${route}`);
 }
 
+process.on('uncaughtException', () => console.log('error'))
+
 exports.createLogMessage = createLogMessage;
 exports.redirectHTTPRequests = redirectHTTPRequests;
 exports.isAPIRequest = isAPIRequest;
