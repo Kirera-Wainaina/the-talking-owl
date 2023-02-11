@@ -1,11 +1,20 @@
 var signupForm, loginForm;
 
 document.addEventListener('DOMContentLoaded', () => {
-    signupForm = document.querySelector('#signup');
-    signupForm.addEventListener('submit', handleSignupSubmit);
-    signupForm.addEventListener('focusin', removeErrors)
+    if (location.pathname.includes('signup')) {
+        signupForm = document.querySelector('#signup');
+        signupForm.addEventListener('submit', handleSignupSubmit);
+        signupForm.addEventListener('focusin', removeErrors)
+    }
 })
 
+document.addEventListener('DOMContentLoaded', () => {
+    if (location.pathname.includes('login')) {
+        loginForm = document.querySelector('#signup');
+        loginForm.addEventListener('submit', handleLoginSubmit);
+        loginForm.addEventListener('focusin', removeErrors)
+    }
+})
 
 function handleSignupSubmit(event) {
     event.preventDefault();
@@ -66,4 +75,8 @@ function removeErrors(event) {
 
 function redirectToAdminHome() {
     location.pathname = '/admin/home'
+}
+
+function handleLoginSubmit() {
+    
 }
