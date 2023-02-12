@@ -51,7 +51,7 @@ if (require.main == module) { // create HTTPS Server
 
 function handleHTTP2Request(stream, headers) {
     console.log(createLogMessage(headers[':method'], headers[':path']))
-    routeRequests(stream, headers[':path'], headers[':method'])
+    routeRequests(stream, headers)
 }
 
 function handleAPIPostRequest(request, response) {
@@ -62,9 +62,10 @@ function handleAPIPostRequest(request, response) {
     }
 }
 
-function routeRequests(stream, route, method) {
+function routeRequests(stream, headers) {
+    const route = headers[':path'];
     if (isAPIRequest(route)) { // api routes request for data
-        if (method == 'GET') {
+        if (headers[':method'] == 'GET') {
             //handle get requests
         }
     } else if (isFileRequest(route)) {
