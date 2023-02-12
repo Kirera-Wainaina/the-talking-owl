@@ -79,3 +79,11 @@ test('Is admin page', () => {
     expect(index.isAdminPageRequest(a)).toBeTruthy();
     expect(index.isAdminPageRequest(b)).toBeFalsy();
 })
+
+test('return cookies in URLSearchParams', () => {
+    const cookie = 'test=value; test2=value2; test3=value3';
+    const params = index.passCookieIntoURLSearchParams(cookie);
+    
+    expect(params.has('test')).toBeTruthy();
+    expect(params.get('test3')).toBe('value3')
+})
