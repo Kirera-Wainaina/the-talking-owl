@@ -84,6 +84,9 @@ function isFileRequest(route) {
 }
 
 function handlePageRequest(stream, route) {
+    if (isAdminPageRequest(route)) {
+
+    }
     const filePath = createFilePathFromPageRequest(route);
     respondWithFile(stream, filePath)   
 }
@@ -143,6 +146,10 @@ function getAPIModule(route) {
     return require(`./${route}`);
 }
 
+function isAdminPageRequest(route) {
+    return /^\/admin\/.*/.test(route)
+}
+
 process.on('uncaughtException', error => console.log(error))
 
 exports.createLogMessage = createLogMessage;
@@ -154,3 +161,4 @@ exports.createFilePathFromPageRequest = createFilePathFromPageRequest;
 exports.createFilePathFromFileRequest = createFilePathFromFileRequest;
 exports.isExistingFile = isExistingFile;
 exports.getAPIModule = getAPIModule;
+exports.isAdminPageRequest = isAdminPageRequest;
