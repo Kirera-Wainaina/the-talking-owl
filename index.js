@@ -64,6 +64,7 @@ function handleAPIPostRequest(request, response) {
 
 function routeRequests(stream, headers) {
     const route = headers[':path'];
+    console.log(headers.cookie)
     if (isAPIRequest(route)) { // api routes request for data
         if (headers[':method'] == 'GET') {
             //handle get requests
@@ -71,6 +72,9 @@ function routeRequests(stream, headers) {
     } else if (isFileRequest(route)) {
         handleFileRequest(stream, route)
     } else { // browser request
+        if (isAdminPageRequest(route)) { // and is not authorized
+
+        }
         handlePageRequest(stream, route)
     }
 }
@@ -85,9 +89,6 @@ function isFileRequest(route) {
 }
 
 function handlePageRequest(stream, route) {
-    if (isAdminPageRequest(route)) {
-
-    }
     const filePath = createFilePathFromPageRequest(route);
     respondWithFile(stream, filePath)   
 }
@@ -151,6 +152,16 @@ function isAdminPageRequest(route) {
     return /^\/admin\/.*/.test(route)
 }
 
+function passCookieIntoURLSearchParams(cookieString) {
+    if (!cookieString) return null;
+    
+    return new URLSearchParams(cookieString.replaceAll('; ', '&'))
+}
+
+function isAuthorized(cookie, cookieName) {
+
+}
+
 process.on('uncaughtException', error => console.log(error))
 
 exports.createLogMessage = createLogMessage;
@@ -163,3 +174,4 @@ exports.createFilePathFromFileRequest = createFilePathFromFileRequest;
 exports.isExistingFile = isExistingFile;
 exports.getAPIModule = getAPIModule;
 exports.isAdminPageRequest = isAdminPageRequest;
+exports.passCookieIntoURLSearchParams = passCookieIntoURLSearchParams;
