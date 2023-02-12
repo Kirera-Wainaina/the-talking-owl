@@ -1,4 +1,4 @@
-import { showSpinningIcon } from "./general.js"; 
+import { showSpinningIcon, hideSpinningIcon } from "./general.js"; 
 var signupForm, loginForm;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -31,7 +31,7 @@ function handleSignupSubmit(event) {
         return
     }
 
-    //submitData('/api/admin-signup', signupForm, handleResponse);
+    submitData('/api/admin-signup', signupForm, handleResponse);
 }
 
 function passwordsMatch() {
@@ -59,10 +59,12 @@ function submitData(apiRoute, form, callback) {
 function handleResponse(response) {
     if (response.status == 401) {
         toggleError(document.getElementById('unauthorized-error'))
+        checkPageBeforeHidingSpinningIcon()
     } else if (response.status == 200) {
         redirectToAdminHome()
     } else {
         toggleError(document.getElementById('server-error'));
+        checkPageBeforeHidingSpinningIcon()
     }
 }
 
@@ -86,5 +88,12 @@ function redirectToAdminHome() {
 function handleLoginSubmit(event) {
     event.preventDefault();
 
-    //submitData('/api/admin-login', loginForm, handleResponse);
+    submitData('/api/admin-login', loginForm, handleResponse);
+}
+
+function checkPageBeforeHidingSpinningIcon() {
+    location.pathname.includes('login') 
+        ? hideSpinningIcon('Login') 
+        : hideSpinningIcon('Create Account')
+    return
 }
