@@ -4,6 +4,7 @@ export function showSpinningIcon(button) {
     spinner.id = 'spinner';
     button.setAttribute('disabled', true);
     button.textContent = '';
+    button.classList.add('spinner-parent')
 
     button.appendChild(spinner);
 }
@@ -13,6 +14,7 @@ export function hideSpinningIcon(text) {
     const parent = spinner.parentElement;
     
     parent.textContent = text;
+    parent.classList.remove('spinner-parent')
     parent.removeAttribute('disabled');
     spinner.remove()
 }
