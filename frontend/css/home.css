@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap');
 
 :root {
-    ---primary: #5841B9;
+    --primary: #5841B9;
     --secondary: #DA5172;
 }
 
@@ -25,6 +25,30 @@ body {
 
 .hide {
     display: none;
+}
+
+#spinner {
+    height: 20px;
+    width: 20px;
+    border-top: 3px solid var(--primary);
+    border-right: 2.5px solid var(--primary);
+    border-bottom: 1.5px solid var(--primary);
+    border-left: 1px solid lightblue;
+    border-radius: 50%;
+
+    animation-name: spin;
+    animation-duration: 600ms;
+    animation-timing-function: ease-in;
+    animation-iteration-count: infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @media (orientation: portrait) {
