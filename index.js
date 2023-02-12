@@ -75,7 +75,7 @@ function routeRequests(stream, headers) {
         handleFileRequest(stream, route)
     } else { // browser request
         if (isAdminPageRequest(route) && !isAuthorized(headers.cookie)) { // and is not authorized
-            stream.respond({':status': 401 })
+            stream.respond({':status': 301, location: '/admin-login' })
             stream.end();
         } else {
             handlePageRequest(stream, route)
