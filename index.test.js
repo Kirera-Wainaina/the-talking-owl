@@ -71,3 +71,11 @@ test('Is Existing File', async () => {
     expect(await index.isExistingFile(a)).toBeTruthy();
     expect(await index.isExistingFile(b)).toBeFalsy();
 })
+
+test('Is admin page', () => {
+    const a = '/admin/home'
+    b = '/home/page'
+
+    expect(index.isAdminPageRequest(a)).toBeTruthy();
+    expect(index.isAdminPageRequest(b)).toBeFalsy();
+})
