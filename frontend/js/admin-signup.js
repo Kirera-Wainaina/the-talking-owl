@@ -1,9 +1,13 @@
+import { showSpinningIcon } from "./general.js"; 
 var signupForm, loginForm;
 
 document.addEventListener('DOMContentLoaded', () => {
     if (location.pathname.includes('signup')) {
         signupForm = document.querySelector('#signup');
         signupForm.addEventListener('submit', handleSignupSubmit);
+        signupForm.addEventListener(
+            'submit', 
+            () => showSpinningIcon(document.querySelector('button[type="submit"]')))
         signupForm.addEventListener('focusin', removeErrors)
     }
 })
@@ -12,6 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (location.pathname.includes('login')) {
         loginForm = document.querySelector('#login');
         loginForm.addEventListener('submit', handleLoginSubmit);
+        loginForm.addEventListener(
+            'submit',
+            () => showSpinningIcon(document.querySelector('button[type="submit"]')))
         loginForm.addEventListener('focusin', removeErrors)
     }
 })
@@ -24,7 +31,7 @@ function handleSignupSubmit(event) {
         return
     }
 
-    submitData('/api/admin-signup', signupForm, handleResponse);
+    //submitData('/api/admin-signup', signupForm, handleResponse);
 }
 
 function passwordsMatch() {
@@ -79,5 +86,5 @@ function redirectToAdminHome() {
 function handleLoginSubmit(event) {
     event.preventDefault();
 
-    submitData('/api/admin-login', loginForm, handleResponse);
+    //submitData('/api/admin-login', loginForm, handleResponse);
 }
