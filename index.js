@@ -2,9 +2,11 @@ const http = require('http');
 const http2 = require('http2');
 const fs = require('fs');
 const zlib = require('zlib')
+const util = require('util')
 
 const dotenv = require('dotenv');
 const path = require('path');
+const jwt = require('jsonwebtoken')
 
 const mimes = require('./utils/MIMETypes')
 dotenv.config()
@@ -64,7 +66,7 @@ function handleAPIPostRequest(request, response) {
 
 function routeRequests(stream, headers) {
     const route = headers[':path'];
-    console.log(headers.cookie)
+
     if (isAPIRequest(route)) { // api routes request for data
         if (headers[':method'] == 'GET') {
             //handle get requests
@@ -73,7 +75,7 @@ function routeRequests(stream, headers) {
         handleFileRequest(stream, route)
     } else { // browser request
         if (isAdminPageRequest(route)) { // and is not authorized
-
+            isAuthorized(headers['cookie'])
         }
         handlePageRequest(stream, route)
     }
@@ -158,8 +160,21 @@ function passCookieIntoURLSearchParams(cookieString) {
     return new URLSearchParams(cookieString.replaceAll('; ', '&'))
 }
 
-function isAuthorized(cookie, cookieName) {
+function isAuthorized(cookie) {
+    const cookieParams = passCookieIntoURLSearchParams(cookie);
+    if (!cookieParams) return false;
 
+    const authToken = cookieParams.get('auth');
+    if (!authToken) return false;
+    
+    return JWTTokenIsValid(authToken)
+}
+
+async function JWTTokenIsValid(token) {
+    const jwtVerify = util.promisify(jwt.verify);
+    const decoded = await jwtVerify(token, process.env.ADMIN_PASSWORD);
+    if (decoded.email) return true;
+    return false
 }
 
 process.on('uncaughtException', error => console.log(error))
