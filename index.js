@@ -74,10 +74,12 @@ function routeRequests(stream, headers) {
     } else if (isFileRequest(route)) {
         handleFileRequest(stream, route)
     } else { // browser request
-        if (isAdminPageRequest(route)) { // and is not authorized
-            isAuthorized(headers['cookie'])
+        if (isAdminPageRequest(route) && !isAuthorized(headers.cookie)) { // and is not authorized
+            stream.respond({':status': 401 })
+            stream.end();
+        } else {
+            handlePageRequest(stream, route)
         }
-        handlePageRequest(stream, route)
     }
 }
 
