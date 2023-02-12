@@ -15,5 +15,5 @@ exports.saveData = function(data, collectionName) {
 
 exports.getUserByEmail = function(email, collectionName) {
     const collection = firestore.collection(collectionName);
-    return collection.where('email', '==', email).get()
+    return collection.where('email', '==', email).limit(1).get()
 }
