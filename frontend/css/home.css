@@ -15,7 +15,7 @@ h1, h2, h3, h4, h5, h6, button {
     font-family: 'Montserrat', sans-serif;
 }
 
-p, a, label, input {
+p, a, label, input, select, textarea {
     font-family: 'Jost', sans-serif;
 }
 
