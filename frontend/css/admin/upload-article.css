@@ -7,7 +7,7 @@ h1 {
     margin-top: 7vh;
 }
 
-#check-preview {
+#check-preview, #exit-preview {
     color: white;
     background-color: var(--primary);
     position: fixed;
@@ -58,6 +58,16 @@ select {
     font-size: 1em;
 }
 
+#preview {
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    min-height: 100vh;
+    background-color: white;
+}
+
 @media (orientation: portrait) {
     h1 {
         grid-column: 1 / 7;
@@ -67,7 +77,7 @@ select {
         grid-column: 1 / 7;
     }
 
-    #check-preview {
+    #check-preview, #exit-preview {
         height: 6vh;
     }
 }
