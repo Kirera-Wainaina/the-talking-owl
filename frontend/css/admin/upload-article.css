@@ -3,7 +3,18 @@
 h1 {
     grid-column: 1 / 13;
     text-align: center;
-    color: var(--primary)
+    color: var(--primary);
+    margin-top: 7vh;
+}
+
+#preview {
+    color: white;
+    background-color: var(--primary);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 5vh;
 }
 
 @media (orientation: portrait) {
