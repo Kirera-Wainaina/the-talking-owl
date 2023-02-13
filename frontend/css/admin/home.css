@@ -4,10 +4,31 @@ h1 {
     color: var(--primary);
     grid-column: 1 / 13;
     text-align: center;
+    margin-top: .5em;
+}
+
+#menu {
+    grid-column: 4 / 10;
+    display: flex;
+    flex-direction: column;
+}
+
+#menu a {
+    border: 1px solid grey;
+    display: inline-block;
+    padding: 1em;
+    margin-top: 1em;
+    text-align: center;
+    font-size: 1.2em;
 }
 
 @media (orientation: portrait) {
     h1 {
         grid-column: 1 / 7;
+    }
+
+    #menu {
+        grid-column: 1 / 7;
+        padding: 1em;
     }
 }
