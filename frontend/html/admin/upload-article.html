@@ -18,6 +18,37 @@
   <body>
     <h1>Upload Article</h1>
     <button id="preview">Check Preview</button>
+    <form>
+      <label>
+        Title:
+        <input type="text" name="title" required/>
+      </label>
+
+      <label>
+        Category:
+        <select name="category" required>
+          <option value="general">General</option>
+          <option value="tech">Tech</option>
+        </select>
+      </label>
+
+      <label>
+        Description:
+        <input name="description" type="text" required />
+      </label>
+
+      <label>
+        Cover photo:
+        <input name="coverPhoto" type="text" required />
+      </label>
+
+      <label>
+        Content:
+        <textarea name="content"></textarea>
+      </label>
+
+      <input type="submit" value="Submit Article"/>
+    </form>
   </body>
   
 </html>
