@@ -18,7 +18,7 @@ form {
     margin-top: 1em;
     font-size: 1.2em;
     color: var(--primary);
-    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
+    box-shadow: var(--shadow);
 }
 
 form label {

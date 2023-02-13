@@ -4,6 +4,7 @@
 :root {
     --primary: #5841B9;
     --secondary: #DA5172;
+    --shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
 }
 
 * {
