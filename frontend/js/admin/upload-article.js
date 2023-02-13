@@ -5,7 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const exitPreviewButton = document.getElementById('exit-preview');
 
     checkPreviewButton.addEventListener('click', togglePreview)
-    checkPreviewButton.addEventListener('click', () => render(createPreviewData()))
+    checkPreviewButton.addEventListener('click', 
+        () => render(document.getElementById('preview'), 
+            createPreviewData()))
+
     exitPreviewButton.addEventListener('click', togglePreview);
 })
 
