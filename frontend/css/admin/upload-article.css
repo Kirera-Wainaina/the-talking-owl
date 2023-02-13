@@ -7,7 +7,7 @@ h1 {
     margin-top: 7vh;
 }
 
-#preview {
+#check-preview {
     color: white;
     background-color: var(--primary);
     position: fixed;
@@ -67,7 +67,7 @@ select {
         grid-column: 1 / 7;
     }
 
-    #preview {
+    #check-preview {
         height: 6vh;
     }
 }
