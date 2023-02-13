@@ -17,8 +17,53 @@ h1 {
     height: 5vh;
 }
 
+form {
+    grid-column: 3 / 11;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    font-size: 1.2em;
+    margin-bottom: 1em;
+}
+
+input {
+    font-size: 1em;
+    height: 2em;
+}
+
+input, textarea {
+    width: 100%;
+}
+
+label {
+    margin-top: 1em;
+}
+
+input[type='submit'] {
+    margin-top: 1em;
+    color: white;
+    background-color: var(--secondary);
+    border-radius: 5px;
+    font-size: 1.1em;
+    height: 2em;
+}
+
+textarea {
+    height: 100vh;
+    font-size: 1.1em;
+}
+
+select {
+    font-size: 1em;
+}
+
 @media (orientation: portrait) {
     h1 {
+        grid-column: 1 / 7;
+    }
+
+    form {
         grid-column: 1 / 7;
     }
 }
