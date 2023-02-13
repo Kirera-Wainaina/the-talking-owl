@@ -3,6 +3,8 @@ const responder = require('../utils/responder');
 const database = require('../utils/database');
 const bcrypt = require('bcrypt');
 
+const adminSignup = require('./admin-signup')
+
 
 exports.main = async function(request, response) {
     try {
@@ -16,7 +18,7 @@ exports.main = async function(request, response) {
 
         querySnapshot.forEach(user => handlePasswordVerification(
                 response, 
-                user.data().password, 
+                user.data(), 
                 fields.password))
     } catch (error) {
         console.log(error);
@@ -24,9 +26,9 @@ exports.main = async function(request, response) {
     }
 }
 
-async function handlePasswordVerification(response, hash, plainPassword) {
-    if (await isPassword(plainPassword, hash)) {
-        responder.httpResponse(response, 'success')
+async function handlePasswordVerification(response, user, plainPassword) {
+    if (await isPassword(plainPassword, user.password)) {
+        handleSuccessfulLogin(response, user.email)
     } else {
         responder.httpResponse(response, 'unauthorized')
     }
@@ -34,4 +36,11 @@ async function handlePasswordVerification(response, hash, plainPassword) {
 
 function isPassword(plainPassword, hash) {
     return bcrypt.compare(plainPassword, hash)
+}
+
+async function handleSuccessfulLogin(response, email) {
+    console.log('Successful login');
+    const token = await adminSignup.createJWT(email);
+    response.setHeader('set-cookie', `auth=${token}; SameSite=Strict; HttpOnly; Path=/`)
+    responder.httpResponse(response, 'success')
 }
