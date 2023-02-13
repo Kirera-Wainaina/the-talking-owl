@@ -66,4 +66,8 @@ select {
     form {
         grid-column: 1 / 7;
     }
+
+    #preview {
+        height: 6vh;
+    }
 }
