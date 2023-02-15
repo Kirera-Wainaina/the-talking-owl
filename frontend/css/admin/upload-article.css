@@ -72,6 +72,10 @@ select {
     margin-left: 5%;
 }
 
+.image-preview {
+    height: 10vh;
+}
+
 @media (orientation: portrait) {
     form {
         grid-column: 1 / 7;
