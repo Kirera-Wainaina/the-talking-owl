@@ -58,6 +58,16 @@ landscapeImageInput.addEventListener(
     'change', 
     event => previewImage(event, document.getElementById('landscape-image-preview')));
 
+const portraitImageInput = document.getElementById('portrait-image-input');
+portraitImageInput.addEventListener(
+    'change', 
+    event => previewImage(event, document.getElementById('portrait-image-preview')));
+
+const thumbnailImageInput = document.getElementById('thumbnail-image-input');
+thumbnailImageInput.addEventListener(
+    'change', 
+    event => previewImage(event, document.getElementById('thumbnail-image-preview')));
+
 function previewImage(event, imageElement) {
     const file = event.target.files[0];
     const url = URL.createObjectURL(file);
