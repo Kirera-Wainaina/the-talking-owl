@@ -71,6 +71,5 @@ thumbnailImageInput.addEventListener(
 function previewImage(event, imageElement) {
     const file = event.target.files[0];
     const url = URL.createObjectURL(file);
-    const imageElement = document.getElementById('landscape-image-preview');
     imageElement.src = url;
 }
