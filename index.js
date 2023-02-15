@@ -57,9 +57,8 @@ function handleHTTP2Request(stream, headers) {
 }
 
 function handleAPIPostRequest(request, response) {
-    console.log(createLogMessage(request.method, request.url));
-
     if (request.method == 'POST' && isAPIRequest(request.url)) {
+        console.log(createLogMessage(request.method, request.url));
         getAPIModule(request.url).main(request, response)
     }
 }
