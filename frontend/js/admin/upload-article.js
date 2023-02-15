@@ -38,19 +38,23 @@ function createPreviewData() {
 }
 
 const uploadLandscapeImageButton = document.getElementById('landscape-image-button');
-uploadLandscapeImageButton.addEventListener('click', clickUploadLandscapeImageInput);
-
-function clickUploadLandscapeImageInput() {
-    const input = document.getElementById('landscape-image-input');
-    input.click()
-}
+uploadLandscapeImageButton.addEventListener(
+    'click', 
+    () => clickImageInput(document.getElementById('landscape-image-input')));
 
 const uploadPortraitImageButton = document.getElementById('portrait-image-button');
-uploadPortraitImageButton.addEventListener('click', clickUploadPortraitImageInut)
+uploadPortraitImageButton.addEventListener(
+    'click', 
+    () => clickImageInput(document.getElementById('portrait-image-input')))
 
-function clickUploadPortraitImageInut() {
-    const input = document.getElementById('portrait-image-input');
-    input.click();
+
+const uploadThumbnailImageButton = document.getElementById('thumbnail-image-button');
+uploadThumbnailImageButton.addEventListener(
+    'click', 
+    () => clickImageInput(document.getElementById('thumbnail-image-input')))
+
+function clickImageInput(imageInput) {
+    imageInput.click()
 }
 
 const landscapeImageInput = document.getElementById('landscape-image-input');
