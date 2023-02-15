@@ -38,9 +38,17 @@ function createPreviewData() {
 }
 
 const uploadLandscapeImageButton = document.getElementById('landscape-image-button');
-uploadLandscapeImageButton.addEventListener('click', clickUploadLandscapeFileInput);
+uploadLandscapeImageButton.addEventListener('click', clickUploadLandscapeImageInput);
 
-function clickUploadLandscapeFileInput() {
+function clickUploadLandscapeImageInput() {
     const input = document.getElementById('landscape-image-input');
     input.click()
+}
+
+const uploadPortraitImageButton = document.getElementById('portrait-image-button');
+uploadPortraitImageButton.addEventListener('click', clickUploadPortraitImageInut)
+
+function clickUploadPortraitImageInut() {
+    const input = document.getElementById('portrait-image-input');
+    input.click();
 }
