@@ -54,11 +54,13 @@ function clickUploadPortraitImageInut() {
 }
 
 const landscapeImageInput = document.getElementById('landscape-image-input');
-landscapeImageInput.addEventListener('change', previewLandscapeImage);
+landscapeImageInput.addEventListener(
+    'change', 
+    event => previewImage(event, document.getElementById('landscape-image-preview')));
 
-function previewLandscapeImage(event) {
+function previewImage(event, imageElement) {
     const file = event.target.files[0];
     const url = URL.createObjectURL(file);
-    const imgEl = document.getElementById('landscape-image-preview');
-    imgEl.src = url;
+    const imageElement = document.getElementById('landscape-image-preview');
+    imageElement.src = url;
 }
