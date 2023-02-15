@@ -24,6 +24,10 @@ body {
     grid-template-columns: repeat(12, 1fr);
 }
 
+img {
+    max-width: 100%;
+}
+
 .hide {
     display: none;
 }
