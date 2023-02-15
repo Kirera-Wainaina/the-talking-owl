@@ -10,6 +10,10 @@
     height: 5vh;
 }
 
+#exit-preview {
+    z-index: 3;
+}
+
 form {
     grid-column: 3 / 11;
     box-shadow: var(--shadow);
