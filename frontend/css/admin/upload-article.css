@@ -34,7 +34,7 @@ input, textarea {
 }
 
 label {
-    margin-top: 1em;
+    margin-top: 2em;
 }
 
 input[type='submit'] {
@@ -68,7 +68,8 @@ select {
 .upload-image {
     font-family: 'Jost', sans-serif;
     font-size: 1em;
-    width: 50%;
+    width: 90%;
+    margin-left: 5%;
 }
 
 @media (orientation: portrait) {
