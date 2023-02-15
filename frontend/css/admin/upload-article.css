@@ -65,6 +65,12 @@ select {
     background-color: white;
 }
 
+.upload-image {
+    font-family: 'Jost', sans-serif;
+    font-size: 1em;
+    width: 50%;
+}
+
 @media (orientation: portrait) {
     form {
         grid-column: 1 / 7;

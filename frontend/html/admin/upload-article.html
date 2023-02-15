@@ -16,7 +16,7 @@
 
   <body>
     <h1>Upload Article</h1>
-    
+
     <button id="check-preview">Check Preview</button>
     <button id="exit-preview" class="hide">Exit Preview</button>
     
@@ -40,8 +40,10 @@
       </label>
 
       <label>
-        Cover photo:
-        <input name="coverPhoto" type="url" required />
+        Landscape Cover photo:
+        <input name="coverPhoto" type="file" required class="hide"/>
+        <button class="upload-image">Upload Image</button>
+        
       </label>
 
       <label>

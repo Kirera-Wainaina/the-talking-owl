@@ -1,7 +1,7 @@
 export function render(parentContainer, data) {
     let html = '';
     html += createTitleElement(data.title);
-    parentContainer.innerHTML += html;
+    parentContainer.innerHTML = html;
 }
 
 function createTitleElement(title) {
