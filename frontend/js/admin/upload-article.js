@@ -36,3 +36,11 @@ function createPreviewData() {
         content: document.querySelector('textarea').value
     };
 }
+
+const uploadLandscapeImageButton = document.getElementById('landscape-image-button');
+uploadLandscapeImageButton.addEventListener('click', clickUploadLandscapeFileInput);
+
+function clickUploadLandscapeFileInput() {
+    const input = document.getElementById('landscape-image-input');
+    input.click()
+}
