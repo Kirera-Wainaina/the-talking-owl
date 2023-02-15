@@ -1,11 +1,4 @@
-@import url('../home.css');
-
-h1 {
-    grid-column: 1 / 13;
-    text-align: center;
-    color: var(--primary);
-    margin-top: 7vh;
-}
+@import url('../article.css');
 
 #check-preview, #exit-preview {
     color: white;
@@ -69,10 +62,6 @@ select {
 }
 
 @media (orientation: portrait) {
-    h1 {
-        grid-column: 1 / 7;
-    }
-
     form {
         grid-column: 1 / 7;
     }
