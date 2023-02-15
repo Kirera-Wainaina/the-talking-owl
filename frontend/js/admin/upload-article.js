@@ -52,3 +52,13 @@ function clickUploadPortraitImageInut() {
     const input = document.getElementById('portrait-image-input');
     input.click();
 }
+
+const landscapeImageInput = document.getElementById('landscape-image-input');
+landscapeImageInput.addEventListener('change', previewLandscapeImage);
+
+function previewLandscapeImage(event) {
+    const file = event.target.files[0];
+    const url = URL.createObjectURL(file);
+    const imgEl = document.getElementById('landscape-image-preview');
+    imgEl.src = url;
+}
