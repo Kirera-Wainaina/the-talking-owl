@@ -31,7 +31,7 @@ function createLogMessage(method, route) {
 }
 
 function redirectHTTPRequests(response, route) {
-    response.writeHead('301', { 
+    response.writeHead(301, { 
         'location': `${process.env.DOMAIN}${route}`
     })
     response.end()
@@ -73,9 +73,9 @@ function routeRequests(stream, headers) {
     } else if (isFileRequest(route)) {
         handleFileRequest(stream, route)
     } else { // browser request
-        if (isAdminPageRequest(route) && !isAuthorized(headers.cookie)) { // and is not authorized
-            stream.respond({':status': 301, location: '/admin-login' })
-            stream.end();
+        if (isAdminPageRequest(route) && !isAuthorized(headers.cookie)) { 
+            const filePath = path.join(__dirname, 'frontend/html/unauthorized.html');
+            respondWithFile(stream, filePath, 401)
         } else {
             handlePageRequest(stream, route)
         }
@@ -118,14 +118,15 @@ function isHomePage(route) {
     return false
 }
 
-async function respondWithFile(stream, filePath) {
+async function respondWithFile(stream, filePath, statusCode=200) {
     const existing = await isExistingFile(filePath);
     if (!existing) {
-        filePath = path.join(__dirname, 'frontend/html/error.html')
+        filePath = path.join(__dirname, 'frontend/html/error.html');
+        statusCode = 404;
     }
 
     stream.respond({
-        ':status': existing ? 200 : 404,
+        ':status': statusCode,
         'content-type': mimes.findMIMETypeFromExtension(path.extname(filePath)),
         'content-encoding': 'gzip'
     })
