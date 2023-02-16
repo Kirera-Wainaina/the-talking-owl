@@ -48,6 +48,12 @@ form {
     background-color: white;
 }
 
+#close-icon {
+    position: fixed;
+    top: 3vh;
+    right: 5vw;
+}
+
 @media (orientation: portrait) {
     h1 {
         grid-column: 1 / 7;
@@ -71,5 +77,9 @@ form {
 
     #menu {
         display: none;
+    }
+
+    form {
+        width: 90vw;
     }
 }
