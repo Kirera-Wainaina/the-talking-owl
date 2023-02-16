@@ -28,6 +28,15 @@ h1 {
     font-size: 1.1em;
 }
 
+#upload-modal {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--primary);
+    z-index: 1;
+    opacity: .5;
+}
+
 @media (orientation: portrait) {
     h1 {
         grid-column: 1 / 7;

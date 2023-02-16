@@ -18,13 +18,19 @@
     <h1>Image Library</h1>
 
     <div id="icon-container">
-      <input type="image" src="/frontend/images/add-icon.svg" alt="add images" id="add-icon"/>
+      <input class="open-upload" type="image" src="/frontend/images/add-icon.svg" alt="add images" id="add-icon"/>
       <input type="image" src="/frontend/images/delete-icon.svg" alt="Delete images" id="delete-icon"/>
     </div>
 
     <div id="menu">
-      <button id="open-upload" type="button">Upload Images</button>
+      <button class="open-upload" type="button">Upload Images</button>
       <button type="button">Delete Images</button>
+    </div>
+
+    <div id="upload-modal" class="hide">
+      <div>
+        <h2>Upload Images</h2>
+      </div>
     </div>
   </body>
   
