@@ -73,7 +73,9 @@ select {
 }
 
 .image-preview {
-    height: 10vh;
+    height: 20vh;
+    margin-top: 1em;
+    margin-left: 5%;
 }
 
 @media (orientation: portrait) {
