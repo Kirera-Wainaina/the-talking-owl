@@ -1,1 +1,14 @@
 @import url(../home.css);
+
+h1 {
+    color: var(--primary);
+    grid-column: 1 / 13;
+    text-align: center;
+    margin-top: 1em;
+}
+
+@media (orientation: portrait) {
+    h1 {
+        grid-column: 1 / 7;
+    }
+}
