@@ -13,7 +13,7 @@ test('Redirect HTTP Requests', () => {
     response.end = jest.fn();
 
     index.redirectHTTPRequests(response);
-    expect(response.writeHead.mock.calls[0][0]).toBe('301')
+    expect(response.writeHead.mock.calls[0][0]).toBe(301)
     expect(response.end.mock.calls).toHaveLength(1)
 })
 
