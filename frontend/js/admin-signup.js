@@ -82,7 +82,7 @@ function removeErrors(event) {
 }
 
 function redirectToAdminHome() {
-    location.pathname = '/admin/home'
+    location.href = '/admin/home'
 }
 
 function handleLoginSubmit(event) {
