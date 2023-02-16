@@ -6,5 +6,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function toggleUploadContainer() {
     const modal = document.getElementById('upload-modal');
-    modal.classList.toggle('hide');
+    modal.classList.toggle('flex');
 }
