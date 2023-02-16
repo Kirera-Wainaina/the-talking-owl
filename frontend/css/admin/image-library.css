@@ -11,6 +11,21 @@ h1 {
     display: none;
 }
 
+#menu {
+    grid-column: 4 / 10;
+    display: flex;
+    gap: 1em;
+}
+
+#menu button {
+    width: 50%;
+    height: 5vh;
+    background-color: var(--secondary);
+    color: white;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
 @media (orientation: portrait) {
     h1 {
         grid-column: 1 / 7;
@@ -27,5 +42,9 @@ h1 {
 
     #add-icon {
         height: 8vh;
+    }
+
+    #menu {
+        display: none;
     }
 }
