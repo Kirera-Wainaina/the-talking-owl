@@ -7,8 +7,25 @@ h1 {
     margin-top: 1em;
 }
 
+#icon-container {
+    display: none;
+}
+
 @media (orientation: portrait) {
     h1 {
         grid-column: 1 / 7;
+    }
+
+    #icon-container {
+        position: fixed;
+        bottom: 5vh;
+        right: 3vw;
+        background-color: var(--secondary);
+        border-radius: 50%;
+        display: block;
+    }
+
+    #add-icon {
+        height: 8vh;
     }
 }
