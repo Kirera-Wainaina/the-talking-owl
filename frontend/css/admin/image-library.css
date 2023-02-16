@@ -34,14 +34,16 @@ h1 {
     #icon-container {
         position: fixed;
         bottom: 5vh;
-        right: 3vw;
-        background-color: var(--secondary);
-        border-radius: 50%;
-        display: block;
+        right: 4vw;
+        display: flex;
+        flex-direction: column;
+        gap: 2vh;
     }
 
-    #add-icon {
-        height: 8vh;
+    #icon-container input {
+        background-color: var(--secondary);
+        border-radius: 50%;
+        height: 8vh;   
     }
 
     #menu {
