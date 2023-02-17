@@ -71,6 +71,22 @@ form button {
     border-radius: 5px;
 }
 
+#images-to-upload {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 1em;
+    margin-left: 5%;
+}
+
+#images-to-upload img {
+    width: 30%;
+    height: 30vh;
+    object-fit: contain;
+}
+
 @media (orientation: portrait) {
     h1 {
         grid-column: 1 / 7;
@@ -103,5 +119,16 @@ form button {
     form button {
         width: 90%;
         margin-left: 5%;
+    }
+
+    #images-to-upload {
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: .5em;
+    }
+
+    #images-to-upload img {
+        width: 90%;
     }
 }
