@@ -48,6 +48,12 @@ form {
     background-color: white;
 }
 
+form h2 {
+    width: 100%;
+    text-align: center;
+    margin-top: 1em;;
+}
+
 #close-icon {
     position: fixed;
     top: 3vh;
