@@ -60,6 +60,17 @@ form h2 {
     right: 5vw;
 }
 
+form button {
+    width: 60%;
+    height: 2em;;
+    margin-left: 20%;
+    margin-top: 1em;
+    background-color: var(--primary);
+    color: white;
+    font-size: 1.1em;
+    border-radius: 5px;
+}
+
 @media (orientation: portrait) {
     h1 {
         grid-column: 1 / 7;
@@ -87,5 +98,10 @@ form h2 {
 
     form {
         width: 90vw;
+    }
+
+    form button {
+        width: 90%;
+        margin-left: 5%;
     }
 }
