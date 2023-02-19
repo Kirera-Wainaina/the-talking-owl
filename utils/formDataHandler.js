@@ -30,7 +30,7 @@ class FormDataHandler {
     handleFile(name, file, info, resolve) {
         this.thereIsFile = true;
         const ext = mimes.findExtensionFromMIMEType(info.mimeType);
-        const filePath = path.join(__dirname, 'uploaded', `${name}${ext}`);
+        const filePath = path.join(path.dirname(__dirname), 'uploaded', `${name}${ext}`);
 
         file.pipe(fs.createWriteStream(filePath))
             .on('finish', () => this.handleFileSaved(name, resolve))
