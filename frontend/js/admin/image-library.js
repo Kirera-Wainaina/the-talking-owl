@@ -78,10 +78,15 @@ function removeImageFromUploadContainer(event) {
     parent.remove();
 }
 
-function submitImages(event) {
+async function submitImages(event) {
     event.preventDefault();
     const imageURLs = getImageURLs(event.target);
-    const formdata = addImagesToFormData(imageURLs);
+    const formdata = await addImagesToFormData(imageURLs);
+
+    fetch('/api/admin/upload-images', {
+        method: 'POST',
+        body: formdata,
+    }).then(response => console.log(response))
 }
 
 function getImageURLs(form) {
@@ -92,16 +97,17 @@ function getImageURLs(form) {
     return urls;
 }
 
-function addImagesToFormData(imageURLs) {
+async function addImagesToFormData(imageURLs) {
     const formdata = new FormData();
-    imageURLs.forEach(url => addSingleImageToFormData(formdata, url));
+    await Promise.all(imageURLs.map(imageURL => addSingleImageToFormData(formdata, imageURL)))
+    formdata.append('fileNumber', imageURLs.length)
     return formdata
 }
 
 async function addSingleImageToFormData(formdata, imageURL) {
     const file = await getBlob(imageURL);
     const name = generateRandomName();
-    formdata.append(name, file)
+    formdata.append(name, file);
 }
 
 function getBlob(imageURL) {
