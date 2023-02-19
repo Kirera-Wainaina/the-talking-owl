@@ -45,6 +45,7 @@ function createSingleImageContainer(file) {
 
     div.append(input);
     div.append(imgEl);
+    div.classList.add('single-image-container');
     return div;
 }
 
@@ -58,6 +59,6 @@ function createCloseIconElement() {
     const input = document.createElement('input');
     input.src = "/frontend/images/close_icon.svg";
     input.type = 'image';
-    input.classList.add('uploaded-image-close-icon');
+    input.classList.add('single-image-close-icon');
     return input;
 }
