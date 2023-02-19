@@ -21,6 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
     input.addEventListener('change', displayImages)
 })
 
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('form');
+    form.addEventListener('submit', event => submitImages(event));
+})
+
 function clickFileInput(input) {
     input.click();
 }
@@ -71,4 +76,26 @@ function removeImageFromUploadContainer(event) {
     const imgEl = parent.querySelector('img');
     URL.revokeObjectURL(imgEl.src);
     parent.remove();
+}
+
+function submitImages(event) {
+    event.preventDefault();
+    const imageURLs = getImageURLs(event.target);
+    console.log(imageURLs)
+}
+
+function getImageURLs(form) {
+    const imageElements = form
+        .querySelectorAll('.single-image-container img:first-of-type');
+    const urls = [];
+    imageElements.forEach(img => urls.push(img.src));
+    return urls;
+}
+
+function addImagesToFormData(imageURLs) {
+    const formdata = new FormData();
+}
+
+function addSingleImageToFormData(imageURL) {
+    
 }
