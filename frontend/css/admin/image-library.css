@@ -44,14 +44,14 @@ h1 {
 
 form {
     width: 60%;
-    height: 90vh;
+    height: 95vh;
     background-color: white;
 }
 
 form h2 {
     width: 100%;
     text-align: center;
-    margin-top: 1em;;
+    margin-top: .5em;;
 }
 
 #close-icon {
@@ -64,7 +64,7 @@ form button {
     width: 60%;
     height: 2em;;
     margin-left: 20%;
-    margin-top: 1em;
+    margin-top: .5em;
     background-color: var(--primary);
     color: white;
     font-size: 1.1em;
@@ -81,9 +81,10 @@ form button {
     align-items: flex-start;
     margin-top: 1em;
     margin-left: 5%;
-    margin-bottom: 5%;
+    /* margin-bottom: 5%; */
     overflow-y: scroll;
     gap: 1em;
+    border: 1px solid lightgrey;
 }
 
 #images-to-upload img {
