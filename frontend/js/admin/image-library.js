@@ -81,7 +81,7 @@ function removeImageFromUploadContainer(event) {
 function submitImages(event) {
     event.preventDefault();
     const imageURLs = getImageURLs(event.target);
-    console.log(imageURLs)
+    const formdata = addImagesToFormData(imageURLs);
 }
 
 function getImageURLs(form) {
@@ -94,8 +94,26 @@ function getImageURLs(form) {
 
 function addImagesToFormData(imageURLs) {
     const formdata = new FormData();
+    imageURLs.forEach(url => addSingleImageToFormData(formdata, url));
+    return formdata
 }
 
-function addSingleImageToFormData(imageURL) {
-    
+async function addSingleImageToFormData(formdata, imageURL) {
+    const file = await getBlob(imageURL);
+    const name = generateRandomName();
+    formdata.append(name, file)
+}
+
+function getBlob(imageURL) {
+    return new Promise((resolve, reject) => {
+        fetch(imageURL)
+            .then(response => resolve(response.blob()))
+            .catch(error => reject(error))
+    })
+}
+
+function generateRandomName() {
+    const number = Math.trunc(Math.random()*1e6);
+    const date = Date.now();
+    return `${number}-${date}`
 }
