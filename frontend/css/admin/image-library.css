@@ -84,15 +84,25 @@ form button {
     overflow-y: scroll;
     gap: 1em;
     border: 1px solid lightgrey;
+    padding-top: 2.5vh;
 }
 
 .single-image-container {
     width: 30%;
-    object-fit: contain;
+    position: relative;
 }
 
 .single-image-container img {
     object-fit: contain;
+}
+
+.single-image-container .single-image-close-icon {
+    background-color: var(--secondary);
+    border-radius: 50%;
+    height: 2.5vh;
+    position: absolute;
+    top: -1.5vh;
+    right: -1vh;
 }
 
 @media (orientation: portrait) {
