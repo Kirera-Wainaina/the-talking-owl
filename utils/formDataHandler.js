@@ -1,5 +1,7 @@
 const busboy = require('busboy');
-const mimes = require('./MIMETypes')
+const mimes = require('./MIMETypes');
+const path = require('path');
+const fs = require('fs');
 
 class FormDataHandler {
     constructor(request) {
@@ -33,7 +35,7 @@ class FormDataHandler {
         const filePath = path.join(path.dirname(__dirname), 'uploaded', `${name}${ext}`);
 
         file.pipe(fs.createWriteStream(filePath))
-            .on('finish', () => this.handleFileSaved(name, resolve))
+            .on('finish', () => this.handleFileSaved(name, filePath, resolve))
     }
 
     handleClose(resolve) {
@@ -41,7 +43,7 @@ class FormDataHandler {
         console.log('Data retrieved successfully');
     }
 
-    handleFileSaved(name, resolve) {
+    handleFileSaved(name, filePath, resolve) {
         console.log(`${name} written to disk`);
         this.fileNumber += 1;
         this.uploadedFiles.push(filePath);
