@@ -59,6 +59,16 @@ function createCloseIconElement() {
     const input = document.createElement('input');
     input.src = "/frontend/images/close_icon.svg";
     input.type = 'image';
+    input.alt = 'close-icon'
     input.classList.add('single-image-close-icon');
+    input.addEventListener('click', removeImageFromUploadContainer)
     return input;
+}
+
+function removeImageFromUploadContainer(event) {
+    event.preventDefault();
+    const parent = event.target.parentElement;
+    const imgEl = parent.querySelector('img');
+    URL.revokeObjectURL(imgEl.src);
+    parent.remove();
 }
