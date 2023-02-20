@@ -1,4 +1,5 @@
 const FormDataHandler = require('../../utils/formDataHandler');
+const storage = require('../../utils/storage');
 const imagemin = require('imagemin');
 const imageminWebp = require('imagemin-webp');
 const path = require('path');
@@ -6,8 +7,8 @@ const path = require('path');
 exports.main = async function(request, response) {
     const [fields, files] = await new FormDataHandler(request).run();
     const convertedFilePaths = await Promise.all(files.map(filePath => minimizeImage(filePath)));
-    // upload these files to the cloud
-    console.log(convertedFilePaths);
+    await Promise.all(convertedFilePaths.map(filePath => storage.saveImage(filePath[0].destinationPath)))
+    console.log('done')
 }
 
 function minimizeImage(filePath) {
