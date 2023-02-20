@@ -133,9 +133,16 @@ function deactivateSubmitButton() {
 }
 
 function handleImageSaveResponse(response) {
-
+    if (response.status == 200) {
+        removeAllImagesFromUploadContainer();
+        hideSpinningIcon('Upload Images');
+        location.reload();
+    } else {
+        // tell user to try again
+    }
 }
 
 function removeAllImagesFromUploadContainer() {
-    
+    const imageContainers = document.querySelectorAll('.single-image-container');
+    imageContainers.forEach(container => removeImageFromUploadContainer(container));
 }
