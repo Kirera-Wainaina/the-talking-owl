@@ -69,15 +69,15 @@ function createCloseIconElement() {
     input.alt = 'close-icon'
     input.classList.add('single-image-close-icon');
     input.addEventListener('click', event => event.preventDefault())
-    input.addEventListener('click', event => removeImageFromUploadContainer(event.target))
+    input.addEventListener('click', 
+        event => removeImageFromUploadContainer(event.target.parentElement))
     return input;
 }
 
-function removeImageFromUploadContainer(inputElement) {
-    const parent = inputElement.parentElement;
-    const imgEl = parent.querySelector('img');
+function removeImageFromUploadContainer(imageContainer) {
+    const imgEl = imageContainer.querySelector('img');
     URL.revokeObjectURL(imgEl.src);
-    parent.remove();
+    imageContainer.remove();
 }
 
 async function submitImages(event) {
@@ -134,4 +134,8 @@ function deactivateSubmitButton() {
 
 function handleImageSaveResponse(response) {
 
+}
+
+function removeAllImagesFromUploadContainer() {
+    
 }
