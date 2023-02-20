@@ -68,13 +68,13 @@ function createCloseIconElement() {
     input.type = 'image';
     input.alt = 'close-icon'
     input.classList.add('single-image-close-icon');
-    input.addEventListener('click', removeImageFromUploadContainer)
+    input.addEventListener('click', event => event.preventDefault())
+    input.addEventListener('click', event => removeImageFromUploadContainer(event.target))
     return input;
 }
 
-function removeImageFromUploadContainer(event) {
-    event.preventDefault();
-    const parent = event.target.parentElement;
+function removeImageFromUploadContainer(inputElement) {
+    const parent = inputElement.parentElement;
     const imgEl = parent.querySelector('img');
     URL.revokeObjectURL(imgEl.src);
     parent.remove();
@@ -89,7 +89,7 @@ async function submitImages(event) {
     fetch('/api/admin/upload-images', {
         method: 'POST',
         body: formdata,
-    }).then(response => console.log(response))
+    }).then(handleImageSaveResponse)
 }
 
 function getImageURLs(form) {
@@ -130,4 +130,8 @@ function generateRandomName() {
 function deactivateSubmitButton() {
     const button = document.querySelector('button[type="submit"]');
     showSpinningIcon(button);
+}
+
+function handleImageSaveResponse(response) {
+
 }
