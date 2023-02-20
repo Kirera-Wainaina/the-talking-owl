@@ -1,3 +1,5 @@
+import { hideSpinningIcon, showSpinningIcon } from "../general.js";
+
 document.addEventListener('DOMContentLoaded', () => {
     const openUploadButtons = document.querySelectorAll('.open-upload');
     openUploadButtons.forEach(
@@ -82,6 +84,7 @@ async function submitImages(event) {
     event.preventDefault();
     const imageURLs = getImageURLs(event.target);
     const formdata = await addImagesToFormData(imageURLs);
+    deactivateSubmitButton()
 
     fetch('/api/admin/upload-images', {
         method: 'POST',
@@ -122,4 +125,9 @@ function generateRandomName() {
     const number = Math.trunc(Math.random()*1e6);
     const date = Date.now();
     return `${number}-${date}`
+}
+
+function deactivateSubmitButton() {
+    const button = document.querySelector('button[type="submit"]');
+    showSpinningIcon(button);
 }
