@@ -6,16 +6,24 @@ const path = require('path');
 const fsPromises = require('fs/promises');
 
 exports.main = async function(request, response) {
-    const [fields, files] = await new FormDataHandler(request).run();
-    const convertedFileMetadata = await Promise.all(files.map(filePath => minimizeImage(filePath)));
-    
-    await Promise.all(convertedFileMetadata.map(
-        filePath => storage.saveImage(filePath[0].destinationPath)));
+    try {
+        const [fields, files] = await new FormDataHandler(request).run();
+        const convertedFileMetadata = await Promise.all(files.map(filePath => minimizeImage(filePath)));
 
-    await Promise.all(convertedFileMetadata.map(
-        async metadata => await Promise.all([deleteImage(metadata[0].destinationPath), 
-                                            deleteImage(metadata[0].sourcePath)])));
-    console.log('done')
+        await Promise.all(convertedFileMetadata.map(
+            filePath => storage.saveImage(filePath[0].destinationPath)));
+
+        await Promise.all(convertedFileMetadata.map(
+            async metadata => await Promise.all([deleteImage(metadata[0].destinationPath), 
+                                                deleteImage(metadata[0].sourcePath)])));
+        
+        response.writeHead(200, {'content-type': 'text/plain'})
+            .end('success')
+    } catch (error) {
+        console.log(error);
+        response.writeHead(500, {'content-type': 'text/plain'})
+            .end('error')
+    }
 }
 
 function minimizeImage(filePath) {
