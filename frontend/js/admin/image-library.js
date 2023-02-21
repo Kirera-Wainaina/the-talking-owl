@@ -9,18 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
     closeButton.addEventListener('click', toggleUploadContainer)
 })
 
-function toggleUploadContainer() {
-    const modal = document.getElementById('upload-modal');
-    modal.classList.toggle('flex');
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     const input = document.getElementById('choose-file-input');
 
     const chooseFileButton = document.getElementById('choose-file');
     chooseFileButton.addEventListener('click', () => clickFileInput(input));
 
-    input.addEventListener('change', displayImages)
+    input.addEventListener('change', displayImagesToUpload)
 })
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -28,11 +23,18 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', event => submitImages(event));
 })
 
+document.addEventListener('DOMContentLoaded', displayUploadedImages)
+
+function toggleUploadContainer() {
+    const modal = document.getElementById('upload-modal');
+    modal.classList.toggle('flex');
+}
+
 function clickFileInput(input) {
     input.click();
 }
 
-function displayImages(event) {
+function displayImagesToUpload(event) {
     const container = document.getElementById('images-to-upload');
     container.appendChild(createImageContainers(event.target.files))
 }
@@ -145,4 +147,8 @@ function handleImageSaveResponse(response) {
 function removeAllImagesFromUploadContainer() {
     const imageContainers = document.querySelectorAll('.single-image-container');
     imageContainers.forEach(container => removeImageFromUploadContainer(container));
+}
+
+function displayUploadedImages() {
+    
 }
