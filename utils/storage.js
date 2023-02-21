@@ -14,8 +14,14 @@ function saveImage(filePath, bucketName=process.env.BUCKET_NAME) {
         fs.createReadStream(filePath)
             .pipe(file.createWriteStream())
             .on('error', error => reject(error))
-            .on('finish', () => resolve());
+            .on('finish', () => resolve(file));
     })
 }
 
+function getFileMetadata(file) {
+    return file.getMetadata()
+        .then(metadata => metadata[0]);
+}
+
 exports.saveImage = saveImage;
+exports.getFileMetadata = getFileMetadata;
