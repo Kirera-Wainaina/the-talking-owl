@@ -183,12 +183,26 @@ async function JWTTokenIsValid(token) {
 }
 
 async function handleAPIGetRequest(stream, route) {
-    const url = new URL(route, process.env.DOMAIN);
-    const collectionName = path.basename(url.pathname);
+    try {
+        const url = new URL(route, process.env.DOMAIN);
+        const collectionName = path.basename(url.pathname);
 
-    const data = await database.getData(url.searchParams, collectionName);
+        const data = await database.getData(url.searchParams, collectionName);
+        respondWithJSON(stream, JSON.stringify(data));
+    } catch (error) {
+        console.log(error);
+        respondWithError(stream);
+    }
+}
 
-    console.log(data);
+function respondWithJSON(stream, data) {
+    stream.respond({':status': 200, 'content-type':'application/json'})
+    stream.end(data)
+}
+
+function respondWithError(stream) {
+    stream.respond({':status': 500})
+    stream.end();
 }
 
 process.on('uncaughtException', error => console.log(error))
