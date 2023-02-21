@@ -43,8 +43,8 @@ form button {
 }
 
 .error {
-    background-color: #ffb3b3;
-    color: #ff3333;
+    background-color: var(--error-background-color);
+    color: var(--error-font-color);
     height: 2em;
     width: 100%;
     text-align: center;
