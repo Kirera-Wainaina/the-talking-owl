@@ -75,6 +75,7 @@ img {
     padding-top: 2vh;
     padding-bottom: 2vh;
     border-radius: 5px;
+    z-index: 2;
 
     animation-name: slide;
     animation-duration: 5s;
