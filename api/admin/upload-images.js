@@ -1,5 +1,6 @@
 const FormDataHandler = require('../../utils/formDataHandler');
 const storage = require('../../utils/storage');
+const database = require('../../utils/database')
 const imagemin = require('imagemin');
 const imageminWebp = require('imagemin-webp');
 const path = require('path');
@@ -10,12 +11,17 @@ exports.main = async function(request, response) {
         const [fields, files] = await new FormDataHandler(request).run();
         const convertedFileMetadata = await Promise.all(files.map(filePath => minimizeImage(filePath)));
 
-        await Promise.all(convertedFileMetadata.map(
+        const cloudFiles = await Promise.all(convertedFileMetadata.map(
             filePath => storage.saveImage(filePath[0].destinationPath)));
 
         await Promise.all(convertedFileMetadata.map(
             async metadata => await Promise.all([deleteImage(metadata[0].destinationPath), 
                                                 deleteImage(metadata[0].sourcePath)])));
+
+        const metadata = await Promise.all(cloudFiles.map(file => storage.getFileMetadata(file)));
+
+        await Promise.all(metadata.map(
+            info => database.saveData({ name: info.name, link: info.mediaLink }, 'images')))
         
         response.writeHead(200, {'content-type': 'text/plain'})
             .end('success')
