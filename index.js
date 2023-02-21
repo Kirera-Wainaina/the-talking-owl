@@ -8,7 +8,9 @@ const dotenv = require('dotenv');
 const path = require('path');
 const jwt = require('jsonwebtoken')
 
-const mimes = require('./utils/MIMETypes')
+const mimes = require('./utils/MIMETypes');
+const database = require('./utils/database');
+
 dotenv.config()
 
 const httpPort = 80;
@@ -69,6 +71,7 @@ function routeRequests(stream, headers) {
     if (isAPIRequest(route)) { // api routes request for data
         if (headers[':method'] == 'GET') {
             //handle get requests
+            handleAPIGetRequest(stream, route);
         }
     } else if (isFileRequest(route)) {
         handleFileRequest(stream, route)
@@ -177,6 +180,15 @@ async function JWTTokenIsValid(token) {
     const decoded = await jwtVerify(token, process.env.ADMIN_PASSWORD);
     if (decoded.email) return true;
     return false
+}
+
+async function handleAPIGetRequest(stream, route) {
+    const url = new URL(route, process.env.DOMAIN);
+    const collectionName = path.basename(url.pathname);
+
+    const data = await database.getData(url.searchParams, collectionName);
+
+    console.log(data);
 }
 
 process.on('uncaughtException', error => console.log(error))
