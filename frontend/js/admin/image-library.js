@@ -1,4 +1,4 @@
-import { hideSpinningIcon, showSpinningIcon } from "../general.js";
+import { displaySliderAnimation, hideSpinningIcon, showSpinningIcon } from "../general.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     const openUploadButtons = document.querySelectorAll('.open-upload');
@@ -133,12 +133,12 @@ function deactivateSubmitButton() {
 }
 
 function handleImageSaveResponse(response) {
+    hideSpinningIcon('Upload Images');
     if (response.status == 200) {
         removeAllImagesFromUploadContainer();
-        hideSpinningIcon('Upload Images');
         location.reload();
     } else {
-        // tell user to try again
+        displaySliderAnimation('image-upload-error');
     }
 }
 
