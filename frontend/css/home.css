@@ -5,6 +5,8 @@
     --primary: #5841B9;
     --secondary: #DA5172;
     --shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
+    --error-background-color: #ffb3b3;
+    --error-font-color: #ff3333;
 }
 
 * {
@@ -60,6 +62,19 @@ img {
     to {
         transform: rotate(360deg);
     }
+}
+
+.slider {
+    position: fixed;
+    bottom: 5vh;
+    left: 30vw;
+    width: 40vw;
+    background-color: var(--error-background-color);
+    color: var(--error-font-color);
+    text-align: center;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    border-radius: 5px;
 }
 
 @media (orientation: portrait) {
