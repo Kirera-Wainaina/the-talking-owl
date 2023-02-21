@@ -18,3 +18,10 @@ export function hideSpinningIcon(text) {
     parent.removeAttribute('disabled');
     spinner.remove()
 }
+
+export function displaySliderAnimation(elementId) {
+    const element = document.getElementById(elementId);
+    element.classList.toggle('hide');
+    element.addEventListener(
+        'animationend', () => element.classList.toggle('hide'))
+}
