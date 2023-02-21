@@ -149,6 +149,11 @@ function removeAllImagesFromUploadContainer() {
     imageContainers.forEach(container => removeImageFromUploadContainer(container));
 }
 
-function displayUploadedImages() {
-    
+async function displayUploadedImages() {
+    const imageData = await retrieveUploadedImages();
+}
+
+function retrieveUploadedImages() {
+    return fetch('/api/images?field=link&field=name')
+        .then(response => response.json())
 }
