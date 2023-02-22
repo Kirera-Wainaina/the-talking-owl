@@ -170,11 +170,14 @@ function createFragmentOfExistingImages(images) {
 
 function createExistingImageContainer(image) {
     const container = document.createElement('div');
+    const deleteIcon = createImageInputButton('/frontend/images/delete-icon.svg', 'delete-icon');
+    deleteIcon.addEventListener('click', markForDeletion);
+
     container.classList.add('existing-image')
-    const imageElement = createExistingImageElement(image);
-    container.append(createImageInputButton('/frontend/images/delete-icon.svg', 'delete-icon'));
-    container.append(imageElement);
+    container.append(deleteIcon);
+    container.append(createExistingImageElement(image));
     container.append(createLinkContainer(image));
+
     return container;
 }
 
@@ -209,4 +212,9 @@ function createImageLinkText(image) {
     const p = document.createElement('p');
     p.textContent = image.link;
     return p
+}
+
+function markForDeletion(event) {
+    const parentElement = event.target.parentElement;
+    parentElement.classList.toggle('marked-for-deletion');
 }

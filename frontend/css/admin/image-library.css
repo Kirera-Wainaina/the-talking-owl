@@ -147,6 +147,14 @@ form button {
     flex: 20%;
 }
 
+.marked-for-deletion img {
+    border: 3px double var(--primary);
+}
+
+.marked-for-deletion > input {
+    background-color: var(--primary);
+}
+
 @media (orientation: portrait) {
     h1 {
         grid-column: 1 / 7;
