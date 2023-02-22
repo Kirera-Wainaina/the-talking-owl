@@ -105,6 +105,17 @@ form button {
     right: -1vh;
 }
 
+#existing-images {
+    grid-column: 1 / 13;
+    display: flex;
+    gap: 5px;
+    margin: 1em;
+}
+
+.existing-image {
+    width: 20vw;
+}
+
 @media (orientation: portrait) {
     h1 {
         grid-column: 1 / 7;
@@ -150,4 +161,16 @@ form button {
     .single-image-container {
         width: 90%;
     }
+
+    #existing-images {
+        grid-column: 1 / 7;
+        flex-direction: column;
+        padding: 1em;
+        align-items: center;
+    }
+
+    .existing-image {
+        width: 95vw;
+    }
+
 }

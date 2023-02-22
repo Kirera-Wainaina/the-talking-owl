@@ -174,6 +174,7 @@ function createFragmentOfExistingImages(images) {
 
 function createExistingImageContainer(image) {
     const container = document.createElement('div');
+    container.classList.add('existing-image')
     const imageElement = createExistingImageElement(image);
     container.append(imageElement);
     return container;
