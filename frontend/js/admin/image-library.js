@@ -150,10 +150,39 @@ function removeAllImagesFromUploadContainer() {
 }
 
 async function displayUploadedImages() {
-    const imageData = await retrieveUploadedImages();
+    const images = await retrieveUploadedImages();
+    inputImagesIntoExistingImagesContainer(images)
 }
 
 function retrieveUploadedImages() {
     return fetch('/api/images?field=link&field=name')
         .then(response => response.json())
+}
+
+function inputImagesIntoExistingImagesContainer(images) {
+    // console.log(images)
+    const uploadImagesContainer = document.getElementById('existing-images');
+    const fragment = createFragmentOfExistingImages(images);
+    uploadImagesContainer.appendChild(fragment);
+}
+
+function createFragmentOfExistingImages(images) {
+    const fragment = new DocumentFragment();
+    images.forEach(image => fragment.append(createExistingImageContainer(image)));
+    return fragment;
+}
+
+function createExistingImageContainer(image) {
+    const container = document.createElement('div');
+    const imageElement = createExistingImageElement(image);
+    container.append(imageElement);
+    return container;
+}
+
+function createExistingImageElement(image) {
+    const imageEl = document.createElement('img');
+    imageEl.src = image.link;
+    imageEl.id = image.id;
+    imageEl.dataset.name = image.name;
+    return imageEl
 }
