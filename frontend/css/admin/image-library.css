@@ -28,6 +28,10 @@ h1 {
     font-size: 1.1em;
 }
 
+#menu button:disabled {
+    background-color: lightgray;
+}
+
 .flex {
     display: flex;
 }
@@ -175,6 +179,10 @@ form button {
         border-radius: 50%;
         height: 8vh;
         box-shadow: var(--shadow);   
+    }
+
+    #icon-container input:disabled {
+        background-color: lightgrey;
     }
 
     #menu {

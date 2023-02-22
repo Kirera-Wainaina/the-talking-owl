@@ -171,7 +171,8 @@ function createFragmentOfExistingImages(images) {
 function createExistingImageContainer(image) {
     const container = document.createElement('div');
     const deleteIcon = createImageInputButton('/frontend/images/delete-icon.svg', 'delete-icon');
-    deleteIcon.addEventListener('click', markForDeletion);
+    deleteIcon.addEventListener('click', markImageForDeletion);
+    deleteIcon.addEventListener('click', handleDisplayOfDeleteImagesButton)
 
     container.classList.add('existing-image')
     container.append(deleteIcon);
@@ -214,7 +215,33 @@ function createImageLinkText(image) {
     return p
 }
 
-function markForDeletion(event) {
+function markImageForDeletion(event) {
     const parentElement = event.target.parentElement;
     parentElement.classList.toggle('marked-for-deletion');
+}
+
+function handleDisplayOfDeleteImagesButton(event) {
+    const markedImages = document.querySelectorAll('.marked-for-deletion');
+
+    if (markedImages.length) {
+        enableDeletion()
+    } else {
+        disableDeletion()
+    }
+}
+
+function enableDeletion() {
+    const deleteImagesButton = document.getElementById('delete-images-button');
+    const deleteImagesIcon = document.getElementById('delete-images-icon');
+
+    deleteImagesButton.removeAttribute('disabled');
+    deleteImagesIcon.removeAttribute('disabled');
+}
+
+function disableDeletion() {
+    const deleteImagesButton = document.getElementById('delete-images-button');
+    const deleteImagesIcon = document.getElementById('delete-images-icon');
+
+    deleteImagesButton.setAttribute('disabled', '');
+    deleteImagesIcon.setAttribute('disabled', '');
 }
