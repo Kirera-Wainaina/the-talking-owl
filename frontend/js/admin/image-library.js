@@ -192,7 +192,7 @@ function createExistingImageElement(image) {
 function createLinkContainer(image) {
     const div = document.createElement('div');
     const p = createImageLinkText(image);
-    const input = createImageLinkIconElement();
+    const input = createImageInputButton('/frontend/images/link-icon.svg', 'click image link')
 
     div.appendChild(p);
     div.appendChild(input);
@@ -200,11 +200,11 @@ function createLinkContainer(image) {
     return div;
 }
 
-function createImageLinkIconElement() {
+function createImageInputButton(link, altText) {
     const input = document.createElement('input');
     input.type = 'image'
-    input.src = '/frontend/images/link-icon.svg';
-    input.alt = 'click for link'
+    input.src = link;
+    input.alt = altText;
     return input
 }
 
