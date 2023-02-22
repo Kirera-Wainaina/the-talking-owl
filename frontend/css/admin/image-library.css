@@ -37,7 +37,7 @@ h1 {
     width: 100vw;
     height: 100vh;
     background-color: rgba(88, 65, 185, 0.5);
-    z-index: 1;
+    z-index: 2;
     justify-content: center;
     align-items: center;
 }
@@ -108,13 +108,25 @@ form button {
 #existing-images {
     grid-column: 1 / 13;
     display: flex;
-    gap: 5px;
+    gap: 5vh;
     margin: 1em;
     flex-wrap: wrap;
+    padding-top: 3vh;
+    justify-content: center;
 }
 
 .existing-image {
     width: 20vw;
+    position: relative;
+}
+
+.existing-image > input {
+    position: absolute;
+    background-color: grey;
+    right: -2vh;
+    top: -2vh;
+    border-radius: 50%;
+    z-index: 1;
 }
 
 .image-link {
@@ -147,6 +159,7 @@ form button {
         display: flex;
         flex-direction: column;
         gap: 2vh;
+        z-index: 2;
     }
 
     #icon-container input {
@@ -184,13 +197,13 @@ form button {
     #existing-images {
         grid-column: 1 / 7;
         flex-direction: column;
-        padding: 1em;
         align-items: center;
-        gap: 10px;
+        justify-content: flex-start;
+        gap: 5vh;
+        padding-top: none;
     }
 
     .existing-image {
-        width: 95vw;
+        width: 90vw;
     }
-
 }

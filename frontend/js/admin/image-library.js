@@ -157,7 +157,6 @@ function retrieveUploadedImages() {
 }
 
 function inputImagesIntoExistingImagesContainer(images) {
-    // console.log(images)
     const uploadImagesContainer = document.getElementById('existing-images');
     const fragment = createFragmentOfExistingImages(images);
     uploadImagesContainer.appendChild(fragment);
@@ -173,6 +172,7 @@ function createExistingImageContainer(image) {
     const container = document.createElement('div');
     container.classList.add('existing-image')
     const imageElement = createExistingImageElement(image);
+    container.append(createImageInputButton('/frontend/images/delete-icon.svg', 'delete-icon'));
     container.append(imageElement);
     container.append(createLinkContainer(image));
     return container;
