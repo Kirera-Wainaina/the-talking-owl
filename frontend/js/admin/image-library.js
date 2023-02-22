@@ -204,6 +204,7 @@ function createImageLinkIconElement() {
     const input = document.createElement('input');
     input.type = 'image'
     input.src = '/frontend/images/link-icon.svg';
+    input.alt = 'click for link'
     return input
 }
 
