@@ -177,6 +177,7 @@ function createExistingImageContainer(image) {
     container.classList.add('existing-image')
     const imageElement = createExistingImageElement(image);
     container.append(imageElement);
+    container.append(createLinkContainer(image));
     return container;
 }
 
@@ -186,4 +187,28 @@ function createExistingImageElement(image) {
     imageEl.id = image.id;
     imageEl.dataset.name = image.name;
     return imageEl
+}
+
+function createLinkContainer(image) {
+    const div = document.createElement('div');
+    const p = createImageLinkText(image);
+    const input = createImageLinkIconElement();
+
+    div.appendChild(p);
+    div.appendChild(input);
+    div.classList.add('image-link');
+    return div;
+}
+
+function createImageLinkIconElement() {
+    const input = document.createElement('input');
+    input.type = 'image'
+    input.src = '/frontend/images/link-icon.svg';
+    return input
+}
+
+function createImageLinkText(image) {
+    const p = document.createElement('p');
+    p.textContent = image.link;
+    return p
 }
