@@ -1,4 +1,4 @@
-const { Firestore } = require('@google-cloud/firestore');
+const { Firestore, FieldPath } = require('@google-cloud/firestore');
 const dotenv = require('dotenv');
 
 dotenv.config()
@@ -28,6 +28,13 @@ exports.getData = async function(urlParams, collectionName) {
     var data = await collection.get();
     
     return appendIds(data.docs)
+}
+
+exports.deleteDocument = function(id, collectionName) {
+    const collection = firestore.collection(collectionName);
+    return collection.where(FieldPath.documentId(), '==', id).get()
+        .then(querySnaphot => querySnaphot.forEach(
+            async documentSnapshot => await documentSnapshot.ref.delete()))
 }
 
 function setSelectInQuery(query, fields) {
