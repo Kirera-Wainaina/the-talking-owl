@@ -253,5 +253,5 @@ function copyLinkToClipboard(event) {
 
     navigator.clipboard.writeText(linkText)
         .then(() => displaySliderAnimation('copied-to-clipboard'))
-        .catch(error => console.log('error copying link to clipboard'))
+        .catch(error => console.log('error copying link to clipboard', error))
 }
