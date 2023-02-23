@@ -6,7 +6,7 @@ dotenv.config();
 
 const storage = new Storage({ keyFilename: process.env.SERVICE_ACCOUNT });
 
-function saveImage(filePath, bucketName=process.env.BUCKET_NAME) {
+exports.saveImage = function(filePath, bucketName=process.env.BUCKET_NAME) {
     const bucket = storage.bucket(bucketName);
     const file = bucket.file(path.basename(filePath));
 
@@ -18,10 +18,14 @@ function saveImage(filePath, bucketName=process.env.BUCKET_NAME) {
     })
 }
 
-function getFileMetadata(file) {
+exports.getFileMetadata = function(file) {
     return file.getMetadata()
         .then(metadata => metadata[0]);
 }
 
-exports.saveImage = saveImage;
-exports.getFileMetadata = getFileMetadata;
+exports.deleteFile = function(name, bucketName=process.env.BUCKET_NAME) {
+    const bucket = storage.bucket(bucketName);
+    const file = bucket.file(name);
+    
+    return file.delete()
+}
