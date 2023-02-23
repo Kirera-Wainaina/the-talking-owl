@@ -193,7 +193,8 @@ function createExistingImageElement(image) {
 function createLinkContainer(image) {
     const div = document.createElement('div');
     const p = createImageLinkText(image);
-    const input = createImageInputButton('/frontend/images/link-icon.svg', 'click image link')
+    const input = createImageInputButton('/frontend/images/link-icon.svg', 'click image link');
+    input.addEventListener('click', copyLinkToClipboard)
 
     div.appendChild(p);
     div.appendChild(input);
@@ -244,4 +245,13 @@ function disableDeletion() {
 
     deleteImagesButton.setAttribute('disabled', '');
     deleteImagesIcon.setAttribute('disabled', '');
+}
+
+function copyLinkToClipboard(event) {
+    const parentElement = event.target.parentElement;
+    const linkText = parentElement.querySelector('p').textContent;
+
+    navigator.clipboard.writeText(linkText)
+        .then(() => console.log(linkText))
+        .catch(error => console.log('error copying link to clipboard'))
 }
