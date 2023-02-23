@@ -93,6 +93,7 @@ function removeImageFromUploadContainer(imageContainer) {
 async function submitImages(event) {
     event.preventDefault();
     const imageURLs = getImageURLs(event.target);
+    if (!imageURLs.length) return ;
     const formdata = await addImagesToFormData(imageURLs);
     deactivateSubmitButton()
 
