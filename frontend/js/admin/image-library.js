@@ -23,7 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', event => submitImages(event));
 })
 
-document.addEventListener('DOMContentLoaded', displayUploadedImages)
+document.addEventListener('DOMContentLoaded', displayUploadedImages);
+
+document.addEventListener('DOMContentLoaded', () => {
+    const deleteExistingImagesButtons = document.querySelectorAll('.delete-images');
+    deleteExistingImagesButtons.forEach(button => button.addEventListener('click', deleteMarkedImages))
+})
 
 function toggleUploadContainer() {
     const modal = document.getElementById('upload-modal');
@@ -254,4 +259,28 @@ function copyLinkToClipboard(event) {
     navigator.clipboard.writeText(linkText)
         .then(() => displaySliderAnimation('copied-to-clipboard'))
         .catch(error => console.log('error copying link to clipboard', error))
+}
+
+function deleteMarkedImages() {
+    const images = document.querySelectorAll('.marked-for-deletion > img');
+    const data = [];
+    images.forEach(image => data.push(createObjectWithImageDeletionData(image)));
+    submitImageDataForDeletion(data);
+}
+
+function createObjectWithImageDeletionData(image) {
+    return {
+        name: image.dataset.name,
+        id: image.id
+    }
+}
+
+function submitImageDataForDeletion(data) {
+    const formdata = new FormData();
+    formdata.append('data', JSON.stringify(data))
+    
+    fetch('/api/admin/delete-images', {
+        method: 'POST',
+        body: formdata
+    }).then(response => console.log(response))
 }
