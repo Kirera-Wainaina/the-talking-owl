@@ -164,11 +164,15 @@ form button {
     color: var(--primary);
 }
 
+#deleting-images-modal.flex {
+    display: flex;
+}
+
 #deleting-images-modal {
     position: fixed;
     top: 0;
     left: 0;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     height: 100vh;

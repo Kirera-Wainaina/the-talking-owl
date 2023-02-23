@@ -3,10 +3,14 @@ import { displaySliderAnimation, hideSpinningIcon, showSpinningIcon } from "../g
 document.addEventListener('DOMContentLoaded', () => {
     const openUploadButtons = document.querySelectorAll('.open-upload');
     openUploadButtons.forEach(
-        button => button.addEventListener('click', toggleUploadContainer));
+        button => button.addEventListener(
+            'click', 
+            () => toggleElementClass(document.getElementById('upload-modal'), 'flex')));
 
     const closeButton = document.getElementById('close-icon');
-    closeButton.addEventListener('click', toggleUploadContainer)
+    closeButton.addEventListener(
+        'click', 
+        () => toggleElementClass(document.getElementById('upload-modal'), 'flex'))
 })
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -28,10 +32,14 @@ document.addEventListener('DOMContentLoaded', displayUploadedImages);
 document.addEventListener('DOMContentLoaded', () => {
     const deleteExistingImagesButtons = document.querySelectorAll('.delete-images');
     deleteExistingImagesButtons.forEach(button => button.addEventListener('click', () => {
-        deleteMarkedImages()
-        
+        deleteMarkedImages();
+        // toggleElementClass(document.getElementById('deleting-images-modal', 'flex'))
     }))
 })
+
+function toggleElementClass(element, className) {
+    element.classList.toggle(className)
+}
 
 function toggleUploadContainer() {
     const modal = document.getElementById('upload-modal');
