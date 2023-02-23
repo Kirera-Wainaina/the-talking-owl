@@ -27,7 +27,10 @@ document.addEventListener('DOMContentLoaded', displayUploadedImages);
 
 document.addEventListener('DOMContentLoaded', () => {
     const deleteExistingImagesButtons = document.querySelectorAll('.delete-images');
-    deleteExistingImagesButtons.forEach(button => button.addEventListener('click', deleteMarkedImages))
+    deleteExistingImagesButtons.forEach(button => button.addEventListener('click', () => {
+        deleteMarkedImages()
+        
+    }))
 })
 
 function toggleUploadContainer() {
