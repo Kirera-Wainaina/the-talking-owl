@@ -41,11 +41,6 @@ function toggleElementClass(element, className) {
     element.classList.toggle(className)
 }
 
-function toggleUploadContainer() {
-    const modal = document.getElementById('upload-modal');
-    modal.classList.toggle('flex');
-}
-
 function clickFileInput(input) {
     input.click();
 }
