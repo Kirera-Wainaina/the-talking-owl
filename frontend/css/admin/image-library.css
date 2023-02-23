@@ -159,6 +159,11 @@ form button {
     background-color: var(--primary);
 }
 
+#copied-to-clipboard {
+    background-color: lightgreen;
+    color: var(--primary);
+}
+
 @media (orientation: portrait) {
     h1 {
         grid-column: 1 / 7;

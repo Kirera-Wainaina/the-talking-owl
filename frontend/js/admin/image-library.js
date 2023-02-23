@@ -252,6 +252,6 @@ function copyLinkToClipboard(event) {
     const linkText = parentElement.querySelector('p').textContent;
 
     navigator.clipboard.writeText(linkText)
-        .then(() => console.log(linkText))
+        .then(() => displaySliderAnimation('copied-to-clipboard'))
         .catch(error => console.log('error copying link to clipboard'))
 }
