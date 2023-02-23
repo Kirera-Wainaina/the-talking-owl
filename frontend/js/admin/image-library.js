@@ -289,5 +289,15 @@ function submitImageDataForDeletion(data) {
     fetch('/api/admin/delete-images', {
         method: 'POST',
         body: formdata
-    }).then(response => console.log(response))
+    }).then(handleImageDeletionResponse)
+}
+
+function handleImageDeletionResponse(response) {
+    disableDeletion();
+    if (response.status == 200) {
+        location.reload()
+    } else {
+        toggleElementClass(document.getElementById('deleting-images-modal'), 'flex')
+        displaySliderAnimation('image-upload-error');
+    }
 }
