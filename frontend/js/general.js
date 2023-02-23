@@ -21,7 +21,7 @@ export function hideSpinningIcon(text) {
 
 export function displaySliderAnimation(elementId) {
     const element = document.getElementById(elementId);
-    element.classList.toggle('hide');
+    element.classList.remove('hide');
     element.addEventListener(
-        'animationend', () => element.classList.toggle('hide'))
+        'animationend', () => element.classList.add('hide'))
 }
