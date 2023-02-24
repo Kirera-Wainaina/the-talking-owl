@@ -25,3 +25,7 @@ export function displaySliderAnimation(elementId) {
     element.addEventListener(
         'animationend', () => element.classList.add('hide'))
 }
+
+export function toggleElementClass(element, className) {
+    element.classList.toggle(className)
+}

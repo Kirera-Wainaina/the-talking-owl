@@ -1,4 +1,5 @@
-import { displaySliderAnimation, hideSpinningIcon, showSpinningIcon } from "../general.js";
+import { displaySliderAnimation, hideSpinningIcon, showSpinningIcon, toggleElementClass 
+} from "../general.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     const openUploadButtons = document.querySelectorAll('.open-upload');
@@ -36,10 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleElementClass(document.getElementById('deleting-images-modal'), 'flex')
     }))
 })
-
-function toggleElementClass(element, className) {
-    element.classList.toggle(className)
-}
 
 function clickFileInput(input) {
     input.click();
