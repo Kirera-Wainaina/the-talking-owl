@@ -1,31 +1,26 @@
 import { render } from '../article.js';
+import { toggleElementClass } from '../general.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const checkPreviewButton = document.getElementById('check-preview');
     const exitPreviewButton = document.getElementById('exit-preview');
     
-    checkPreviewButton.addEventListener('click', togglePreview);
     checkPreviewButton.addEventListener('click', 
-        () => togglePreviewButtons(checkPreviewButton, exitPreviewButton));
+        () => toggleElementClass(document.getElementById('preview'), 'hide'));
+    checkPreviewButton.addEventListener('click', () => {
+        toggleElementClass(checkPreviewButton, 'hide');
+        toggleElementClass(exitPreviewButton, 'hide');
+    })
     checkPreviewButton.addEventListener('click', 
         () => render(document.getElementById('preview'), createPreviewData()))
 
-    exitPreviewButton.addEventListener('click', togglePreview);
     exitPreviewButton.addEventListener('click', 
-        () => togglePreviewButtons(checkPreviewButton, exitPreviewButton));
+        () => toggleElementClass(document.getElementById('preview'), 'hide'));
+    exitPreviewButton.addEventListener('click', () => {
+        toggleElementClass(checkPreviewButton, 'hide');
+        toggleElementClass(exitPreviewButton, 'hide');
+    })
 })
-
-
-
-function togglePreview() {
-    const preview = document.getElementById('preview');
-    preview.classList.toggle('hide');
-}
-
-function togglePreviewButtons(checkPreview, exitPreview) {
-    checkPreview.classList.toggle('hide');
-    exitPreview.classList.toggle('hide')
-}
 
 function createPreviewData() {
     return {
