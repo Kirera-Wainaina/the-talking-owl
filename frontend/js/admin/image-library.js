@@ -161,7 +161,7 @@ async function displayUploadedImages() {
 }
 
 function retrieveUploadedImages() {
-    return fetch('/api/images?field=link&field=name')
+    return fetch('/api/images?field=link&field=name&orderBy=createTime&orderByDirection=desc')
         .then(response => response.json())
 }
 
