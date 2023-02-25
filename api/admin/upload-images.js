@@ -5,6 +5,7 @@ const imagemin = require('imagemin');
 const imageminWebp = require('imagemin-webp');
 const path = require('path');
 const fsPromises = require('fs/promises');
+const { Timestamp } = require('@google-cloud/firestore');
 
 exports.main = async function(request, response) {
     try {
@@ -21,7 +22,7 @@ exports.main = async function(request, response) {
         const metadata = await Promise.all(cloudFiles.map(file => storage.getFileMetadata(file)));
 
         await Promise.all(metadata.map(
-            info => database.saveData({ name: info.name, link: info.mediaLink }, 'images')))
+            info => database.saveData(createImageData(info), 'images')))
         
         response.writeHead(200, {'content-type': 'text/plain'})
             .end('success')
@@ -43,4 +44,12 @@ function minimizeImage(filePath) {
 
 function deleteImage(filePath) {
     return fsPromises.unlink(filePath);
+}
+
+function createImageData(metadata) {
+    return {
+        name: metadata.name,
+        link: metadata.mediaLink,
+        createTime: Timestamp.now()
+    }
 }
