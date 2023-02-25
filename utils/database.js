@@ -25,6 +25,10 @@ exports.getData = async function(urlParams, collectionName) {
         collection = setSelectInQuery(collection, urlParams.getAll('field'))
     }
 
+    if (urlParams.has('orderBy')) {
+        collection = setOrderByInQuery(collection, urlParams.get('orderBy'), urlParams.get('orderByDirection'))
+    }
+
     var data = await collection.get();
     
     return appendIds(data.docs)
@@ -39,6 +43,10 @@ exports.deleteDocument = function(id, collectionName) {
 
 function setSelectInQuery(query, fields) {
     return query.select(...fields)
+}
+
+function setOrderByInQuery(query, orderByValue, orderByDirection='asc') {
+    return query.orderBy(orderByValue, orderByDirection);
 }
 
 function appendIds(docs) {
