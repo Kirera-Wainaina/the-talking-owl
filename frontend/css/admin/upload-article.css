@@ -14,14 +14,17 @@
     z-index: 3;
 }
 
-form {
+#upload-parent-container {
     grid-column: 3 / 11;
+    font-size: 1.2em;
+    margin-bottom: 1em;
+}
+
+form {
     box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
     padding: 1em;
-    font-size: 1.2em;
-    margin-bottom: 1em;
 }
 
 input {
@@ -66,7 +69,7 @@ select {
 }
 
 @media (orientation: portrait) {
-    form {
+    #upload-parent-container {
         grid-column: 1 / 7;
     }
 
