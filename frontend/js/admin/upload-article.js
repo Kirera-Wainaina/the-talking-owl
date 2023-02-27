@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleElementClass(checkPreviewButton, 'hide');
         toggleElementClass(exitPreviewButton, 'hide');
         toggleElementClass(document.getElementById('preview'), 'hide')
-        toggleElementClass(document.querySelector('form'), 'hide')
+        toggleElementClass(document.getElementById('upload-parent-container'), 'hide')
     })
     checkPreviewButton.addEventListener('click', 
         () => render(document.getElementById('preview'), createPreviewData()))
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleElementClass(checkPreviewButton, 'hide');
         toggleElementClass(exitPreviewButton, 'hide');
         toggleElementClass(document.getElementById('preview'), 'hide')
-        toggleElementClass(document.querySelector('form'), 'hide')
+        toggleElementClass(document.getElementById('upload-parent-container'), 'hide')
     })
 })
 
