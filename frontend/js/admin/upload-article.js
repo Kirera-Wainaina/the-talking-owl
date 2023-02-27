@@ -26,8 +26,10 @@ function createPreviewData() {
     return {
         title: document.querySelector('input[name="title"]').value,
         category: document.querySelector('select[name="category"]').value,
+        landscapeImage: document.querySelector('input[name="landscapeImage"]').value,
+        portraitImage: document.querySelector('input[name="portraitImage"]').value,
+        squareThumbnail: document.querySelector('input[name="squareThumbnail"]').value,
         description: document.querySelector('input[name="description"]').value,
-        coverPhoto: document.querySelector('input[name="coverPhoto"]').value,
         content: document.querySelector('textarea').value
     };
 }
