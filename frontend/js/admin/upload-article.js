@@ -33,6 +33,7 @@ function createPreviewData() {
         squareThumbnail: document.querySelector('input[name="squareThumbnail"]').value,
         squareThumbnailText: document.querySelector('input[name="squareThumbnailText"]').value,
         description: document.querySelector('input[name="description"]').value,
-        content: document.querySelector('textarea').value
+        content: document.querySelector('textarea').value,
+        publishedDate: Date.now()
     };
 }
