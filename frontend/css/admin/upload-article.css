@@ -58,16 +58,6 @@ select {
     font-size: 1em;
 }
 
-#preview {
-    z-index: 2;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    min-height: 100vh;
-    background-color: white;
-}
-
 @media (orientation: portrait) {
     #upload-parent-container {
         grid-column: 1 / 7;
