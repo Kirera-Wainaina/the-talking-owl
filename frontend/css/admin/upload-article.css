@@ -7,7 +7,7 @@
     top: 0;
     left: 0;
     width: 100vw;
-    height: 5vh;
+    height: 6vh;
 }
 
 #exit-preview {
@@ -64,6 +64,6 @@ select {
     }
 
     #check-preview, #exit-preview {
-        height: 6vh;
+        height: 7vh;
     }
 }
