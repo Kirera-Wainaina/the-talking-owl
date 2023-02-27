@@ -15,67 +15,71 @@
   </head>
 
   <body>
-    <h1>Upload Article</h1>
 
     <button id="check-preview">Check Preview</button>
     <button id="exit-preview" class="hide">Exit Preview</button>
     
-    <form>
-      <label>
-        Title:
-        <input type="text" name="title" required/>
-      </label>
+    <div id="upload-parent-container">
+      <h1>Upload Article</h1>
 
-      <label>
-        Category:
-        <select name="category" required>
-          <option value="general">General</option>
-          <option value="tech">Tech</option>
-        </select>
-      </label>
-
-      <label>
-        Landscape Wall Image URL:
-        <input type="url" name="landscapeImage" required />
-      </label>
-
-      <label>
-        Landscape Wall Image Alt Text:
-        <input type="text" name="landscapeImageText" required />
-      </label>
-
-      <label>
-        Portrait Wall Image URL:
-        <input type="url" name="portraitImage" required />
-      </label>
-
-      <label>
-        Portrait Wall Image Alt Text:
-        <input type="text" name="portraitImageText" required />
-      </label>
-
-      <label>
-        Square Thumbnail URL:
-        <input type="url" name="squareThumbnail" required />
-      </label>
-
-      <label>
-        Square Thumbnail Alt Text:
-        <input type="text" name="squareThumbnailText" required />
-      </label>
-
-      <label>
-        Description:
-        <input name="description" type="text" maxlength="500" required />
-      </label>
-
-      <label>
-        Content:
-        <textarea name="content" required id="content"></textarea>
-      </label>
-
-      <input type="submit" value="Submit Article"/>
-    </form>
+      <form>
+        <label>
+          Title:
+          <input type="text" name="title" required/>
+        </label>
+  
+        <label>
+          Category:
+          <select name="category" required>
+            <option value="general">General</option>
+            <option value="tech">Tech</option>
+          </select>
+        </label>
+  
+        <label>
+          Landscape Wall Image URL:
+          <input type="url" name="landscapeImage" required />
+        </label>
+  
+        <label>
+          Landscape Wall Image Alt Text:
+          <input type="text" name="landscapeImageText" required />
+        </label>
+  
+        <label>
+          Portrait Wall Image URL:
+          <input type="url" name="portraitImage" required />
+        </label>
+  
+        <label>
+          Portrait Wall Image Alt Text:
+          <input type="text" name="portraitImageText" required />
+        </label>
+  
+        <label>
+          Square Thumbnail URL:
+          <input type="url" name="squareThumbnail" required />
+        </label>
+  
+        <label>
+          Square Thumbnail Alt Text:
+          <input type="text" name="squareThumbnailText" required />
+        </label>
+  
+        <label>
+          Description:
+          <input name="description" type="text" maxlength="500" required />
+        </label>
+  
+        <label>
+          Content:
+          <textarea name="content" required id="content"></textarea>
+        </label>
+  
+        <input type="submit" value="Submit Article"/>
+      </form>
+    </div>
+    
 
     <div id="preview" class="hide render">
 
