@@ -1,0 +1,33 @@
+@import url(./home.css);
+
+h1 {
+    grid-column: 1 / 13;
+    text-align: center;
+    color: var(--primary);
+    margin-top: 7vh;
+}
+
+.render {
+    grid-column: 1 / 13;
+}
+
+.render h1 {
+    z-index: 3;
+}
+
+picture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+@media (orientation: portrait) {
+    h1 {
+        grid-column: 1 / 7;
+    }
+
+    .render {
+        grid-column: 1 / 7;
+    }
+}
