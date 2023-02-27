@@ -11,6 +11,7 @@ export function render(parentContainer, data) {
     
     container.append(createTitleElement(data.title));
     container.append(picture);
+    container.append(createDescription(data.description))
 
     parentContainer.appendChild(container)
 }
@@ -42,4 +43,11 @@ function createPictureElement(portraitImage, landscapeImage) {
     picture.append(portraitImage);
     picture.append(landscapeImage);
     return picture;
+}
+
+function createDescription(descriptionText) {
+    const p = document.createElement('p');
+    p.textContent = descriptionText;
+    p.id = 'description';
+    return p
 }
