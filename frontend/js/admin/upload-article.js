@@ -1,4 +1,4 @@
-import { render } from '../article.js';
+import { render } from '../render.js';
 import { toggleElementClass } from '../general.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -27,8 +27,11 @@ function createPreviewData() {
         title: document.querySelector('input[name="title"]').value,
         category: document.querySelector('select[name="category"]').value,
         landscapeImage: document.querySelector('input[name="landscapeImage"]').value,
+        landscapeImageText: document.querySelector('input[name="landscapeImageText"]').value,
         portraitImage: document.querySelector('input[name="portraitImage"]').value,
+        portraitImageText: document.querySelector('input[name="portraitImageText"]').value,
         squareThumbnail: document.querySelector('input[name="squareThumbnail"]').value,
+        squareThumbnailText: document.querySelector('input[name="squareThumbnailText"]').value,
         description: document.querySelector('input[name="description"]').value,
         content: document.querySelector('textarea').value
     };
