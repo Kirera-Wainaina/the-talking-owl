@@ -29,3 +29,11 @@ export function displaySliderAnimation(elementId) {
 export function toggleElementClass(element, className) {
     element.classList.toggle(className)
 }
+
+export function getNameOfMonth(index) {
+    const MONTHS = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October','November', 'December'
+    ]
+    return MONTHS[index]
+}
