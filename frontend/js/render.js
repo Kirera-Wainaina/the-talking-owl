@@ -1,3 +1,5 @@
+import { getNameOfMonth } from "./general.js";
+
 export function render(parentContainer, data) {
     let container = new DocumentFragment();
 
@@ -12,7 +14,7 @@ export function render(parentContainer, data) {
     container.append(createTitleElement(data.title));
     container.append(picture);
     container.append(createDescription(data.description))
-
+    container.append(createPublishedDate(data.publishedDate))
     parentContainer.appendChild(container)
 }
 
@@ -50,4 +52,19 @@ function createDescription(descriptionText) {
     p.textContent = descriptionText;
     p.id = 'description';
     return p
+}
+
+function createPublishedDate(milliseconds) {
+    const p = document.createElement('p');
+    p.textContent = createDateString(milliseconds);
+    return p;
+}
+
+function createDateString(milliseconds) {
+    const dateObj = new Date(milliseconds);
+    const month = getNameOfMonth(dateObj.getMonth());
+    const year = dateObj.getFullYear();
+    const day = dateObj.getDate();
+
+    return `${month} ${day}, ${year}`;
 }
