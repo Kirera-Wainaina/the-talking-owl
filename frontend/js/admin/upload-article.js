@@ -5,20 +5,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const checkPreviewButton = document.getElementById('check-preview');
     const exitPreviewButton = document.getElementById('exit-preview');
     
-    checkPreviewButton.addEventListener('click', 
-        () => toggleElementClass(document.getElementById('preview'), 'hide'));
     checkPreviewButton.addEventListener('click', () => {
         toggleElementClass(checkPreviewButton, 'hide');
         toggleElementClass(exitPreviewButton, 'hide');
+        toggleElementClass(document.getElementById('preview'), 'hide')
+        toggleElementClass(document.querySelector('form'), 'hide')
     })
     checkPreviewButton.addEventListener('click', 
         () => render(document.getElementById('preview'), createPreviewData()))
 
-    exitPreviewButton.addEventListener('click', 
-        () => toggleElementClass(document.getElementById('preview'), 'hide'));
     exitPreviewButton.addEventListener('click', () => {
         toggleElementClass(checkPreviewButton, 'hide');
         toggleElementClass(exitPreviewButton, 'hide');
+        toggleElementClass(document.getElementById('preview'), 'hide')
+        toggleElementClass(document.querySelector('form'), 'hide')
     })
 })
 
