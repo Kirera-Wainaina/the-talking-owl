@@ -1,18 +1,22 @@
 @import url(./home.css);
 
 h1 {
-    grid-column: 1 / 13;
     text-align: center;
     color: var(--primary);
-    margin-top: 20vh;
+    margin-top: 10vh;
+}
+
+p {
+    font-size: 1.3em;
 }
 
 .render {
-    grid-column: 1 / 13;
+    grid-column: 4 / 10;
 }
 
 .render h1 {
     color: white;
+    margin-top: 20vh;
 }
 
 picture {
@@ -20,6 +24,12 @@ picture {
     top: 6vh;
     left: 0;
     z-index: -1;
+}
+
+#description {
+    color: white;
+    margin-top: 3em;
+    text-align: center;
 }
 
 @media (orientation: portrait) {
@@ -33,5 +43,13 @@ picture {
 
     picture {
         top: 7vh;
+    }
+
+    .render h1 {
+        margin-top: 15vh;
+    }
+
+    #description {
+        margin-top: 1.5em;
     }
 }
