@@ -4,7 +4,7 @@ h1 {
     grid-column: 1 / 13;
     text-align: center;
     color: var(--primary);
-    margin-top: 7vh;
+    margin-top: 20vh;
 }
 
 .render {
@@ -12,12 +12,12 @@ h1 {
 }
 
 .render h1 {
-    z-index: 3;
+    color: white;
 }
 
 picture {
     position: absolute;
-    top: 0;
+    top: 6vh;
     left: 0;
     z-index: -1;
 }
@@ -29,5 +29,9 @@ picture {
 
     .render {
         grid-column: 1 / 7;
+    }
+
+    picture {
+        top: 7vh;
     }
 }
