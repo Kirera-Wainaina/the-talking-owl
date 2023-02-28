@@ -37,3 +37,10 @@ function createPreviewData() {
         publishedDate: Date.now()
     };
 }
+
+function createUrlTitle(title) {
+    return title
+        .toLowerCase()
+        .replace(/ /g, '-')
+  	    .replace(/[^A-Za-z-]/g, '')
+}
