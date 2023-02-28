@@ -1,5 +1,5 @@
 import { render } from '../render.js';
-import { toggleElementClass } from '../general.js';
+import { toggleElementClass, showSpinningIcon } from '../general.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const checkPreviewButton = document.getElementById('check-preview');
@@ -52,6 +52,7 @@ function createUrlTitle(title) {
 
 function handleSubmit(event) {
     event.preventDefault();
+    showSpinningIcon(document.querySelector('input[type="submit"]'))
     const previewData = createPreviewData();
     const dataToSubmit = {
         ...previewData, 
