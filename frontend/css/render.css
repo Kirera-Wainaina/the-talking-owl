@@ -15,6 +15,7 @@ p {
 
     display: grid;
     grid-template-columns: repeat(12, 1fr);
+    background-color: var(--primary-background-color);
 }
 
 .render.hide {
@@ -57,9 +58,10 @@ picture {
 #publish-date {
     display: flex;
     color: #737373;
-    grid-column: 3 / 7;
+    grid-column: 4 / 7;
     gap: 10px;
     margin-top: 2em;
+    margin-bottom: 1em;
     font-size: 16px;
     align-items: center;
 }
@@ -70,6 +72,15 @@ picture {
 
 article {
     grid-column: 4 / 10;
+}
+
+article h2 {
+    margin-bottom: 1em;
+
+}
+
+article p {
+    margin-bottom: 1em;
 }
 
 @media (orientation: portrait) {
