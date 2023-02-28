@@ -52,7 +52,8 @@ function createUrlTitle(title) {
 
 function handleSubmit(event) {
     event.preventDefault();
-    showSpinningIcon(document.querySelector('input[type="submit"]'))
+    showSpinningIcon(document.querySelector('button[type="submit"]'))
+    
     const previewData = createPreviewData();
     const dataToSubmit = {
         ...previewData, 

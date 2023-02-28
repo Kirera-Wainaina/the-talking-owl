@@ -41,7 +41,7 @@ label {
     margin-top: 2em;
 }
 
-input[type='submit'] {
+button[type='submit'] {
     margin-top: 1em;
     color: white;
     background-color: var(--secondary);
