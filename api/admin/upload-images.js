@@ -50,6 +50,6 @@ function createImageData(metadata) {
     return {
         name: metadata.name,
         link: metadata.mediaLink,
-        createTime: Timestamp.now()
+        createTime: Date.now()
     }
 }
