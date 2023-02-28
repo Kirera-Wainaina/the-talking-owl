@@ -55,6 +55,14 @@ function createDescription(descriptionText) {
 }
 
 function createPublishedDate(milliseconds) {
+    const div = document.createElement('div');
+    div.id = 'publish-date';
+    div.append(createClockIcon());
+    div.append(createPublishedDateElement(milliseconds))
+    return div;
+}
+
+function createPublishedDateElement(milliseconds) {
     const p = document.createElement('p');
     p.textContent = createDateString(milliseconds);
     return p;
@@ -67,4 +75,11 @@ function createDateString(milliseconds) {
     const day = dateObj.getDate();
 
     return `${month} ${day}, ${year}`;
+}
+
+function createClockIcon() {
+    const img = document.createElement('img');
+    img.src = '/frontend/images/clock-icon.svg';
+    img.alt = 'clock';
+    return img
 }
