@@ -23,7 +23,7 @@ p {
 
 .render h1 {
     color: white;
-    border: 1px solid gold;
+    /* border: 1px solid gold; */
 
     position: absolute;
     top: 20vh;
@@ -42,15 +42,16 @@ picture {
 #description {
     color: white;
     text-align: center;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 
     position: absolute;
-    top: 40vh;
+    top: 43vh;
     left: 20vw;
     width: 60vw;
     height: 20vh;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-weight: 700;
 }
 
 #publish-date {
@@ -85,8 +86,10 @@ picture {
     .render h1 {
         top: 5vh;
         left: 5vw;
-        height: 20vh;
+        height: 17vh;
         width: 90vw;
+        font-size: 1.5em;
+        font-weight: 400;
     }
 
     #description {
