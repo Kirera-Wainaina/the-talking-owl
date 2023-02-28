@@ -55,10 +55,16 @@ picture {
 
 #publish-date {
     display: flex;
-    color: rgba(0, 0, 0, 0.51);
+    color: #737373;
     grid-column: 3 / 7;
-    gap: 5px;
+    gap: 10px;
     margin-top: 2em;
+    font-size: 16px;
+    align-items: center;
+}
+
+#publish-date img {
+    height: 1.2em;
 }
 
 @media (orientation: portrait) {
@@ -68,10 +74,12 @@ picture {
 
     .render {
         grid-column: 1 / 7;
+    
+        grid-template-columns: repeat(6, 1fr);
     }
 
     picture {
-        top: 7vh;
+        grid-column: 1 / 7;
     }
 
     .render h1 {
@@ -86,5 +94,10 @@ picture {
         left: 5vw;
         height: 20vh;
         width: 90vw;
+    }
+
+    #publish-date {
+        grid-column: 1 / 7;
+        margin-left: 2em;
     }
 }
