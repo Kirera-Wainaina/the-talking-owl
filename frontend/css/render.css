@@ -30,6 +30,8 @@ p {
     left: 20vw;
     width: 60vw;
     height: 10vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 picture {
@@ -47,6 +49,8 @@ picture {
     left: 20vw;
     width: 60vw;
     height: 20vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #publish-date {
@@ -71,10 +75,16 @@ picture {
     }
 
     .render h1 {
-        margin-top: 15vh;
+        top: 5vh;
+        left: 5vw;
+        height: 20vh;
+        width: 90vw;
     }
 
     #description {
-        margin-top: 1.5em;
+        top: 35vh;
+        left: 5vw;
+        height: 20vh;
+        width: 90vw;
     }
 }
