@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('form');
-    form.addEventListener('submit', submitArticle);
+    form.addEventListener('submit', handleSubmit);
 })
 
 function createPreviewData() {
@@ -50,12 +50,28 @@ function createUrlTitle(title) {
   	    .replace(/[^A-Za-z-]/g, '')
 }
 
-function submitArticle(event) {
+function handleSubmit(event) {
     event.preventDefault();
     const previewData = createPreviewData();
     const dataToSubmit = {
         ...previewData, 
         urlTitle: createUrlTitle(previewData.title)
     }
-    console.log(dataToSubmit);
+    const formdata = createFormData(dataToSubmit);
+    submitArticle(formdata);
+}
+
+function createFormData(data) {
+    const formdata = new FormData()
+    const keys = Object.keys(data);
+
+    keys.forEach(key => formdata.append(key, data[key]));
+    return formdata
+}
+
+function submitArticle(formdata) {
+    fetch('/api/admin/upload-article', {
+        method: 'POST',
+        body: formdata
+    }).then(response => console.log(response));
 }
