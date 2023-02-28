@@ -15,7 +15,7 @@ export function render(parentContainer, data) {
     container.append(picture);
     container.append(createDescription(data.description))
     container.append(createPublishedDate(data.publishedDate))
-    parentContainer.appendChild(container)
+    parentContainer.replaceChildren(container)
 }
 
 function createTitleElement(title) {
