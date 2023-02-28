@@ -22,6 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 })
 
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('form');
+    form.addEventListener('submit', submitArticle);
+})
+
 function createPreviewData() {
     return {
         title: document.querySelector('input[name="title"]').value,
@@ -43,4 +48,14 @@ function createUrlTitle(title) {
         .toLowerCase()
         .replace(/ /g, '-')
   	    .replace(/[^A-Za-z-]/g, '')
+}
+
+function submitArticle(event) {
+    event.preventDefault();
+    const previewData = createPreviewData();
+    const dataToSubmit = {
+        ...previewData, 
+        urlTitle: createUrlTitle(previewData.title)
+    }
+    console.log(dataToSubmit);
 }
