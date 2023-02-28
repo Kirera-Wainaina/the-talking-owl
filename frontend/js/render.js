@@ -15,6 +15,7 @@ export function render(parentContainer, data) {
     container.append(picture);
     container.append(createDescription(data.description))
     container.append(createPublishedDate(data.publishedDate))
+    container.append(createArticleContent(data.content))
     parentContainer.replaceChildren(container)
 }
 
@@ -82,4 +83,10 @@ function createClockIcon() {
     img.src = '/frontend/images/clock-icon.svg';
     img.alt = 'clock';
     return img
+}
+
+function createArticleContent(content) {
+    const article = document.createElement('article');
+    article.innerHTML = content;
+    return article;
 }

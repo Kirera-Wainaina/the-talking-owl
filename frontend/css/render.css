@@ -68,6 +68,10 @@ picture {
     height: 1.2em;
 }
 
+article {
+    grid-column: 4 / 10;
+}
+
 @media (orientation: portrait) {
     h1 {
         grid-column: 1 / 7;
