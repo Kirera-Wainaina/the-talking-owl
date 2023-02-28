@@ -48,6 +48,7 @@ button[type='submit'] {
     border-radius: 5px;
     font-size: 1.1em;
     height: 2em;
+    font-weight: 700;
 }
 
 textarea {
