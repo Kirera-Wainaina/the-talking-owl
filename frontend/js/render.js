@@ -14,12 +14,11 @@ export function render(parentContainer, data) {
     container.append(createTitleElement(data.title));
     container.append(picture);
     container.append(createDescription(data.description))
-    container.append(createPublishedDate(data.publishedDate))
-    container.append(createArticleContent(data.content))
+    container.append(createArticleContent(data.content, data.publishedDate))
     parentContainer.replaceChildren(container)
     parentContainer.insertBefore(
         createTableOfContents(), 
-        document.getElementById('publish-date')
+        document.querySelector('article')
     );
 }
 
@@ -89,9 +88,10 @@ function createClockIcon() {
     return img
 }
 
-function createArticleContent(content) {
+function createArticleContent(content, date) {
     const article = document.createElement('article');
-    article.innerHTML = content;
+    article.append(createPublishedDate(date))
+    article.innerHTML += content;
     return article;
 }
 
