@@ -17,6 +17,10 @@ export function render(parentContainer, data) {
     container.append(createPublishedDate(data.publishedDate))
     container.append(createArticleContent(data.content))
     parentContainer.replaceChildren(container)
+    parentContainer.insertBefore(
+        createTableOfContents(), 
+        document.getElementById('publish-date')
+    );
 }
 
 function createTitleElement(title) {
@@ -89,4 +93,29 @@ function createArticleContent(content) {
     const article = document.createElement('article');
     article.innerHTML = content;
     return article;
+}
+
+function createTableOfContents() {
+    const div = document.createElement('div');
+    const headings = document.querySelectorAll('h2, h3, h4, h5');
+    const fragment = new DocumentFragment();
+
+    div.append(createTableOfContentsHeading());
+    headings.forEach(element => div.append(createTableOfContentsLink(element)));
+
+    div.id = 'table-of-contents';
+    fragment.append(div);
+    return fragment
+}
+
+function createTableOfContentsLink(element) {
+    const a = document.createElement('a');
+    a.textContent = element.textContent;
+    return a
+}
+
+function createTableOfContentsHeading() {
+    const h4 = document.createElement('h4');
+    h4.textContent = 'Table of contents';
+    return h4;
 }

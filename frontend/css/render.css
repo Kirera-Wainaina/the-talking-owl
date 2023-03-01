@@ -86,6 +86,10 @@ article p {
     margin-bottom: 1em;
 }
 
+#table-of-contents {
+    grid-column: 1 / 4;
+}
+
 @media (orientation: portrait) {
     h1 {
         grid-column: 1 / 7;
