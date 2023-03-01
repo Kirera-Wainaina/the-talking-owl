@@ -97,6 +97,14 @@ article > p {
     margin-left: 1em;
     margin-right: 1em;
     margin-top: 0.5em;
+    font-weight: 500;
+    padding: 3px;
+    padding-left: 2em;
+}
+
+#table-of-contents a:hover {
+    background-color: #AF9CC6;
+    border-radius: 5px;
 }
 
 @media (orientation: portrait) {
