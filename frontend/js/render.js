@@ -68,7 +68,7 @@ function createPublishedDate(milliseconds) {
 
 function createPublishedDateElement(milliseconds) {
     const p = document.createElement('p');
-    p.textContent = createDateString(milliseconds);
+    p.textContent = `Published: ${createDateString(milliseconds)}`;
     return p;
 }
 
