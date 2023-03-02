@@ -1,4 +1,4 @@
-import { createTextElement, getNameOfMonth, urlifySentence } from "./general.js";
+import { createDateString, createTextElement, urlifySentence } from "./general.js";
 
 export function render(parentContainer, data) {
     let container = new DocumentFragment();
@@ -57,16 +57,6 @@ function createPublishedDate(milliseconds) {
     div.append(createClockIcon());
     div.append(createTextElement('p', `Published: ${createDateString(milliseconds)}`))
     return div;
-}
-
-
-function createDateString(milliseconds) {
-    const dateObj = new Date(milliseconds);
-    const month = getNameOfMonth(dateObj.getMonth());
-    const year = dateObj.getFullYear();
-    const day = dateObj.getDate();
-
-    return `${month} ${day}, ${year}`;
 }
 
 function createClockIcon() {

@@ -57,3 +57,12 @@ export function createTextElement(tagName, textContent) {
     element.textContent = textContent;
     return element;
 }
+
+export function createDateString(milliseconds) {
+    const dateObj = new Date(milliseconds);
+    const month = getNameOfMonth(dateObj.getMonth());
+    const year = dateObj.getFullYear();
+    const day = dateObj.getDate();
+
+    return `${month} ${day}, ${year}`;
+}
