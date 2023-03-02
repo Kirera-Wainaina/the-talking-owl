@@ -1,4 +1,4 @@
-import { getNameOfMonth, urlifySentence } from "./general.js";
+import { createTextElement, getNameOfMonth, urlifySentence } from "./general.js";
 
 export function render(parentContainer, data) {
     let container = new DocumentFragment();
@@ -11,7 +11,7 @@ export function render(parentContainer, data) {
         'portrait-wall-image');
     const picture = createPictureElement(portraitImage, landscapeImage);
     
-    container.append(createTitleElement(data.title));
+    container.append(createTextElement('h1', data.title))
     container.append(picture);
     container.append(createDescription(data.description))
     container.append(createArticleContent(data.content, data.publishedDate))
@@ -20,12 +20,6 @@ export function render(parentContainer, data) {
         createTableOfContents(), 
         document.querySelector('article')
     );
-}
-
-function createTitleElement(title) {
-    const h1 = document.createElement('h1');
-    h1.textContent = title;
-    return h1
 }
 
 function createArticleImage(imageUrl, imageText, imageId) {
@@ -62,15 +56,10 @@ function createPublishedDate(milliseconds) {
     const div = document.createElement('div');
     div.id = 'publish-date';
     div.append(createClockIcon());
-    div.append(createPublishedDateElement(milliseconds))
+    div.append(createTextElement('p', `Published: ${createDateString(milliseconds)}`))
     return div;
 }
 
-function createPublishedDateElement(milliseconds) {
-    const p = document.createElement('p');
-    p.textContent = `Published: ${createDateString(milliseconds)}`;
-    return p;
-}
 
 function createDateString(milliseconds) {
     const dateObj = new Date(milliseconds);
@@ -100,7 +89,7 @@ function createTableOfContents() {
     const headings = document.querySelectorAll('h2, h3, h4, h5');
     const fragment = new DocumentFragment();
 
-    div.append(createTableOfContentsHeading());
+    div.append(createTextElement('h4', 'Table of contents'));
     headings.forEach(element => {
         div.append(createTableOfContentsLink(element));
         addIdToHeading(element);
@@ -117,12 +106,6 @@ function createTableOfContentsLink(element) {
     a.href = `#${urlifySentence(element.textContent)}`;
     setLeftMargin(a, element);
     return a
-}
-
-function createTableOfContentsHeading() {
-    const h4 = document.createElement('h4');
-    h4.textContent = 'Table of contents';
-    return h4;
 }
 
 function addIdToHeading(headingElement) {
