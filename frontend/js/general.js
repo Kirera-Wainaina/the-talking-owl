@@ -37,3 +37,10 @@ export function getNameOfMonth(index) {
     ]
     return MONTHS[index]
 }
+
+export function urlifySentence(sentence) {
+    return sentence
+        .toLowerCase()
+        .replace(/ /g, '-')
+  	    .replace(/[^A-Za-z-]/g, '')
+}

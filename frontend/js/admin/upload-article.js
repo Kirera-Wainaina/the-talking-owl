@@ -1,5 +1,5 @@
 import { render } from '../render.js';
-import { toggleElementClass, showSpinningIcon } from '../general.js';
+import { toggleElementClass, showSpinningIcon, urlifySentence } from '../general.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const checkPreviewButton = document.getElementById('check-preview');
@@ -43,13 +43,6 @@ function createPreviewData() {
     };
 }
 
-function createUrlTitle(title) {
-    return title
-        .toLowerCase()
-        .replace(/ /g, '-')
-  	    .replace(/[^A-Za-z-]/g, '')
-}
-
 function handleSubmit(event) {
     event.preventDefault();
     showSpinningIcon(document.querySelector('button[type="submit"]'))
@@ -57,7 +50,7 @@ function handleSubmit(event) {
     const previewData = createPreviewData();
     const dataToSubmit = {
         ...previewData, 
-        urlTitle: createUrlTitle(previewData.title)
+        urlTitle: urlifySentence(previewData.title)
     }
     const formdata = createFormData(dataToSubmit);
     submitArticle(formdata);
