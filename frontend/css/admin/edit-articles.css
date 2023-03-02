@@ -1,4 +1,4 @@
-@import url('../home.css');
+@import url('../article-list.css');
 
 h1 {
     grid-column: 1 / 13;
