@@ -51,3 +51,9 @@ export function createImageElement(src) {
     imgEl.src = src;
     return imgEl
 }
+
+export function createTextElement(tagName, textContent) {
+    const element = document.createElement(tagName);
+    element.textContent = textContent;
+    return element;
+}

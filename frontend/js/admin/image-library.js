@@ -1,4 +1,5 @@
-import { displaySliderAnimation, hideSpinningIcon, showSpinningIcon, toggleElementClass, createImageElement
+import { displaySliderAnimation, hideSpinningIcon, showSpinningIcon, toggleElementClass, 
+    createImageElement, createTextElement
 } from "../general.js";
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -195,7 +196,7 @@ function createExistingImageElement(image) {
 
 function createLinkContainer(image) {
     const div = document.createElement('div');
-    const p = createImageLinkText(image);
+    const p = createTextElement('p', image.link)
     const input = createImageInputButton('/frontend/images/link-icon.svg', 'click image link');
     input.addEventListener('click', copyLinkToClipboard)
 
@@ -211,12 +212,6 @@ function createImageInputButton(link, altText) {
     input.src = link;
     input.alt = altText;
     return input
-}
-
-function createImageLinkText(image) {
-    const p = document.createElement('p');
-    p.textContent = image.link;
-    return p
 }
 
 function markImageForDeletion(event) {
