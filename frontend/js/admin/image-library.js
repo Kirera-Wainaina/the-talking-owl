@@ -1,4 +1,4 @@
-import { displaySliderAnimation, hideSpinningIcon, showSpinningIcon, toggleElementClass 
+import { displaySliderAnimation, hideSpinningIcon, showSpinningIcon, toggleElementClass, createImageElement
 } from "../general.js";
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -64,12 +64,6 @@ function createSingleImageContainer(file) {
     div.append(imgEl);
     div.classList.add('single-image-container');
     return div;
-}
-
-function createImageElement(src) {
-    const imgEl = document.createElement('img');
-    imgEl.src = src;
-    return imgEl
 }
 
 function createCloseIconElement() {

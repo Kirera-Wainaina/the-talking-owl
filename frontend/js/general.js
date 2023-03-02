@@ -45,3 +45,9 @@ export function urlifySentence(sentence) {
         .replace(/ /g, '-')
   	    .replace(/[^A-Za-z-]/g, '')
 }
+
+export function createImageElement(src) {
+    const imgEl = document.createElement('img');
+    imgEl.src = src;
+    return imgEl
+}
