@@ -46,8 +46,7 @@ function createPictureElement(portraitImage, landscapeImage) {
 }
 
 function createDescription(descriptionText) {
-    const p = document.createElement('p');
-    p.textContent = descriptionText;
+    const p = document.createTextElement('p', descriptionText);
     p.id = 'description';
     return p
 }
