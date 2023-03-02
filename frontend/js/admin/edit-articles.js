@@ -11,8 +11,11 @@ publishedDate&orderBy=publishedDate&orderByDirection=desc')
 
 function displayArticleList(data) {
     console.log(data)
+    const div = document.getElementById('article-list')
     const fragment = new DocumentFragment();
     data.forEach(article => {
         fragment.append(createArticleContainer(article));
     });
+    div.appendChild(fragment);
+    return;
 }
