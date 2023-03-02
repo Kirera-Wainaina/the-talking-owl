@@ -1,0 +1,11 @@
+@import url('./home.css');
+
+#article-list {
+    grid-column: 4 / 10;
+}
+
+@media (orientation: portrait) {
+    #article-list {
+        grid-column: 1 / 7;
+    }
+}
