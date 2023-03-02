@@ -133,19 +133,19 @@ function addIdToHeading(headingElement) {
 function setLeftMargin(aElement, headingElement) {
     switch (headingElement.tagName) {
         case 'H2':
-            aElement.style.marginLeft = '1em';
+            aElement.classList.add('h2-margin-left')
             break;
         case 'H3':
-            aElement.style.marginLeft = '2.5em';
+            aElement.classList.add('h3-margin-left')
             break;
         case 'H4':
-            aElement.style.marginLeft = '4em';
+            aElement.classList.add('h4-margin-left')
             break;
         case 'H5':
-            aElement.style.marginLeft = '5.5em';
+            aElement.classList.add('h5-margin-left')
             break;
         case 'H6':
-            aElement.style.marginLeft = '7em';
+            aElement.classList.add('h6-margin-left')
             break;
         default:
             break;

@@ -113,6 +113,26 @@ article > p {
     background-color: #AF9CC6;
 }
 
+#table-of-contents .h2-margin-left {
+    margin-left: 1em;
+}
+
+#table-of-contents .h3-margin-left {
+    margin-left: 2.5em;
+}
+
+#table-of-contents .h4-margin-left {
+    margin-left: 4em;
+}
+
+#table-of-contents .h5-margin-left {
+    margin-left: 5.5em;
+}
+
+#table-of-contents .h6-margin-left {
+    margin-left: 7em;
+}
+
 @media (orientation: portrait) {
     h1 {
         grid-column: 1 / 7;
@@ -144,11 +164,6 @@ article > p {
         width: 90vw;
     }
 
-    #publish-date {
-        grid-column: 1 / 7;
-        margin-left: 2em;
-    }
-
     article {
         grid-column: 1 / 7;
         margin-left: 2em;
@@ -157,5 +172,28 @@ article > p {
 
     #table-of-contents {
         grid-column: 1 / 7;
+        border-left: 2px solid var(--primary);
+        margin-left: 1em;
     }
+
+    #table-of-contents .h2-margin-left {
+        margin-left: .5em;
+    }
+    
+    #table-of-contents .h3-margin-left {
+        margin-left: 1.7em;
+    }
+    
+    #table-of-contents .h4-margin-left {
+        margin-left: 2.9em;
+    }
+    
+    #table-of-contents .h5-margin-left {
+        margin-left: 4.1em;
+    }
+    
+    #table-of-contents .h6-margin-left {
+        margin-left: 5.3em;
+    }
+    
 }
