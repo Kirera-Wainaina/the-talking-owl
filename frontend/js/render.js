@@ -115,6 +115,7 @@ function createTableOfContentsLink(element) {
     const a = document.createElement('a');
     a.textContent = element.textContent;
     a.href = `#${urlifySentence(element.textContent)}`;
+    setLeftMargin(a, element);
     return a
 }
 
@@ -127,4 +128,26 @@ function createTableOfContentsHeading() {
 function addIdToHeading(headingElement) {
     headingElement.id = urlifySentence(headingElement.textContent);
     return;
+}
+
+function setLeftMargin(aElement, headingElement) {
+    switch (headingElement.tagName) {
+        case 'H2':
+            aElement.style.marginLeft = '1em';
+            break;
+        case 'H3':
+            aElement.style.marginLeft = '2.5em';
+            break;
+        case 'H4':
+            aElement.style.marginLeft = '4em';
+            break;
+        case 'H5':
+            aElement.style.marginLeft = '5.5em';
+            break;
+        case 'H6':
+            aElement.style.marginLeft = '7em';
+            break;
+        default:
+            break;
+    }
 }
