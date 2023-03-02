@@ -101,9 +101,12 @@ function createTableOfContents() {
     const fragment = new DocumentFragment();
 
     div.append(createTableOfContentsHeading());
-    headings.forEach(element => div.append(createTableOfContentsLink(element)));
-
+    headings.forEach(element => {
+        div.append(createTableOfContentsLink(element));
+        addIdToHeading(element);
+    });
     div.id = 'table-of-contents';
+
     fragment.append(div);
     return fragment
 }
@@ -119,4 +122,9 @@ function createTableOfContentsHeading() {
     const h4 = document.createElement('h4');
     h4.textContent = 'Table of contents';
     return h4;
+}
+
+function addIdToHeading(headingElement) {
+    headingElement.id = urlifySentence(headingElement.textContent);
+    return;
 }
