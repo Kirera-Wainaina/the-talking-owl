@@ -1,4 +1,4 @@
-import { getNameOfMonth } from "./general.js";
+import { getNameOfMonth, urlifySentence } from "./general.js";
 
 export function render(parentContainer, data) {
     let container = new DocumentFragment();
@@ -111,6 +111,7 @@ function createTableOfContents() {
 function createTableOfContentsLink(element) {
     const a = document.createElement('a');
     a.textContent = element.textContent;
+    a.href = `#${urlifySentence(element.textContent)}`;
     return a
 }
 
