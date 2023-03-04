@@ -13,6 +13,16 @@
     width: 45%;
     text-decoration: none;
     color: black;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.article-card:hover {
+    background-color: var(--hover-color);
+}
+
+.article-card:active {
+    background-color: var(--active-color);
 }
 
 .article-card img {
