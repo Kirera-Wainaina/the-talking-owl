@@ -1,11 +1,27 @@
 @import url('./home.css');
 
 #article-list {
-    grid-column: 4 / 10;
+    grid-column: 3 / 11;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5%;
+    justify-content: center;
+}
+
+#article-list > a {
+    width: 45%;
 }
 
 @media (orientation: portrait) {
     #article-list {
         grid-column: 1 / 7;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: nowrap;
+    }
+
+    #article-list > a {
+        width: 95vw;
     }
 }
