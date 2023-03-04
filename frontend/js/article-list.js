@@ -10,6 +10,5 @@ export function createArticleContainer(articleData) {
     a.append(createTextElement('h6', articleData.title));
     a.append(createTextElement('p', articleData.description));
     a.append(createTextElement('p', `Published: ${createDateString(Number(articleData.publishedDate))}`))
-    // add href
     return a
 }

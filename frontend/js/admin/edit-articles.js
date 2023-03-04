@@ -14,7 +14,9 @@ function displayArticleList(data) {
     const div = document.getElementById('article-list')
     const fragment = new DocumentFragment();
     data.forEach(article => {
-        fragment.append(createArticleContainer(article));
+        const a = createArticleContainer(article);
+        a.href = `/edit?title=${article.urlTitle}&id=${article.id}`;
+        fragment.append(a);
     });
     div.appendChild(fragment);
     return;
