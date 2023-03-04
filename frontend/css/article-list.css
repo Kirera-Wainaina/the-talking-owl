@@ -6,10 +6,23 @@
     flex-wrap: wrap;
     gap: 5%;
     justify-content: center;
+    margin-top: 1em;
 }
 
-#article-list > a {
+.article-card {
     width: 45%;
+    text-decoration: none;
+}
+
+.article-card img {
+    border-radius: 5px;
+}
+
+.article-card h6 {
+    color: black;
+    margin-top: 1em;
+    font-weight: 700;
+    font-size: 1.2em;
 }
 
 @media (orientation: portrait) {
@@ -21,7 +34,7 @@
         flex-wrap: nowrap;
     }
 
-    #article-list > a {
+    .article-card {
         width: 95vw;
     }
 }
