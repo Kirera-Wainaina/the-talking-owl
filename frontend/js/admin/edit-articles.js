@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', retreiveArticleData);
 
 function retreiveArticleData() {
     fetch('/api/articles?field=title&field=description&field=landscapeImage&field=\
-publishedDate&orderBy=publishedDate&orderByDirection=desc')
+publishedDate&field=urlTitle&orderBy=publishedDate&orderByDirection=desc')
         .then(response => response.json())
         .then(data => displayArticleList(data))
 }
