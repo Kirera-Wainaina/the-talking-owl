@@ -12,6 +12,7 @@
 .article-card {
     width: 45%;
     text-decoration: none;
+    color: black;
 }
 
 .article-card img {
@@ -19,10 +20,18 @@
 }
 
 .article-card h6 {
-    color: black;
     margin-top: 1em;
     font-weight: 700;
     font-size: 1.2em;
+}
+
+.article-card p:first-of-type {
+    margin-top: 1.2em;
+}
+
+.article-card p:last-of-type {
+    margin-top: .8em;
+    font-weight: 600;
 }
 
 @media (orientation: portrait) {
@@ -32,6 +41,7 @@
         justify-content: flex-start;
         align-items: center;
         flex-wrap: nowrap;
+        gap: 2%;
     }
 
     .article-card {
