@@ -8,6 +8,8 @@
     --error-background-color: #ffb3b3;
     --error-font-color: #ff3333;
     --primary-background-color: #F6F1FF;
+    --hover-color: rgba(175, 156, 198, 0.26);
+    --active-color: #AF9CC6;
 }
 
 * {
