@@ -1,5 +1,6 @@
 import { render } from '../render.js';
-import { toggleElementClass, showSpinningIcon, urlifySentence } from '../general.js';
+import { toggleElementClass, showSpinningIcon, hideSpinningIcon, 
+    urlifySentence, displaySliderAnimation } from '../general.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const checkPreviewButton = document.getElementById('check-preview');
@@ -68,11 +69,20 @@ function submitArticle(formdata) {
     fetch('/api/admin/upload-article', {
         method: 'POST',
         body: formdata
-    }).then(handleResponse);
+    })
+    .then(handleResponse);
 }
 
-function handleResponse(response) {
+async function handleResponse(response) {
+    const text = await response.text()
     if (response.status == 200) {
         location.href = '/admin/home';
+    } else {
+        if (text == 'url-exists') {
+            displaySliderAnimation('existing-title-error');
+        } else {
+            displaySliderAnimation('article-upload-error')
+        }
+        hideSpinningIcon('Submit Article');
     }
 }
