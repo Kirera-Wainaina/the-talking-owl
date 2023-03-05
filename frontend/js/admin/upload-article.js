@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('#upload-form');
     if (form) {
-        form.addEventListener('submit', handleSubmit);
+        form.addEventListener('submit', event => handleSubmit(event, submitArticle));
     }
 })
 
@@ -46,7 +46,7 @@ function createPreviewData() {
     };
 }
 
-function handleSubmit(event) {
+export function handleSubmit(event, submitArticle) {
     event.preventDefault();
     showSpinningIcon(document.querySelector('button[type="submit"]'))
     
