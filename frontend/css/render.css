@@ -32,11 +32,10 @@ p {
     height: 10vh;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-picture {
-    grid-column: 1 / 13;
-    margin-top: 5vh;
+    background-color: rgba(0, 0, 0, 0.57);
+    margin-top: 0;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
 }
 
 #description {
@@ -44,13 +43,22 @@ picture {
     text-align: center;
 
     position: absolute;
-    top: 43vh;
+    top: 36vh;
     left: 20vw;
-    width: 60vw;
-    height: 20vh;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    width: 48vw;
+    /* height: 20vh; */
+    /* overflow: hidden; */
+    /* text-overflow: ellipsis; */
     font-weight: 700;
+    background-color: rgba(0, 0, 0, 0.57);
+    padding-left: 6vw;
+    padding-right: 6vw;
+    padding-bottom: 3vh;
+}
+
+picture {
+    grid-column: 1 / 13;
+    margin-top: 5vh;
 }
 
 #publish-date {
