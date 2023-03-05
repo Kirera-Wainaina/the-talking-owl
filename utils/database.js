@@ -55,3 +55,5 @@ function appendIds(docs) {
 
     return data
 }
+
+exports.firestore = firestore;
