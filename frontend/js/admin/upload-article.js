@@ -68,5 +68,11 @@ function submitArticle(formdata) {
     fetch('/api/admin/upload-article', {
         method: 'POST',
         body: formdata
-    }).then(response => console.log(response));
+    }).then(handleResponse);
+}
+
+function handleResponse(response) {
+    if (response.status == 200) {
+        location.href = '/admin/home';
+    }
 }
