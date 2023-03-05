@@ -25,7 +25,7 @@ exports.main = async function(request, response) {
     }
 }
 
-exports.urlTitleExists = function(urlTitle) {
+function urlTitleExists(urlTitle) {
     const collection = database.firestore.collection('articles');
     return collection
         .where('urlTitle', '==', urlTitle)
