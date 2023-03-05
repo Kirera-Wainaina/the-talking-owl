@@ -1,3 +1,4 @@
+import { displaySliderAnimation } from "../general.js";
 import { createPreviewData, handleSubmit } from "./upload-article.js";
 
 document.addEventListener('DOMContentLoaded', fetchArticleData);
@@ -48,8 +49,11 @@ function submitArticleEdit(formdata) {
 }
 
 async function handleEditResponse(response) {
-    const text = await response.text();
-    console.log(text);
+    if (response.status == 200) {
+        location.href = '/admin/edit-articles';
+    } else {
+        displaySliderAnimation("article-edit-error")
+    }
 }
 
 function createDataToEdit() {
