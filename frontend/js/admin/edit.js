@@ -9,9 +9,15 @@ function fetchArticleData() {
 
 function inputDataIntoForm(data) {
     inputDataIntoInputElements(data);
+    inputContentIntoTextArea(data.content)
 }
 
 function inputDataIntoInputElements(data) {
     const inputs = document.querySelectorAll('form input');
     inputs.forEach(input => input.value = data[input.name]);
+}
+
+function inputContentIntoTextArea(content) {
+    const textArea = document.querySelector('form textarea');
+    textArea.value = content;
 }
