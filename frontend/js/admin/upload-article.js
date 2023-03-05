@@ -24,8 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.querySelector('form');
-    form.addEventListener('submit', handleSubmit);
+    const form = document.querySelector('#upload-form');
+    if (form) {
+        form.addEventListener('submit', handleSubmit);
+    }
 })
 
 function createPreviewData() {
