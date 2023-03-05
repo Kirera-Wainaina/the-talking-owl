@@ -1,4 +1,4 @@
-const { handleSubmit } = require("./upload-article");
+import { handleSubmit } from "./upload-article.js";
 
 document.addEventListener('DOMContentLoaded', fetchArticleData);
 
