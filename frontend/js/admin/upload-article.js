@@ -26,11 +26,14 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('#upload-form');
     if (form) {
-        form.addEventListener('submit', event => handleSubmit(event, submitArticle));
+        form.addEventListener('submit', event => {
+            event.preventDefault();
+            handleSubmit(createDataToSubmit(), submitArticle)
+        });
     }
 })
 
-function createPreviewData() {
+export function createPreviewData() {
     return {
         title: document.querySelector('input[name="title"]').value,
         category: document.querySelector('select[name="category"]').value,
@@ -46,17 +49,19 @@ function createPreviewData() {
     };
 }
 
-export function handleSubmit(event, submitArticle) {
-    event.preventDefault();
+export function handleSubmit(dataToSubmit, submitArticle) {
     showSpinningIcon(document.querySelector('button[type="submit"]'))
     
+    const formdata = createFormData(dataToSubmit);
+    submitArticle(formdata);
+}
+
+function createDataToSubmit() {
     const previewData = createPreviewData();
-    const dataToSubmit = {
+    return {
         ...previewData, 
         urlTitle: urlifySentence(previewData.title)
     }
-    const formdata = createFormData(dataToSubmit);
-    submitArticle(formdata);
 }
 
 function createFormData(data) {

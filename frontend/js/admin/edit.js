@@ -1,11 +1,14 @@
-import { handleSubmit } from "./upload-article.js";
+import { createPreviewData, handleSubmit } from "./upload-article.js";
 
 document.addEventListener('DOMContentLoaded', fetchArticleData);
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('edit-form');
     if (form) {
-        form.addEventListener('click', event => handleSubmit(event, submitArticleEdit))
+        form.addEventListener('submit', event => {
+            event.preventDefault();
+            handleSubmit(createDataToEdit(), submitArticleEdit)
+        })
     }
 })
 
@@ -47,4 +50,15 @@ function submitArticleEdit(formdata) {
 async function handleEditResponse(response) {
     const text = await response.text();
     console.log(text);
-} 
+}
+
+function createDataToEdit() {
+    const previewData = createPreviewData();
+    delete previewData.urlTitle;
+    const params = new URLSearchParams(location.search);
+
+    return {
+        ...previewData,
+        id: params.get('id')
+    }
+}
