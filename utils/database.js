@@ -28,6 +28,8 @@ exports.getData = async function(urlParams, collectionName) {
     if (urlParams.has('orderBy')) {
         collection = setOrderByInQuery(collection, urlParams.get('orderBy'), urlParams.get('orderByDirection'))
     }
+    deleteKeysFromSearchParams(urlParams, ['field', 'orderBy', 'orderByDirection']);
+    setWhereInQuery(collection, urlParams); // use remaining querying to filter
 
     var data = await collection.get();
     
@@ -49,6 +51,12 @@ function setOrderByInQuery(query, orderByValue, orderByDirection='asc') {
     return query.orderBy(orderByValue, orderByDirection);
 }
 
+function setWhereInQuery(query, urlParams) {
+    urlParams.forEach((name, value) => {
+        query.where(name, '==', value);
+    })
+}
+
 function appendIds(docs) {
     let data = [];
     docs.forEach(doc => data.push({...doc.data(), id: doc.id}))
@@ -56,4 +64,9 @@ function appendIds(docs) {
     return data
 }
 
+function deleteKeysFromSearchParams(urlParams, names) {
+    names.forEach(name => urlParams.delete(name));
+}
+
 exports.firestore = firestore;
+exports.deleteKeysFromSearchParams = deleteKeysFromSearchParams;
