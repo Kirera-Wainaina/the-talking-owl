@@ -9,7 +9,8 @@ function fetchArticleData() {
 
 function inputDataIntoForm(data) {
     inputDataIntoInputElements(data);
-    inputContentIntoTextArea(data.content)
+    inputContentIntoTextArea(data.content);
+    setCategory(data.category);
 }
 
 function inputDataIntoInputElements(data) {
@@ -20,4 +21,9 @@ function inputDataIntoInputElements(data) {
 function inputContentIntoTextArea(content) {
     const textArea = document.querySelector('form textarea');
     textArea.value = content;
+}
+
+function setCategory(category) {
+    const select = document.querySelector('form select');
+    select.value = category;
 }
