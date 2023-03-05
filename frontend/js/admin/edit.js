@@ -1,4 +1,13 @@
+const { handleSubmit } = require("./upload-article");
+
 document.addEventListener('DOMContentLoaded', fetchArticleData);
+
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('edit-form');
+    if (form) {
+        form.addEventListener('click', event => handleSubmit(event, submitArticleEdit))
+    }
+})
 
 function fetchArticleData() {
     const params = new URLSearchParams(location.search);
@@ -27,3 +36,15 @@ function setCategory(category) {
     const select = document.querySelector('form select');
     select.value = category;
 }
+
+function submitArticleEdit(formdata) {
+    fetch('/api/admin/edit-article', {
+        method: 'POST',
+        body: formdata
+    }).then(handleEditResponse);
+}
+
+async function handleEditResponse(response) {
+    const text = await response.text();
+    console.log(text);
+} 
