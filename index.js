@@ -67,11 +67,12 @@ function handleAPIPostRequest(request, response) {
 
 function routeRequests(stream, headers) {
     const route = headers[':path'];
+    const parsedUrl = new URL(route, process.env.DOMAIN);
 
     if (isAPIRequest(route)) { // api routes request for data
         if (headers[':method'] == 'GET') {
             //handle get requests
-            handleAPIGetRequest(stream, route);
+            handleAPIGetRequest(stream, parsedUrl);
         }
     } else if (isFileRequest(route)) {
         handleFileRequest(stream, route)
@@ -80,7 +81,7 @@ function routeRequests(stream, headers) {
             const filePath = path.join(__dirname, 'frontend/html/unauthorized.html');
             respondWithFile(stream, filePath, 401)
         } else {
-            handlePageRequest(stream, route)
+            handlePageRequest(stream, parsedUrl.pathname)
         }
     }
 }
@@ -182,12 +183,11 @@ async function JWTTokenIsValid(token) {
     return false
 }
 
-async function handleAPIGetRequest(stream, route) {
+async function handleAPIGetRequest(stream, parsedUrl) {
     try {
-        const url = new URL(route, process.env.DOMAIN);
-        const collectionName = path.basename(url.pathname);
+        const collectionName = path.basename(parsedUrl.pathname);
 
-        const data = await database.getData(url.searchParams, collectionName);
+        const data = await database.getData(parsedUrl.searchParams, collectionName);
         respondWithJSON(stream, JSON.stringify(data));
     } catch (error) {
         console.log(error);
