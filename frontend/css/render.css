@@ -36,6 +36,7 @@ p {
     margin-top: 0;
     padding-top: 3vh;
     padding-bottom: 3vh;
+    border-radius: 5px;
 }
 
 #description {
@@ -46,14 +47,15 @@ p {
     top: 36vh;
     left: 20vw;
     width: 48vw;
-    /* height: 20vh; */
-    /* overflow: hidden; */
-    /* text-overflow: ellipsis; */
+    height: 20vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-weight: 700;
     background-color: rgba(0, 0, 0, 0.57);
     padding-left: 6vw;
     padding-right: 6vw;
     padding-bottom: 3vh;
+    border-radius: 5px;
 }
 
 picture {
@@ -157,19 +159,19 @@ article > p {
     }
 
     .render h1 {
-        top: 5vh;
+        top: 10vh;
         left: 5vw;
-        height: 17vh;
+        height: 10vh;
         width: 90vw;
         font-size: 1.5em;
         font-weight: 400;
     }
 
     #description {
-        top: 35vh;
+        top: 26vh;
         left: 5vw;
         height: 20vh;
-        width: 90vw;
+        width: 78vw;
     }
 
     article {
