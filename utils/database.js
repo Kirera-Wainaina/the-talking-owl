@@ -29,7 +29,7 @@ exports.getData = async function(urlParams, collectionName) {
         collection = setOrderByInQuery(collection, urlParams.get('orderBy'), urlParams.get('orderByDirection'))
     }
     deleteKeysFromSearchParams(urlParams, ['field', 'orderBy', 'orderByDirection']);
-    setWhereInQuery(collection, urlParams); // use remaining querying to filter
+    collection = setWhereInQuery(collection, urlParams); // use remaining querying to filter
 
     var data = await collection.get();
     
@@ -52,9 +52,14 @@ function setOrderByInQuery(query, orderByValue, orderByDirection='asc') {
 }
 
 function setWhereInQuery(query, urlParams) {
-    urlParams.forEach((name, value) => {
-        query.where(name, '==', value);
+    urlParams.forEach((value, name) => {
+        if (name == 'id') {
+            query = query.where(FieldPath.documentId(), '==', value)
+        } else {
+            query = query.where(name, '==', value);
+        }
     })
+    return query
 }
 
 function appendIds(docs) {
