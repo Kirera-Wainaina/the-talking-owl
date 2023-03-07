@@ -33,12 +33,14 @@ exports.getData = async function(urlParams, collectionName) {
         urlParams.delete('orderByDirection');
     }
 
-    if (urlParams.toString().length) {
-        collection = setWhereInQuery(collection, urlParams); // use remaining querying to filter    
+    if (urlParams.has('limit')) {
+        const limit = Number(urlParams.get('limit'));
+        collection = collection.limit(limit);
+        urlParams.delete('limit');
     }
 
-    if (urlParams.has('limit')) {
-        collection = collection.limit(Number(urlParams.get('limit')));
+    if (urlParams.toString().length) {
+        collection = setWhereInQuery(collection, urlParams); // use remaining querying to filter    
     }
 
     if (urlParams.has('count')) { 
@@ -51,7 +53,6 @@ exports.getData = async function(urlParams, collectionName) {
     if (count) {
         return snapshot.data().count;
     }
-    
     return appendIds(snapshot.docs)
 }
 
