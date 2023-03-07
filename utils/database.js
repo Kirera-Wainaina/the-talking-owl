@@ -20,20 +20,35 @@ exports.getUserByEmail = function(email, collectionName) {
 
 exports.getData = async function(urlParams, collectionName) {
     var collection = firestore.collection(collectionName);
+    var count = false;
 
     if (urlParams.has('field')) {
-        collection = setSelectInQuery(collection, urlParams.getAll('field'))
+        collection = setSelectInQuery(collection, urlParams.getAll('field'));
+        urlParams.delete('field');
     }
 
     if (urlParams.has('orderBy')) {
-        collection = setOrderByInQuery(collection, urlParams.get('orderBy'), urlParams.get('orderByDirection'))
+        collection = setOrderByInQuery(collection, urlParams.get('orderBy'), urlParams.get('orderByDirection'));
+        urlParams.delete('orderBy');
     }
-    deleteKeysFromSearchParams(urlParams, ['field', 'orderBy', 'orderByDirection']);
-    collection = setWhereInQuery(collection, urlParams); // use remaining querying to filter
 
-    var data = await collection.get();
+    if (urlParams.toString().length) {
+        collection = setWhereInQuery(collection, urlParams); // use remaining querying to filter    
+    }
+
+    if (urlParams.has('count')) { 
+        collection = collection.count();
+        urlParams.delete('count');
+        count = true;
+    }
+
+    var snapshot = await collection.get();
+
+    if (count) {
+        return snapshot.data().count;
+    }
     
-    return appendIds(data.docs)
+    return appendIds(snapshot.docs)
 }
 
 exports.deleteDocument = function(id, collectionName) {
@@ -52,7 +67,8 @@ function setOrderByInQuery(query, orderByValue, orderByDirection='asc') {
 }
 
 function setWhereInQuery(query, urlParams) {
-    urlParams.forEach((value, name) => {
+    urlParams.forEach((value, name) => { // where has to come before count
+        if (name == 'count') return ;
         if (name == 'id') {
             query = query.where(FieldPath.documentId(), '==', value)
         } else {
@@ -69,9 +85,4 @@ function appendIds(docs) {
     return data
 }
 
-function deleteKeysFromSearchParams(urlParams, names) {
-    names.forEach(name => urlParams.delete(name));
-}
-
 exports.firestore = firestore;
-exports.deleteKeysFromSearchParams = deleteKeysFromSearchParams;
