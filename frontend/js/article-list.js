@@ -13,3 +13,13 @@ export function createArticleContainer(articleData) {
     a.classList.add('article-card');
     return a
 }
+
+export function displayArticleList(element, data, urlFunction) {
+    const fragment = new DocumentFragment();
+    data.forEach(article => {
+        const a = createArticleContainer(article);
+        a.href = urlFunction(data.urlTitle, data.id);
+        fragment.append(a);
+    })
+    element.appendChild(fragment);
+}
