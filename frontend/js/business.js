@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', displayNumberOfPages);
 
 function retrieveArticleData() {
     fetch('/api/articles?field=title&field=description&field=landscapeImage&field=\
-publishedDate&field=urlTitle&category=business&orderBy=publishedDate&orderByDirection=desc')
+publishedDate&field=urlTitle&category=business&orderBy=publishedDate&orderByDirection=desc&limit=10')
         .then(response => response.json())
         .then(data => displayArticleList(
             document.getElementById('article-list'),
