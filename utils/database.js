@@ -30,10 +30,15 @@ exports.getData = async function(urlParams, collectionName) {
     if (urlParams.has('orderBy')) {
         collection = setOrderByInQuery(collection, urlParams.get('orderBy'), urlParams.get('orderByDirection'));
         urlParams.delete('orderBy');
+        urlParams.delete('orderByDirection');
     }
 
     if (urlParams.toString().length) {
         collection = setWhereInQuery(collection, urlParams); // use remaining querying to filter    
+    }
+
+    if (urlParams.has('limit')) {
+        collection = collection.limit(Number(urlParams.get('limit')));
     }
 
     if (urlParams.has('count')) { 
@@ -43,7 +48,6 @@ exports.getData = async function(urlParams, collectionName) {
     }
 
     var snapshot = await collection.get();
-
     if (count) {
         return snapshot.data().count;
     }
