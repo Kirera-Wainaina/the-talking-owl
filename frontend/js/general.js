@@ -66,3 +66,21 @@ export function createDateString(milliseconds) {
 
     return `${month} ${day}, ${year}`;
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    // toggle menu sidebar on phone viewport
+    const menuIcon = document.querySelector('nav input');
+    const closeDropDownIcon = document.getElementById('close-drop-down');
+    const dropDown = document.querySelector('.nav-dropdown');
+    if (menuIcon) {
+        menuIcon.addEventListener(
+            'click', 
+            () => toggleElementClass(dropDown, 'hide'))
+    }
+
+    if (closeDropDownIcon) {
+        closeDropDownIcon.addEventListener(
+            'click', 
+            () => toggleElementClass(dropDown, 'hide'));
+    }
+})
