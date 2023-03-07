@@ -167,4 +167,33 @@ nav input {
         display: block;
         height: 2.5em;
     }
+
+    .nav-dropdown {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        position: fixed;
+        top: 4em;
+        width: 100%;
+        border-bottom: 1px solid lightgrey;
+        padding: 1em;
+    }
+
+    .nav-dropdown input {
+        align-self: flex-end;
+        height: 2.5em;
+        margin-right: 1.3em;
+    }
+
+    .nav-dropdown a {
+        color: var(--primary);
+        text-decoration: none;
+        margin-bottom: 2em;
+        
+    }
+
+    .nav-dropdown a:active {
+        color: var(--secondary);
+    }
 }
