@@ -137,6 +137,10 @@ nav a:first-of-type {
     margin-right: 30%;
 }
 
+nav input {
+    display: none;
+}
+
 @media (orientation: portrait) {
     body {
         grid-template-columns: repeat(6, 1fr);
@@ -145,7 +149,8 @@ nav a:first-of-type {
     nav {
         grid-column: 1 / 7;
         height: 4em;
-        justify-content: flex-start;
+        justify-content: space-around;
+        padding: 0;
     }
 
     nav > a {
@@ -155,6 +160,11 @@ nav a:first-of-type {
     nav a:first-of-type {
         display: flex;
         margin-right: 0;
-        margin-left: 10%;
+        margin-left: 0;
+    }
+
+    nav input {
+        display: block;
+        height: 3em;
     }
 }
