@@ -18,7 +18,7 @@ export function displayArticleList(element, data, urlFunction) {
     const fragment = new DocumentFragment();
     data.forEach(article => {
         const a = createArticleContainer(article);
-        a.href = urlFunction(data.urlTitle, data.id);
+        a.href = urlFunction(article.urlTitle, article.id);
         fragment.append(a);
     })
     element.appendChild(fragment);
