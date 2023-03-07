@@ -129,12 +129,10 @@ nav a:hover {
 
 nav a:first-of-type {
     display: flex;
-    align-items: center;
-    color: black;
-    font-weight: 600;
-    font-size: 1.2em;
 
-    margin-right: 30%;
+    margin-right: 20%;
+    height: 2em;
+    object-fit: contain;
 }
 
 nav input {
