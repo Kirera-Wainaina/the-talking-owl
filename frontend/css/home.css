@@ -141,6 +141,24 @@ nav input {
     display: none;
 }
 
+.nav-dropdown {
+    animation-name: slow-drop;
+    animation-duration: .7s;
+    animation-timing-function: ease-in;
+}
+
+@keyframes slow-drop {
+    from {
+        top: -4em;
+        opacity: 0;
+    }
+
+    to {
+        top: 4em;
+        opacity: 1;
+    }
+}
+
 @media (orientation: portrait) {
     body {
         grid-template-columns: repeat(6, 1fr);
@@ -177,7 +195,7 @@ nav input {
         top: 4em;
         width: 100%;
         border-bottom: 1px solid lightgrey;
-        padding: 1em;
+        padding-top: 1em;
     }
 
     .nav-dropdown input {
