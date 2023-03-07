@@ -34,7 +34,7 @@ img {
 }
 
 .hide {
-    display: none;
+    display: none !important;
 }
 
 #spinner {
