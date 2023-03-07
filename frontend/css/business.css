@@ -1,1 +1,5 @@
 @import url('./article-list.css');
+
+body {
+    background-color: var(--primary-background-color);
+}
