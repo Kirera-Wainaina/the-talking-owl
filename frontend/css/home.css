@@ -109,18 +109,32 @@ img {
 
 nav {
     grid-column: 1 / 13;
-    height: 3em;
+    height: 4em;
     display: flex;
     align-items: center;
     box-shadow: var(--shadow);
     justify-content: flex-end;
-    padding-right: 20%;
+    padding-right: 18%;
 }
 
 nav a {
     text-decoration: none;
-    margin-left: 2em;
+    margin-left: 3em;
     color: var(--primary);
+}
+
+nav a:hover {
+    color: var(--secondary);
+}
+
+nav a:first-of-type {
+    display: flex;
+    align-items: center;
+    color: black;
+    font-weight: 600;
+    font-size: 1.2em;
+
+    margin-right: 30%;
 }
 
 @media (orientation: portrait) {
