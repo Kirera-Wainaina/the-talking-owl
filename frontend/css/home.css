@@ -107,8 +107,29 @@ img {
     }
 }
 
+nav {
+    grid-column: 1 / 13;
+    height: 3em;
+    display: flex;
+    align-items: center;
+    box-shadow: var(--shadow);
+    justify-content: flex-end;
+    padding-right: 20%;
+}
+
+nav a {
+    text-decoration: none;
+    margin-left: 2em;
+    color: var(--primary);
+}
+
 @media (orientation: portrait) {
     body {
         grid-template-columns: repeat(6, 1fr);
+    }
+
+    nav {
+        grid-column: 1 / 7;
+        height: 5em;
     }
 }
