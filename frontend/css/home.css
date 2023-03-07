@@ -144,6 +144,17 @@ nav a:first-of-type {
 
     nav {
         grid-column: 1 / 7;
-        height: 5em;
+        height: 4em;
+        justify-content: flex-start;
+    }
+
+    nav > a {
+        display: none;
+    }
+
+    nav a:first-of-type {
+        display: flex;
+        margin-right: 0;
+        margin-left: 10%;
     }
 }
