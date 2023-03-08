@@ -3,13 +3,15 @@ import { createTextElement } from "./general.js";
 
 document.addEventListener('DOMContentLoaded', retrieveArticleData);
 
-// document.addEventListener('DOMContentLoaded', displayNumberOfPages);
-
 document.addEventListener('DOMContentLoaded', displayPageNumbers);
 
 function retrieveArticleData() {
-    fetch('/api/articles?field=title&field=description&field=landscapeImage&field=\
-publishedDate&field=urlTitle&category=business&orderBy=publishedDate&orderByDirection=desc&limit=10')
+    const pageNumber = getCurrentPageNumber();
+    const offset = (pageNumber -1) * 10;
+    
+    fetch(`/api/articles?field=title&field=description&field=landscapeImage&field=\
+publishedDate&field=urlTitle&category=business&orderBy=publishedDate&orderByDirection=desc&limit=10\
+&offset=${offset}`)
         .then(response => response.json())
         .then(data => displayArticleList(
             document.getElementById('article-list'),
