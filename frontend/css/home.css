@@ -171,7 +171,7 @@ footer {
 }
 
 footer div:first-child {
-    grid-column: 2 / 5  ;
+    grid-column: 2 / 5 ;
 }
 
 #slogan {
@@ -271,5 +271,20 @@ footer div:first-child {
 
     footer {
         grid-column: 1 / 7;
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    footer div:first-child,
+    #footer-menu,
+    #privacy-terms,
+    #hat-off {
+        grid-column: 1 / 7;
+        align-items: center;
+        margin-bottom: 1.5em;
+    }
+
+    footer div:first-child {
+        display: flex;
+        flex-direction: column;
     }
 }
