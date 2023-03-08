@@ -27,7 +27,9 @@ async function displayPageNumbers() {
     const currentPageNumber = getCurrentPageNumber();
     const container = document.getElementById('page-numbers');
 
-    const fragment = generatePageNumberLinks(articleCount, currentPageNumber);
+    // const fragment = generatePageNumberLinks(articleCount, currentPageNumber);
+    const fragment = generatePageNumberLinks(150, 2);
+
     container.appendChild(fragment)
 
     console.log(currentPageNumber);
@@ -64,7 +66,15 @@ function generatePageNumberLinks(articleCount, currentPageNumber) {
         p.classList.add('page-number-separator');
         fragment.append(p);
 
-        // create page number link
+        // create tens page numbers e.g. 20, 30, 40
+        // maximum is page 40 because user is in page < 10
+        let maxPageNumber = Math.ceil(articleCount / 100);
+        if (maxPageNumber > 4) maxPageNumber = 4;
+        for (let i = 2; i <= maxPageNumber; i++) {
+            const pageNumber = i * 10;
+            fragment.append(createPageNumberLink(pageNumber, currentPageNumber))
+        }
+        return fragment
     }
 }
 
