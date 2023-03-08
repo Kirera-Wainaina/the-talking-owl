@@ -46,14 +46,31 @@ function getCurrentPageNumber() {
 
 function generatePageNumberLinks(articleCount, currentPageNumber) {
     const fragment = new DocumentFragment();
-    if (articleCount < 100) { // <10 pages, we only need single digit page numbers
+    if (articleCount <= 100) { // <10 pages, we only need single digit page numbers
         const maxPageNumber = Math.ceil(articleCount / 10);
         for (let i = 1; i <= maxPageNumber; i++) {
-            const a = createTextElement('a', i);
-            a.href = `${location.pathname}?page=${i}`;
-            if (i == currentPageNumber) a.classList.add('current-page-number');
+            const a = createPageNumberLink(i, currentPageNumber);
             fragment.append(a);
         }
         return fragment
     }
+
+    if (currentPageNumber <= 10 && articleCount > 100) {
+        for (let i = 1; i <= 10; i++) { // generate links from page 1 - 10
+            const a = createPageNumberLink(i, currentPageNumber);
+            fragment.append(a)
+        }
+        const p = createTextElement('p', '...');
+        p.classList.add('page-number-separator');
+        fragment.append(p);
+
+        // create page number link
+    }
+}
+
+function createPageNumberLink(pageNumber, currentPageNumber) {
+    const a = createTextElement('a', pageNumber);
+    a.href = `${location.pathname}?page=${pageNumber}`;
+    if (pageNumber == currentPageNumber) a.classList.add('current-page-number');
+    return a
 }
