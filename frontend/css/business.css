@@ -5,7 +5,32 @@ body {
 }
 
 #page-numbers {
-    grid-column: 4 / 10;
+    grid-column: 3 / 11;
+    margin-top: 2em;
+    text-align: center;
+}
+
+#page-numbers a {
+    margin-left: 1em;
+    padding: 0.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+}
+
+#page-numbers a:hover {
+    background-color: var(--hover-color);
+}
+
+#page-numbers a:active {
+    background-color: var(--active-color);
+}
+
+#page-numbers a.current-page-number {
+    color: white;
+    background-color: var(--primary);
 }
 
 @media (orientation: portrait) {
