@@ -39,6 +39,12 @@ exports.getData = async function(urlParams, collectionName) {
         urlParams.delete('limit');
     }
 
+    if (urlParams.has('offset')) {
+        const offset = Number(urlParams.get('offset'));
+        collection = collection.offset(offset);
+        urlParams.delete('offset');
+    }
+
     if (urlParams.toString().length) {
         collection = setWhereInQuery(collection, urlParams); // use remaining querying to filter    
     }
