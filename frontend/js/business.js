@@ -28,7 +28,7 @@ async function displayPageNumbers() {
     const container = document.getElementById('page-numbers');
 
     // const fragment = generatePageNumberLinks(articleCount, currentPageNumber);
-    const fragment = generatePageNumberLinks(150, 2);
+    const fragment = generatePageNumberLinks(articleCount, currentPageNumber);
 
     container.appendChild(fragment)
 
@@ -48,31 +48,31 @@ function getCurrentPageNumber() {
 
 function generatePageNumberLinks(articleCount, currentPageNumber) {
     const fragment = new DocumentFragment();
+    const maxPageNumber = Math.ceil(articleCount / 10);
+
     if (articleCount <= 100) { // <10 pages, we only need single digit page numbers
-        const maxPageNumber = Math.ceil(articleCount / 10);
         for (let i = 1; i <= maxPageNumber; i++) {
             const a = createPageNumberLink(i, currentPageNumber);
             fragment.append(a);
         }
         return fragment
-    }
+    } else {
+        // article count > 100
+        // show 5 previous pages and 5 next pages
+        let maxDisplay= null;
+        let minDisplay = null;
 
-    if (currentPageNumber <= 10 && articleCount > 100) {
-        for (let i = 1; i <= 10; i++) { // generate links from page 1 - 10
+        (currentPageNumber + 5) > maxPageNumber
+            ? maxDisplay = maxPageNumber
+            : maxDisplay = currentPageNumber + 5;
+
+        (currentPageNumber - 5) < 1
+            ? minDisplay = 1
+            : minDisplay = currentPageNumber - 5;
+
+        for (let i = minDisplay; i <= maxDisplay; i++) {
             const a = createPageNumberLink(i, currentPageNumber);
-            fragment.append(a)
-        }
-        const p = createTextElement('p', '...');
-        p.classList.add('page-number-separator');
-        fragment.append(p);
-
-        // create tens page numbers e.g. 20, 30, 40
-        // maximum is page 40 because user is in page < 10
-        let maxPageNumber = Math.ceil(articleCount / 100);
-        if (maxPageNumber > 4) maxPageNumber = 4;
-        for (let i = 2; i <= maxPageNumber; i++) {
-            const pageNumber = i * 10;
-            fragment.append(createPageNumberLink(pageNumber, currentPageNumber))
+            fragment.append(a);
         }
         return fragment
     }
