@@ -50,6 +50,7 @@ function generatePageNumberLinks(articleCount, currentPageNumber) {
         const maxPageNumber = Math.ceil(articleCount / 10);
         for (let i = 1; i <= maxPageNumber; i++) {
             const a = createTextElement('a', i);
+            a.href = `${location.href}?page=${i}`;
             fragment.append(a);
         }
         return fragment
