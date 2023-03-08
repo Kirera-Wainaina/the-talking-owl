@@ -28,11 +28,11 @@ async function displayPageNumbers() {
     const container = document.getElementById('page-numbers');
 
     // const fragment = generatePageNumberLinks(articleCount, currentPageNumber);
-    const fragment = generatePageNumberLinks(articleCount, currentPageNumber);
+    const mainFragment = generatePageNumberLinks(367, currentPageNumber);
+    const skipForwardFragment = generateSkipForwardPageNumberLinks(367, currentPageNumber);
 
-    container.appendChild(fragment)
-
-    console.log(currentPageNumber);
+    container.appendChild(mainFragment);
+    container.appendChild(skipForwardFragment);
 }
 
 function retrieveNumberOfPages() {
@@ -83,4 +83,19 @@ function createPageNumberLink(pageNumber, currentPageNumber) {
     a.href = `${location.pathname}?page=${pageNumber}`;
     if (pageNumber == currentPageNumber) a.classList.add('current-page-number');
     return a
+}
+
+function generateSkipForwardPageNumberLinks(articleCount, currentPageNumber) {
+    const fragment = new DocumentFragment();
+    const nearestTenthPageNumber = Math.ceil(currentPageNumber / 10) * 10;
+    const maximumTenthPageNumber = Math.floor(articleCount / 100) * 10;
+
+    const p = createTextElement('p', '...');
+    fragment.append(p);
+
+    for (let i = nearestTenthPageNumber + 10; i <= maximumTenthPageNumber; i += 10) {
+        const a = createPageNumberLink(i, currentPageNumber);
+        fragment.append(a);
+    }
+    return fragment
 }
