@@ -158,6 +158,26 @@ nav input {
     }
 }
 
+footer {
+    grid-column: 1 / 13;
+    background-color: var(--primary);
+
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    color: white;
+    padding-top: 4em;
+    padding-bottom: 4em;
+    margin-top: 1em;
+}
+
+footer div:first-child {
+    grid-column: 2 / 6  ;
+}
+
+#slogan {
+    margin-top: 1em;
+}
+
 @media (orientation: portrait) {
     body {
         grid-template-columns: repeat(6, 1fr);
@@ -212,5 +232,9 @@ nav input {
 
     .nav-dropdown a:active {
         color: var(--secondary);
+    }
+
+    footer {
+        grid-column: 1 / 7;
     }
 }
