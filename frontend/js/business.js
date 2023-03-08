@@ -27,10 +27,9 @@ async function displayPageNumbers() {
     const currentPageNumber = getCurrentPageNumber();
     const container = document.getElementById('page-numbers');
 
-    // const fragment = generatePageNumberLinks(articleCount, currentPageNumber);
-    const mainFragment = generatePageNumberLinks(667, currentPageNumber);
-    const skipForwardFragment = generateSkipForwardPageNumberLinks(667, currentPageNumber);
-    const skipBackFragment = generateSkipBackPageNumberLinks(667, currentPageNumber);
+    const mainFragment = generatePageNumberLinks(articleCount, currentPageNumber);
+    const skipForwardFragment = generateSkipForwardPageNumberLinks(articleCount, currentPageNumber);
+    const skipBackFragment = generateSkipBackPageNumberLinks(currentPageNumber);
 
     container.appendChild(skipBackFragment);
     container.appendChild(mainFragment);
@@ -110,7 +109,7 @@ function generateSkipForwardPageNumberLinks(articleCount, currentPageNumber) {
     return fragment
 }
 
-function generateSkipBackPageNumberLinks(articleCount, currentPageNumber) {
+function generateSkipBackPageNumberLinks(currentPageNumber) {
     const fragment = new DocumentFragment();
     const previousTenthPageNumber = Math.floor(currentPageNumber / 10) * 10;
     let minDisplay = null;
