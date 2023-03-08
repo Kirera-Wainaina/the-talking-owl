@@ -30,8 +30,9 @@ async function displayPageNumbers() {
     // const fragment = generatePageNumberLinks(articleCount, currentPageNumber);
     const mainFragment = generatePageNumberLinks(667, currentPageNumber);
     const skipForwardFragment = generateSkipForwardPageNumberLinks(667, currentPageNumber);
-    generateSkipBackPageNumberLinks(667, currentPageNumber);
+    const skipBackFragment = generateSkipBackPageNumberLinks(667, currentPageNumber);
 
+    container.appendChild(skipBackFragment);
     container.appendChild(mainFragment);
     container.appendChild(skipForwardFragment);
 }
@@ -88,21 +89,21 @@ function createPageNumberLink(pageNumber, currentPageNumber) {
 
 function generateSkipForwardPageNumberLinks(articleCount, currentPageNumber) {
     const fragment = new DocumentFragment();
-    const nearestTenthPageNumber = Math.ceil(currentPageNumber / 10) * 10;
+    const nextTenthPageNumber = Math.ceil(currentPageNumber / 10) * 10;
     const maximumTenthPageNumber = Math.floor(articleCount / 100) * 10;
     let maxDisplay = null;
 
     const p = createTextElement('p', '...');
     fragment.append(p);
 
-    if (maximumTenthPageNumber > nearestTenthPageNumber + 30) {
+    if (maximumTenthPageNumber > nextTenthPageNumber + 30) {
         // display only 3 tenth numbers
-        maxDisplay = nearestTenthPageNumber + 30;
+        maxDisplay = nextTenthPageNumber + 30;
     } else {
         maxDisplay = maximumTenthPageNumber;
     }
 
-    for (let i = nearestTenthPageNumber + 10; i <= maxDisplay; i += 10) {
+    for (let i = nextTenthPageNumber + 10; i <= maxDisplay; i += 10) {
         const a = createPageNumberLink(i, currentPageNumber);
         fragment.append(a);
     }
@@ -111,4 +112,23 @@ function generateSkipForwardPageNumberLinks(articleCount, currentPageNumber) {
 
 function generateSkipBackPageNumberLinks(articleCount, currentPageNumber) {
     const fragment = new DocumentFragment();
+    const previousTenthPageNumber = Math.floor(currentPageNumber / 10) * 10;
+    let minDisplay = null;
+
+    if (previousTenthPageNumber - 30 > 10) {
+        // display on the previous 3 tenth page numbers
+        minDisplay = previousTenthPageNumber - 30;
+    } else {
+        minDisplay = 10;
+    }
+
+    for (let i = minDisplay; i <= previousTenthPageNumber - 10; i += 10) {
+        const a = createPageNumberLink(i, currentPageNumber);
+        fragment.append(a);
+    }
+
+    const p = createTextElement('p', '...');
+    fragment.append(p);
+
+    return fragment
 }
