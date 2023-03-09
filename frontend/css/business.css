@@ -11,6 +11,13 @@ h1 {
     margin-top: 1em;
 }
 
+.description {
+    grid-column: 4 / 10;
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
 #page-numbers {
     grid-column: 3 / 11;
     margin-top: 2em;
@@ -48,6 +55,12 @@ h1 {
 @media (orientation: portrait) {
     h1 {
         grid-column: 1 / 7;
+    }
+
+    .description {
+        grid-column: 1 / 7;
+        margin: 1em;
+        text-align: left;
     }
 
     #page-numbers {
