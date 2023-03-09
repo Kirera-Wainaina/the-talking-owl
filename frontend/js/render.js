@@ -22,6 +22,30 @@ export function render(parentContainer, data) {
     );
 }
 
+export function renderOnArticlePage(data) {
+    let container = new DocumentFragment();
+    const parentContainer = document.querySelector('body')
+
+    const landscapeImage = createArticleImage(data.landscapeImage, 
+            data.landscapeImageText, 
+            'landscape-wall-image');
+    const portraitImage = createSrcsetImage(data.portraitImage, 
+        data.portraitImageText, 
+        'portrait-wall-image');
+    const picture = createPictureElement(portraitImage, landscapeImage);
+
+    container.append(createTextElement('h1', data.title))
+    container.append(picture);
+    container.append(createDescription(data.description))
+    container.append(createArticleContent(data.content, data.publishedDate))
+
+    parentContainer.insertBefore(container, document.querySelector('footer'));
+    parentContainer.insertBefore(
+        createTableOfContents(), 
+        document.querySelector('article')
+    );
+}
+
 function createArticleImage(imageUrl, imageText, imageId) {
     const img = document.createElement('img');
     img.src = imageUrl;
