@@ -6,7 +6,7 @@ import { createDateString, createImageElement, createTextElement } from "./gener
 
 export function createArticleContainer(articleData) {
     const a = document.createElement('a');
-    a.append(createImageElement(articleData.landscapeImage));
+    a.append(createImageElement(articleData.landscapeImage, articleData.landscapeImageText));
     a.append(createTextElement('h6', articleData.title));
     a.append(createTextElement('p', articleData.description));
     a.append(createTextElement('p', `Published: ${createDateString(Number(articleData.publishedDate))}`))
