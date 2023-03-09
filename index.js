@@ -96,7 +96,12 @@ function isFileRequest(route) {
 }
 
 function handlePageRequest(stream, route) {
-    const filePath = createFilePathFromPageRequest(route);
+    let filePath = null;
+    if (path.dirname(route) == '/article') {
+        filePath = createArticleFilePath()
+    } else {
+        filePath = createFilePathFromPageRequest(route);
+    }
     respondWithFile(stream, filePath)   
 }
 
@@ -115,6 +120,10 @@ function createFilePathFromPageRequest(route) {
 
 function createFilePathFromFileRequest(route) {
     return path.join(__dirname, route);
+}
+
+function createArticleFilePath() {
+    return path.join(__dirname, 'frontend/html/article.html')
 }
 
 function isHomePage(route) {
