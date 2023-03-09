@@ -1,1 +1,5 @@
 @import url('./render.css');
+
+picture {
+    margin-top: 0;
+}
