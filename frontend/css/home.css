@@ -254,6 +254,7 @@ footer div img {
         width: 100%;
         border-bottom: 1px solid lightgrey;
         padding-top: 1em;
+        background-color: white;
     }
 
     .nav-dropdown input {
