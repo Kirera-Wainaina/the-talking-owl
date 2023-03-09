@@ -44,6 +44,7 @@ export function renderOnArticlePage(data) {
         createTableOfContents(), 
         document.querySelector('article')
     );
+    insertTitle(data.title);
 }
 
 function createArticleImage(imageUrl, imageText, imageId) {
@@ -146,4 +147,8 @@ function setLeftMargin(aElement, headingElement) {
         default:
             break;
     }
+}
+
+function insertTitle(title) {
+    document.title = `${title} | The Talking Owl`
 }
