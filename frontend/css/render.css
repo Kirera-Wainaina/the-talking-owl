@@ -36,7 +36,7 @@ p {
     margin-top: 0;
     padding-top: 3vh;
     padding-bottom: 3vh;
-    border-radius: 5px;
+    border-radius: 5px 5px 0 0;
 }
 
 #description {
@@ -55,7 +55,7 @@ p {
     padding-left: 6vw;
     padding-right: 6vw;
     padding-bottom: 3vh;
-    border-radius: 5px;
+    border-radius: 0 0 5px 5px;
 }
 
 picture {
