@@ -37,12 +37,15 @@ p {
     padding-top: 3vh;
     padding-bottom: 3vh;
     border-radius: 5px 5px 0 0;
+    backdrop-filter: blur(5px);
 }
 
 #description {
     color: white;
     text-align: center;
 
+    display: flex;
+    align-items: center;
     position: absolute;
     top: 36vh;
     left: 20vw;
@@ -56,6 +59,7 @@ p {
     padding-right: 6vw;
     padding-bottom: 3vh;
     border-radius: 0 0 5px 5px;
+    backdrop-filter: blur(5px);
 }
 
 picture {
@@ -159,19 +163,22 @@ article > p {
     }
 
     .render h1 {
-        top: 10vh;
+        top: 15vh;
         left: 5vw;
         height: 10vh;
         width: 90vw;
-        font-size: 1.5em;
+        font-size: 1.2em;
         font-weight: 400;
     }
 
     #description {
-        top: 26vh;
+        top: 31vh;
         left: 5vw;
         height: 23vh;
-        width: 78vw;
+        width: 84vw;
+        font-size: 1em;
+        padding-left: 3vw;
+        padding-right: 3vw;
     }
 
     article {
