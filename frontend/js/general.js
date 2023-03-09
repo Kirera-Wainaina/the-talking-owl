@@ -60,7 +60,7 @@ export function createTextElement(tagName, textContent) {
 }
 
 export function createDateString(milliseconds) {
-    const dateObj = new Date(milliseconds);
+    const dateObj = new Date(Number(milliseconds));
     const month = getNameOfMonth(dateObj.getMonth());
     const year = dateObj.getFullYear();
     const day = dateObj.getDate();
