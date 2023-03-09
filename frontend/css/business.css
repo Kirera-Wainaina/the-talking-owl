@@ -4,6 +4,13 @@ body {
     background-color: var(--primary-background-color);
 }
 
+h1 {
+    grid-column: 1 / 13;
+    text-align: center;
+    color: var(--primary);
+    margin-top: 1em;
+}
+
 #page-numbers {
     grid-column: 3 / 11;
     margin-top: 2em;
@@ -39,6 +46,10 @@ body {
 }
 
 @media (orientation: portrait) {
+    h1 {
+        grid-column: 1 / 7;
+    }
+
     #page-numbers {
         grid-column: 1 / 7;
         overflow-x: auto;
