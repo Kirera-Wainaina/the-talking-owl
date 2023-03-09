@@ -28,6 +28,7 @@
 
 .article-card img {
     border-radius: 5px;
+    width: 100%;
 }
 
 .article-card h6 {
