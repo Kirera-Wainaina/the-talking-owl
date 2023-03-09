@@ -88,7 +88,7 @@ article {
 
 article h2 {
     margin-bottom: 1em;
-    margin-top: 2em;
+    margin-top: 1em;
 }
 
 article h3 {
@@ -97,6 +97,11 @@ article h3 {
 
 article > p {
     margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+article > img {
+    border-radius: 9px;
 }
 
 #table-of-contents {
