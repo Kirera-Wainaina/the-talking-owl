@@ -1,9 +1,8 @@
-import { render } from './render.js';
+import { renderOnArticlePage } from './render.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const container = document.querySelector('.render');
     const [ data ] = await retrieveArticle();
-    render(container, data);
+    renderOnArticlePage(data);
 })
 
 function retrieveArticle() {
@@ -22,6 +21,3 @@ function getArticleId() {
     const params = new URLSearchParams(location.search);
     return params.get('id');
 }
-
-// retrieveArticle()
-//     .then(data => console.log(data));
