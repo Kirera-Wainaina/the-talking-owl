@@ -141,7 +141,8 @@ async function respondWithFile(stream, filePath, statusCode=200) {
     stream.respond({
         ':status': statusCode,
         'content-type': mimes.findMIMETypeFromExtension(path.extname(filePath)),
-        'content-encoding': 'gzip'
+        'content-encoding': 'gzip',
+        'cache-control': 'max-age=1209600'
     })
 
     fs.createReadStream(filePath)
