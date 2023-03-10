@@ -89,6 +89,8 @@ function createClockIcon() {
     const img = document.createElement('img');
     img.src = '/frontend/images/clock-icon.svg';
     img.alt = 'clock';
+    img.width = '18';
+    img.height = '18';
     return img
 }
 
