@@ -175,7 +175,8 @@ footer div:first-child {
 }
 
 footer div img {
-    width: 20vw;
+    width: 60%;
+    height: auto;
 }
 
 #slogan {
