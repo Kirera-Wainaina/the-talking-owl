@@ -9,7 +9,7 @@ export function createArticleContainer(articleData, index) {
     const imageElement = createImageElement(articleData.landscapeImage, articleData.landscapeImageText);
     addLoadingAttribute(imageElement, index); // add loading attribute
     a.append(imageElement);
-    a.append(createTextElement('h6', articleData.title));
+    a.append(createTextElement('h2', articleData.title));
     a.append(createTextElement('p', articleData.description));
     a.append(createTextElement('p', `Published: ${createDateString(Number(articleData.publishedDate))}`))
     a.classList.add('article-card');
