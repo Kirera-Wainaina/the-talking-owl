@@ -136,6 +136,11 @@ nav a:first-of-type {
     object-fit: contain;
 }
 
+nav a:first-of-type img {
+    height: 100%;
+    width: auto;
+}
+
 nav input {
     display: none;
 }
