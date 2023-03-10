@@ -109,7 +109,8 @@ article > img {
     margin-top: 2em;
 }
 
-#table-of-contents h4 {
+#table-of-contents h2 {
+    font-size: 1.2em;
     text-align: center;
 }
 

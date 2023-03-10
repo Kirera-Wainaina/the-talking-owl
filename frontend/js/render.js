@@ -104,7 +104,7 @@ function createTableOfContents() {
     const headings = document.querySelectorAll('h2, h3, h4, h5');
     const fragment = new DocumentFragment();
 
-    div.append(createTextElement('h4', 'Table of contents'));
+    div.append(createTextElement('h2', 'Table of contents'));
     headings.forEach(element => {
         div.append(createTableOfContentsLink(element));
         addIdToHeading(element);
