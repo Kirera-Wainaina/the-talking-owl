@@ -249,6 +249,7 @@ footer div img {
     nav input {
         display: block;
         height: 2.5em;
+        width: auto;
     }
 
     .nav-dropdown {
