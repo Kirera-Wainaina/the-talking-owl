@@ -71,7 +71,7 @@ picture {
 
 #publish-date {
     display: flex;
-    color: #737373;
+    color: #333333;
     gap: 10px;
     margin-top: 2em;
     font-size: 12px;
