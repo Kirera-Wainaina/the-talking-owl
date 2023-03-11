@@ -7,12 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
     openUploadButtons.forEach(
         button => button.addEventListener(
             'click', 
-            () => toggleElementClass(document.getElementById('upload-modal'), 'flex')));
+            () => toggleElementClass(document.getElementById('upload-modal'), 'hide')));
 
     const closeButton = document.getElementById('close-icon');
     closeButton.addEventListener(
         'click', 
-        () => toggleElementClass(document.getElementById('upload-modal'), 'flex'))
+        () => toggleElementClass(document.getElementById('upload-modal'), 'hide'))
 })
 
 document.addEventListener('DOMContentLoaded', () => {
