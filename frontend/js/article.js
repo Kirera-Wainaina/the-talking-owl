@@ -1,3 +1,4 @@
+import { getArticleId, getArticleUrlTitle } from './general.js';
 import { renderOnArticlePage } from './render.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -8,16 +9,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 function retrieveArticle() {
     return fetch(`/api/articles?field=content&field=description&field=landscapeImage\
 &field=landscapeImageText&field=portraitImage&field=portraitImageText\
-&field=publishedDate&field=title&id=${getArticleId()}&urlTitle=${getUrlTitle()}`)
+&field=publishedDate&field=title&id=${getArticleId()}&urlTitle=${getArticleUrlTitle()}`)
     .then(response => response.json())
-}
-
-function getUrlTitle() {
-    const [ urlTitle ] = location.pathname.match(/(?<=\/article\/).*/);
-    return urlTitle;
-}
-
-function getArticleId() {
-    const params = new URLSearchParams(location.search);
-    return params.get('id');
 }
