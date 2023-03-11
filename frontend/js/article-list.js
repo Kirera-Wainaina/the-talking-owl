@@ -6,11 +6,12 @@ import { createDateString, createImageElement, createTextElement } from "./gener
 
 export function createArticleContainer(articleData, index) {
     const a = document.createElement('a');
-    const imageElement = createImageElement(articleData.landscapeImage, articleData.landscapeImageText);
-    addLoadingAttribute(imageElement, index); // add loading attribute
-    imageElement.width = '1920';
-    imageElement.height = '810';
-    a.append(imageElement);
+
+    a.append(createArticleCardImage(
+        articleData.landscapeImage, 
+        articleData.landscapeImageText, 
+        index
+    ))
     a.append(createTextElement('h2', articleData.title));
     a.append(createTextElement('p', articleData.description));
     a.append(createTextElement('p', `Published: ${createDateString(Number(articleData.publishedDate))}`))
@@ -142,4 +143,15 @@ function generateSkipBackPageNumberLinks(currentPageNumber) {
     fragment.append(p);
 
     return fragment
+}
+
+function createArticleCardImage(landscapeImage, landscapeImageText, index) {
+    const imageElement = createImageElement(
+        landscapeImage, 
+        landscapeImageText
+    );
+    addLoadingAttribute(imageElement, index); // add loading attribute
+    imageElement.width = '1920';
+    imageElement.height = '810';
+    return imageElement
 }
