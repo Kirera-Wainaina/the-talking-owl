@@ -69,7 +69,8 @@ export function createDateString(milliseconds) {
 }
 
 export function getArticleUrlTitle(articleUrl=location.pathname) {
-    const [ urlTitle ] = articleUrl.match(/(?<=\/article\/).*/);
+    const urlObject = new URL(articleUrl);
+    const [ urlTitle ] = urlObject.pathname.match(/(?<=\/article\/).*/);
     return urlTitle;
 }
 
