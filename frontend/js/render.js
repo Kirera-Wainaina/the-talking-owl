@@ -16,7 +16,6 @@ export function render(parentContainer, data) {
     
     container.append(createTextElement('h1', data.title))
     container.append(picture);
-    container.append(createTableOfContents());
     container.append(createDescription(data.description))
     container.append(createArticleContent(data.content, data.publishedDate));
     container.append(createRelatedArticlesSection());
@@ -26,6 +25,8 @@ export function render(parentContainer, data) {
     } else {
         parentContainer.replaceChildren(container)
     }
+    // insert table of contents after article is rendered in order to retrieve headings
+    parentContainer.insertBefore(createTableOfContents(), document.querySelector('article'))
 }
 
 export function renderOnArticlePage(data) {
