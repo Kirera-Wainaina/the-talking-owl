@@ -1,4 +1,7 @@
-import { createDateString, createTextElement, urlifySentence } from "./general.js";
+import { 
+    createDateString, createTextElement, getArticleId, 
+    getArticleUrlTitle, urlifySentence 
+} from "./general.js";
 
 export function render(parentContainer, data) {
     let container = new DocumentFragment();
@@ -18,7 +21,9 @@ export function render(parentContainer, data) {
     container.append(picture);
     container.append(createDescription(data.description))
     container.append(createArticleContent(data.content, data.publishedDate));
-    container.append(createRelatedArticlesSection());
+    container.append(
+        createRelatedArticlesSection(data.relatedArticle1, data.relatedArticle2)
+    );
 
     if (parentContainer.tagName == 'BODY') {
         parentContainer.insertBefore(container, document.querySelector('footer'));
@@ -26,7 +31,10 @@ export function render(parentContainer, data) {
         parentContainer.replaceChildren(container)
     }
     // insert table of contents after article is rendered in order to retrieve headings
-    parentContainer.insertBefore(createTableOfContents(), document.querySelector('article'))
+    parentContainer.insertBefore(
+        createTableOfContents(), 
+        document.querySelector('article')
+    )
 }
 
 export function renderOnArticlePage(data) {
@@ -148,9 +156,11 @@ function insertDescription(description) {
     element.content = description;
 }
 
-function createRelatedArticlesSection() {
+function createRelatedArticlesSection(url1, url2) {
     const fragment = new DocumentFragment();
     fragment.appendChild(createRelatedArticlesHeading());
+    createRelatedArticleContainer(url1);
+    // console.log(url1, url2)
 
     return fragment
 }
@@ -159,4 +169,12 @@ function createRelatedArticlesHeading() {
     const h2 = createTextElement('h2', 'Related Articles');
     h2.id = 'related-articles';
     return h2;
+}
+
+function createRelatedArticleContainer(url) {
+    const id = getArticleId(url);
+    const urlTitle = getArticleUrlTitle(url);
+
+    fetchRelatedArticleData(id, urlTitle);
+    console.log(urlTitle, id);
 }
