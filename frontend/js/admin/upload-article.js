@@ -59,7 +59,9 @@ export function handleSubmit(dataToSubmit, submitArticle) {
 function createDataToSubmit() {
     const previewData = createPreviewData();
     return {
-        ...previewData, 
+        ...previewData,
+        relatedArticle1: document.querySelector('input[name="relatedArticle1"]'),
+        relatedArticle2: document.querySelector('input[name="relatedArticle2"]'),
         urlTitle: urlifySentence(previewData.title)
     }
 }
