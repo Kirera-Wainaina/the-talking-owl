@@ -3,10 +3,12 @@ import { createDateString, createTextElement, urlifySentence } from "./general.j
 export function render(parentContainer, data) {
     let container = new DocumentFragment();
 
-    const landscapeImage = createArticleImage(data.landscapeImage, 
-            data.landscapeImageText, 
-            'landscape-wall-image');
-    const portraitImage = createSrcsetImage(data.portraitImage, 
+    const landscapeImage = createArticleImage(
+        data.landscapeImage, 
+        data.landscapeImageText, 
+        'landscape-wall-image');
+    const portraitImage = createSrcsetImage(
+        data.portraitImage, 
         data.portraitImageText, 
         'portrait-wall-image');
     const picture = createPictureElement(portraitImage, landscapeImage);
@@ -16,6 +18,7 @@ export function render(parentContainer, data) {
     container.append(createTableOfContents());
     container.append(createDescription(data.description))
     container.append(createArticleContent(data.content, data.publishedDate));
+    
     if (parentContainer.tagName == 'BODY') {
         parentContainer.insertBefore(container, document.querySelector('footer'));
     } else {
