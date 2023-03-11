@@ -185,7 +185,11 @@ function createRelatedArticleContainer(url) {
         
         // use index of five so image can have loading attribute
         fetchRelatedArticleData(id, urlTitle)
-            .then(data => resolve(createArticleContainer(data[0], 5)))
+            .then(data => {
+                const a = createArticleContainer(data[0], 5);
+                a.href = `/article/${urlTitle}?id=${id}`;
+                resolve(a);
+            })
             .catch(error => reject(error))
     })
 }
