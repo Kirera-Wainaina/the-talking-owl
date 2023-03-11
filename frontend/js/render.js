@@ -14,15 +14,19 @@ export function render(parentContainer, data) {
     container.append(createTextElement('h1', data.title))
     container.append(picture);
     container.append(createDescription(data.description))
-    container.append(createArticleContent(data.content, data.publishedDate))
-    parentContainer.replaceChildren(container)
+    container.append(createArticleContent(data.content, data.publishedDate));
+    if (parentContainer.tagName == 'BODY') {
+        parentContainer.insertBefore(container, document.querySelector('footer'));
+    } else {
+        parentContainer.replaceChildren(container)
+    }
     parentContainer.insertBefore(
         createTableOfContents(), 
         document.querySelector('article')
     );
 }
 
-export function renderOnArticlePage(data) {
+export function renderOnArticlePage_(data) {
     let container = new DocumentFragment();
     const parentContainer = document.querySelector('body')
 
@@ -44,6 +48,13 @@ export function renderOnArticlePage(data) {
         createTableOfContents(), 
         document.querySelector('article')
     );
+    insertTitle(data.title);
+    insertDescription(data.description);
+}
+
+export function renderOnArticlePage(data) {
+    const parentContainer = document.querySelector('body');
+    render(parentContainer, data);
     insertTitle(data.title);
     insertDescription(data.description);
 }
