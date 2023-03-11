@@ -21,9 +21,11 @@ export async function render(parentContainer, data) {
     container.append(picture);
     container.append(createDescription(data.description))
     container.append(createArticleContent(data.content, data.publishedDate));
-    container.append(
-        await createRelatedArticlesSection(data.relatedArticle1, data.relatedArticle2)
-    );
+    if (data.relatedArticle1 || data.relatedArticle2) {
+        container.append(
+            await createRelatedArticlesSection(data.relatedArticle1, data.relatedArticle2)
+        );
+    }
 
     if (parentContainer.tagName == 'BODY') {
         parentContainer.insertBefore(container, document.querySelector('footer'));
@@ -160,8 +162,8 @@ async function createRelatedArticlesSection(url1, url2) {
     const fragment = new DocumentFragment();
     fragment.append(createRelatedArticlesHeading());
     const containers = await Promise.all([
-        createRelatedArticleContainer(url1), 
-        createRelatedArticleContainer(url2)
+        url1 && createRelatedArticleContainer(url1), 
+        url2 && createRelatedArticleContainer(url2)
     ])
     const div = document.createElement('div');
     div.id = 'related-articles';
