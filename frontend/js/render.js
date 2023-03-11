@@ -1,11 +1,11 @@
+import { createArticleContainer } from "./article-list.js";
 import { 
     createDateString, createTextElement, getArticleId, 
     getArticleUrlTitle, urlifySentence 
 } from "./general.js";
 
-export function render(parentContainer, data) {
+export async function render(parentContainer, data) {
     let container = new DocumentFragment();
-    console.log(data)
 
     const landscapeImage = createArticleImage(
         data.landscapeImage, 
@@ -22,7 +22,7 @@ export function render(parentContainer, data) {
     container.append(createDescription(data.description))
     container.append(createArticleContent(data.content, data.publishedDate));
     container.append(
-        createRelatedArticlesSection(data.relatedArticle1, data.relatedArticle2)
+        await createRelatedArticlesSection(data.relatedArticle1, data.relatedArticle2)
     );
 
     if (parentContainer.tagName == 'BODY') {
@@ -37,9 +37,9 @@ export function render(parentContainer, data) {
     )
 }
 
-export function renderOnArticlePage(data) {
+export async function renderOnArticlePage(data) {
     const parentContainer = document.querySelector('body');
-    render(parentContainer, data);
+    await render(parentContainer, data);
     insertTitle(data.title);
     insertDescription(data.description);
 }
@@ -156,12 +156,14 @@ function insertDescription(description) {
     element.content = description;
 }
 
-function createRelatedArticlesSection(url1, url2) {
+async function createRelatedArticlesSection(url1, url2) {
     const fragment = new DocumentFragment();
-    fragment.appendChild(createRelatedArticlesHeading());
-    createRelatedArticleContainer(url1);
-    // console.log(url1, url2)
-
+    fragment.append(createRelatedArticlesHeading());
+    const containers = await Promise.all([
+        createRelatedArticleContainer(url1), 
+        createRelatedArticleContainer(url2)
+    ])
+    containers.forEach(container => fragment.append(container));
     return fragment
 }
 
@@ -171,12 +173,16 @@ function createRelatedArticlesHeading() {
     return h2;
 }
 
-async function createRelatedArticleContainer(url) {
-    const id = getArticleId(url);
-    const urlTitle = getArticleUrlTitle(url);
-
-    const data = await fetchRelatedArticleData(id, urlTitle);
-    console.log(data);
+function createRelatedArticleContainer(url) {
+    return new Promise((resolve, reject) => {
+        const id = getArticleId(url);
+        const urlTitle = getArticleUrlTitle(url);
+        
+        // use index of five so image can have loading attribute
+        fetchRelatedArticleData(id, urlTitle)
+            .then(data => resolve(createArticleContainer(data[0], 5)))
+            .catch(error => reject(error))
+    })
 }
 
 function fetchRelatedArticleData(id, urlTitle) {
