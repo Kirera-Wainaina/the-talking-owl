@@ -2,6 +2,7 @@ import { createDateString, createTextElement, urlifySentence } from "./general.j
 
 export function render(parentContainer, data) {
     let container = new DocumentFragment();
+    console.log(data)
 
     const landscapeImage = createArticleImage(
         data.landscapeImage, 
@@ -18,7 +19,8 @@ export function render(parentContainer, data) {
     container.append(createTableOfContents());
     container.append(createDescription(data.description))
     container.append(createArticleContent(data.content, data.publishedDate));
-    
+    container.append(createRelatedArticlesSection());
+
     if (parentContainer.tagName == 'BODY') {
         parentContainer.insertBefore(container, document.querySelector('footer'));
     } else {
@@ -142,4 +144,17 @@ function insertTitle(title) {
 function insertDescription(description) {
     const element = document.querySelector('meta[name="description"]');
     element.content = description;
+}
+
+function createRelatedArticlesSection() {
+    const fragment = new DocumentFragment();
+    fragment.appendChild(createRelatedArticlesHeading());
+
+    return fragment
+}
+
+function createRelatedArticlesHeading() {
+    const h2 = createTextElement('h2', 'Related Articles');
+    h2.id = 'related-articles';
+    return h2;
 }
