@@ -158,6 +158,7 @@ article > img {
 
 #related-articles {
     grid-column: 4 / 10;
+    color: var(--primary);
 }
 
 @media (orientation: portrait) {
@@ -224,6 +225,11 @@ article > img {
     
     #table-of-contents .h6-margin-left {
         margin-left: 5.3em;
+    }
+
+    #related-articles {
+        grid-column: 1 / 7;
+        margin-left: 2em;
     }
     
 }
