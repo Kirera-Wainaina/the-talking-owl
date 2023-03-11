@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const deleteExistingImagesButtons = document.querySelectorAll('.delete-images');
     deleteExistingImagesButtons.forEach(button => button.addEventListener('click', () => {
         deleteMarkedImages();
-        toggleElementClass(document.getElementById('deleting-images-modal'), 'flex')
+        toggleElementClass(document.getElementById('deleting-images-modal'), 'hide')
     }))
 })
 
@@ -283,7 +283,7 @@ function handleImageDeletionResponse(response) {
     if (response.status == 200) {
         location.reload()
     } else {
-        toggleElementClass(document.getElementById('deleting-images-modal'), 'flex')
+        toggleElementClass(document.getElementById('deleting-images-modal'), 'hide')
         displaySliderAnimation('image-upload-error');
     }
 }

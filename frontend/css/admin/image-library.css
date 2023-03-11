@@ -32,10 +32,6 @@ h1 {
     background-color: lightgray;
 }
 
-.flex {
-    display: flex;
-}
-
 #upload-modal {
     display: flex;
     position: fixed;
@@ -173,7 +169,7 @@ form button {
     position: fixed;
     top: 0;
     left: 0;
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
