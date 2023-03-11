@@ -13,6 +13,7 @@ export function render(parentContainer, data) {
     
     container.append(createTextElement('h1', data.title))
     container.append(picture);
+    container.append(createTableOfContents());
     container.append(createDescription(data.description))
     container.append(createArticleContent(data.content, data.publishedDate));
     if (parentContainer.tagName == 'BODY') {
@@ -20,10 +21,6 @@ export function render(parentContainer, data) {
     } else {
         parentContainer.replaceChildren(container)
     }
-    parentContainer.insertBefore(
-        createTableOfContents(), 
-        document.querySelector('article')
-    );
 }
 
 export function renderOnArticlePage(data) {
@@ -89,7 +86,6 @@ function createArticleContent(content, date) {
 function createTableOfContents() {
     const div = document.createElement('div');
     const headings = document.querySelectorAll('h2, h3, h4, h5');
-    const fragment = new DocumentFragment();
 
     div.append(createTextElement('h2', 'Table of contents'));
     headings.forEach(element => {
@@ -98,8 +94,7 @@ function createTableOfContents() {
     });
     div.id = 'table-of-contents';
 
-    fragment.append(div);
-    return fragment
+    return div
 }
 
 function createTableOfContentsLink(element) {
