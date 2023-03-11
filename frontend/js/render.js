@@ -171,10 +171,16 @@ function createRelatedArticlesHeading() {
     return h2;
 }
 
-function createRelatedArticleContainer(url) {
+async function createRelatedArticleContainer(url) {
     const id = getArticleId(url);
     const urlTitle = getArticleUrlTitle(url);
 
-    fetchRelatedArticleData(id, urlTitle);
-    console.log(urlTitle, id);
+    const data = await fetchRelatedArticleData(id, urlTitle);
+    console.log(data);
+}
+
+function fetchRelatedArticleData(id, urlTitle) {
+    return fetch(`/api/articles?field=title&field=description&field=landscapeImage\
+&field=landscapeImageText&field=publishedDate&id=${id}&urlTitle=${urlTitle}`)
+    .then(response => response.json());
 }
