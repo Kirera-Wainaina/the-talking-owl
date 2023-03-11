@@ -28,7 +28,10 @@ function inputDataIntoForm(data) {
 
 function inputDataIntoInputElements(data) {
     const inputs = document.querySelectorAll('form input');
-    inputs.forEach(input => input.value = data[input.name]);
+    inputs.forEach(input => {
+        const value = data[input.name];
+        if (value) input.value = data[input.name]
+    });
 }
 
 function inputContentIntoTextArea(content) {
