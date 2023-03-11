@@ -8,6 +8,8 @@ export function createArticleContainer(articleData, index) {
     const a = document.createElement('a');
     const imageElement = createImageElement(articleData.landscapeImage, articleData.landscapeImageText);
     addLoadingAttribute(imageElement, index); // add loading attribute
+    imageElement.width = '1920';
+    imageElement.height = '810';
     a.append(imageElement);
     a.append(createTextElement('h2', articleData.title));
     a.append(createTextElement('p', articleData.description));
