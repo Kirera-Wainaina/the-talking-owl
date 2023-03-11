@@ -163,13 +163,16 @@ async function createRelatedArticlesSection(url1, url2) {
         createRelatedArticleContainer(url1), 
         createRelatedArticleContainer(url2)
     ])
-    containers.forEach(container => fragment.append(container));
+    const div = document.createElement('div');
+    div.id = 'related-articles';
+    containers.forEach(container => div.append(container));
+    fragment.append(div);
     return fragment
 }
 
 function createRelatedArticlesHeading() {
     const h2 = createTextElement('h2', 'Related Articles');
-    h2.id = 'related-articles';
+    h2.id = 'related-articles-heading';
     return h2;
 }
 

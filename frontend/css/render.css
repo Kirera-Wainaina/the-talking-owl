@@ -1,4 +1,5 @@
-@import url(./home.css);
+@import url("./home.css");
+@import url("./article-list.css");
 
 h1 {
     text-align: center;
@@ -156,9 +157,21 @@ article > img {
     margin-left: 7em;
 }
 
-#related-articles {
+#related-articles-heading {
     grid-column: 4 / 10;
     color: var(--primary);
+}
+
+#related-articles {
+    grid-column: 4 / 10;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2em;
+}
+
+#related-articles a {
+    margin-right: 0;
+    width: 47%;
 }
 
 @media (orientation: portrait) {
@@ -227,7 +240,7 @@ article > img {
         margin-left: 5.3em;
     }
 
-    #related-articles {
+    #related-articles-heading {
         grid-column: 1 / 7;
         margin-left: 2em;
     }
