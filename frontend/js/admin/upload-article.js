@@ -60,8 +60,8 @@ function createDataToSubmit() {
     const previewData = createPreviewData();
     return {
         ...previewData,
-        relatedArticle1: document.querySelector('input[name="relatedArticle1"]'),
-        relatedArticle2: document.querySelector('input[name="relatedArticle2"]'),
+        relatedArticle1: document.querySelector('input[name="relatedArticle1"]').value,
+        relatedArticle2: document.querySelector('input[name="relatedArticle2"]').value,
         urlTitle: urlifySentence(previewData.title)
     }
 }
