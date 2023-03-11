@@ -90,7 +90,8 @@ function createArticleContent(content, date) {
 
 function createTableOfContents() {
     const div = document.createElement('div');
-    const headings = document.querySelectorAll('h2, h3, h4, h5');
+    const headings = document.querySelectorAll(
+        'article h2, article h3, article h4, article h5');
 
     div.append(createTextElement('h2', 'Table of contents'));
     headings.forEach(element => {
