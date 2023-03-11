@@ -81,7 +81,7 @@ img {
     z-index: 2;
 
     animation-name: slide;
-    animation-duration: 5s;
+    animation-duration: 4s;
     animation-timing-function: ease-in-out;
 }
 
