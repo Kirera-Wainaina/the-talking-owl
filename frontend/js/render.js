@@ -51,6 +51,8 @@ function createArticleImage(imageUrl, imageText, imageId) {
     img.src = imageUrl;
     img.alt = imageText;
     img.id = imageId;
+    img.height = '810';
+    img.width = '1920'
     return img
 }
 
@@ -59,6 +61,8 @@ function createSrcsetImage(imageUrl, imageText, imageId) {
     const source = document.createElement('source');
     source.srcset = imageUrl;
     source.media = '(orientation: portrait)';
+    source.width = '1080';
+    source.height = '864';
     return source
 }
 

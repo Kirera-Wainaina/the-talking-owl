@@ -70,6 +70,11 @@ picture {
     margin-top: 5vh;
 }
 
+picture img, picture source {
+    width: 100%;
+    height: auto;
+}
+
 #publish-date {
     display: flex;
     color: #333333;
