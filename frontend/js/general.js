@@ -68,13 +68,13 @@ export function createDateString(milliseconds) {
     return `${month} ${day}, ${year}`;
 }
 
-export function getArticleUrlTitle() {
-    const [ urlTitle ] = location.pathname.match(/(?<=\/article\/).*/);
+export function getArticleUrlTitle(articleUrl=location.pathname) {
+    const [ urlTitle ] = articleUrl.match(/(?<=\/article\/).*/);
     return urlTitle;
 }
 
-export function getArticleId() {
-    const params = new URLSearchParams(location.search);
+export function getArticleId(searchParams=location.search) {
+    const params = new URLSearchParams(searchParams);
     return params.get('id');
 }
 
