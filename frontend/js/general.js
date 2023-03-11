@@ -73,8 +73,9 @@ export function getArticleUrlTitle(articleUrl=location.pathname) {
     return urlTitle;
 }
 
-export function getArticleId(searchParams=location.search) {
-    const params = new URLSearchParams(searchParams);
+export function getArticleId(url=location.href) {
+    const urlObject = new URL(url);
+    const params = new URLSearchParams(urlObject.search);
     return params.get('id');
 }
 
