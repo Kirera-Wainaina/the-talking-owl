@@ -45,6 +45,8 @@ export function createPreviewData() {
         squareThumbnailText: document.querySelector('input[name="squareThumbnailText"]').value,
         description: document.querySelector('input[name="description"]').value,
         content: document.querySelector('textarea').value,
+        relatedArticle1: document.querySelector('input[name="relatedArticle1"]').value,
+        relatedArticle2: document.querySelector('input[name="relatedArticle2"]').value,
         publishedDate: Date.now()
     };
 }
@@ -60,8 +62,6 @@ function createDataToSubmit() {
     const previewData = createPreviewData();
     return {
         ...previewData,
-        relatedArticle1: document.querySelector('input[name="relatedArticle1"]').value,
-        relatedArticle2: document.querySelector('input[name="relatedArticle2"]').value,
         urlTitle: urlifySentence(previewData.title)
     }
 }
