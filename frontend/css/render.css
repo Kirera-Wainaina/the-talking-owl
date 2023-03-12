@@ -249,5 +249,16 @@ article > img {
         grid-column: 1 / 7;
         margin-left: 2em;
     }
+
+    #related-articles {
+        grid-column: 1 / 7;
+        margin-left: 2em;
+        margin-right: 2em;
+        flex-direction: column;
+    }
+
+    #related-articles a {
+        width: 95%;
+    }
     
 }
