@@ -46,10 +46,18 @@ export function urlifySentence(sentence) {
   	    .replace(/[^A-Za-z-]/g, '')
 }
 
-export function createImageElement(src, alt) {
+export function createImageElement(src, alt, width, height) {
     const imgEl = document.createElement('img');
     imgEl.src = src;
     imgEl.alt = alt;
+    if (!width) {
+        throw new Error("Width cannot be undefined");
+    } else if (!height) {
+        throw new Error('Height cannot be undefined');
+    } else {
+        imgEl.width = width;
+        imgEl.height = height;
+    }
     return imgEl
 }
 
