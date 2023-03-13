@@ -50,11 +50,10 @@ h2 {
     text-decoration: none;
     display: flex;
     margin-bottom: 1em;
-    gap: 5px;
 }
 
 .homepage-articles picture {
-    width: 20%;
+    width: 18%;
 }
 
 .homepage-articles img {
@@ -68,6 +67,8 @@ h2 {
     border-radius: 5px;
     width: 40%;
     padding: 1em;
+    margin-top: 4em;
+    margin-left: -1.5em;
 }
 
 .homepage-articles div p:first-of-type {
