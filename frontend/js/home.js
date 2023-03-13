@@ -12,7 +12,7 @@ async function displayBusinessArticles() {
 
 function retrieveBusinessArticles() {
     return fetch('/api/articles?field=squareThumbnail\
-&field=squareThumbnailText&field=title&field=description\
+&field=squareThumbnailText&field=landscapeImage&field=landscapeImageText&field=title&field=description\
 &field=publishedDate&field=urlTitle&orderBy=publishedDate\
 &orderByDirection=desc&category=business&limit=4')
     .then(response => response.json());   
@@ -30,12 +30,7 @@ function createBusinessArticleContainer(article) {
     const a = document.createElement('a');
     const div = document.createElement('div');
 
-    a.append(createImageElement(
-        article.squareThumbnail, 
-        article.squareThumbnailText,
-        '1080',
-        '1080'
-    ));
+    a.append(createPictureElement(article));
 
     div.append(createTextElement('h3', article.title));
     div.append(createTextElement('p', article.description));
@@ -48,4 +43,32 @@ function createBusinessArticleContainer(article) {
     a.classList.add('homepage-articles');
     a.append(div);
     return a
+}
+
+function createPictureElement(article) {
+    const picture = document.createElement('picture');
+    const img = createImageElement(
+        article.squareThumbnail, 
+        article.squareThumbnailText,
+        '1080',
+        '1080'
+    );
+    const source = createSourceElement(
+        article.landscapeImage, 
+        "(orientation: portrait)", 
+        '1920', 
+        '810'
+    );
+    picture.append(img);
+    picture.append(source);
+    return picture
+}
+
+function createSourceElement(src, media, width, height) {
+    const source = document.createElement('source');
+    source.media = media,
+    source.srcset = src;
+    source.width = width;
+    source.height = height;
+    return source
 }
