@@ -59,8 +59,8 @@ function createPictureElement(article) {
         '1920', 
         '810'
     );
-    picture.append(img);
     picture.append(source);
+    picture.append(img);
     return picture
 }
 
