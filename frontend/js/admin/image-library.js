@@ -58,7 +58,7 @@ function createImageContainers(files) {
 
 function createSingleImageContainer(file) {
     const div = document.createElement('div');
-    const imgEl = createImageElement(URL.createObjectURL(file))
+    const imgEl = createImageElement(URL.createObjectURL(file), '',100,100)
     const input = createCloseIconElement();
 
     div.append(input);

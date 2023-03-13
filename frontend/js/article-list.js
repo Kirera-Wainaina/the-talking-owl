@@ -148,10 +148,10 @@ function generateSkipBackPageNumberLinks(currentPageNumber) {
 function createArticleCardImage(landscapeImage, landscapeImageText, index) {
     const imageElement = createImageElement(
         landscapeImage, 
-        landscapeImageText
+        landscapeImageText,
+        '1920',
+        '810'
     );
     addLoadingAttribute(imageElement, index); // add loading attribute
-    imageElement.width = '1920';
-    imageElement.height = '810';
     return imageElement
 }

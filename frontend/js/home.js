@@ -32,7 +32,9 @@ function createBusinessArticleContainer(article) {
 
     a.append(createImageElement(
         article.squareThumbnail, 
-        article.squareThumbnailText
+        article.squareThumbnailText,
+        '1080',
+        '1080'
     ));
 
     div.append(createTextElement('h3', article.title));
