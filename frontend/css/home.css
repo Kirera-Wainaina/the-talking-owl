@@ -96,6 +96,20 @@ h2 {
     margin-left: 36%;
 }
 
+.see-more {
+    grid-column: 1 / 13;
+    text-align: center;
+    text-decoration: none;
+    background-color: var(--secondary);
+    color: white;
+    width: 15vw;
+    padding: .5em;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 42.5vw;
+    border-radius: 10px;
+}
+
 @media (orientation: portrait) {
     h1 {
         grid-column: 1 / 7;
@@ -144,5 +158,13 @@ h2 {
         width: 60vw;
         margin-top: -1em;
         margin-left: -3vw;
+    }
+
+    .see-more {
+        grid-column: 1 / 7;
+        width: 45vw;
+        margin-left: 27.5vw;
+        padding: 1.2em;
+        border-radius: 13px;
     }
 }
