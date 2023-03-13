@@ -20,9 +20,14 @@ h2 {
 }
 
 #square-logo {
-    grid-column: 1 / 4;
+    grid-column: 2 / 5;
     width: 100%;
     height: auto;
+}
+
+#about-segment {
+    grid-column: 6 / 12;
+    margin-top: 2em;
 }
 
 @media (orientation: portrait) {
@@ -40,6 +45,10 @@ h2 {
     }
 
     #square-logo {
+        grid-column: 1 / 7;
+    }
+
+    #about-segment {
         grid-column: 1 / 7;
     }
 }
