@@ -45,7 +45,20 @@ h2 {
 .homepage-articles {
     text-decoration: none;
     display: flex;
-    
+    margin-bottom: 1em;
+    gap: 5px;
+}
+
+.homepage-articles img {
+    width: 20%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.homepage-articles div {
+    background-color: var(--primary);
+    color: white;
+    border-radius: 5px;
 }
 
 @media (orientation: portrait) {
