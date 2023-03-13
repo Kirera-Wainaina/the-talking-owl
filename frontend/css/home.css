@@ -7,6 +7,12 @@ h1 {
     margin-top: 2em;
 }
 
+h2 {
+    grid-column: 1 / 13;
+    color: var(--primary);
+    text-align: center;
+}
+
 #cover-image {
     grid-column: 1 / 13;
     width: 100%;
@@ -23,6 +29,10 @@ h1 {
     h1 {
         grid-column: 1 / 7;
         margin-top: 1em;
+    }
+
+    h2 {
+        grid-column: 1 / 7;
     }
 
     #cover-image {
