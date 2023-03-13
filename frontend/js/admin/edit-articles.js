@@ -1,8 +1,8 @@
 import { displayArticleList } from "../article-list.js";
 
-document.addEventListener('DOMContentLoaded', retreiveArticleData);
+document.addEventListener('DOMContentLoaded', retrieveArticleData);
 
-function retreiveArticleData() {
+function retrieveArticleData() {
     fetch('/api/articles?field=title&field=description&field=landscapeImage&field=\
 publishedDate&field=urlTitle&orderBy=publishedDate&orderByDirection=desc')
         .then(response => response.json())
