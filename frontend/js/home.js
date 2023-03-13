@@ -1,4 +1,4 @@
-import { createImageElement } from "./general.js";
+import { createDateString, createImageElement, createTextElement } from "./general.js";
 
 document.addEventListener('DOMContentLoaded', displayBusinessArticles);
 
@@ -20,17 +20,29 @@ function retrieveBusinessArticles() {
 
 function createBusinessArticlesFragment(data) {
     const fragment = new DocumentFragment();
-    data.forEach(article => fragment.append(createBusinessArticleContainer(article)))
+    data.forEach(article => fragment.append(
+        createBusinessArticleContainer(article)
+    ))
     return fragment
 }
 
 function createBusinessArticleContainer(article) {
     const a = document.createElement('a');
+    const div = document.createElement('div');
 
     a.append(createImageElement(
         article.squareThumbnail, 
         article.squareThumbnailText
     ));
+
+    div.append(createTextElement('h3', article.title));
+    div.append(createTextElement('p', article.description));
+    div.append(createTextElement(
+        'p', 
+        createDateString(article.publishedDate)
+    ));
+
     a.href = `/article/${article.urlTitle}?id=${article.id}`;
+    a.append(div);
     return a
 }
