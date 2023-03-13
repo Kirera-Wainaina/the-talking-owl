@@ -13,6 +13,12 @@ h1 {
     height: auto;
 }
 
+#square-logo {
+    grid-column: 1 / 4;
+    width: 100%;
+    height: auto;
+}
+
 @media (orientation: portrait) {
     h1 {
         grid-column: 1 / 7;
@@ -20,6 +26,10 @@ h1 {
     }
 
     #cover-image {
+        grid-column: 1 / 7;
+    }
+
+    #square-logo {
         grid-column: 1 / 7;
     }
 }
