@@ -8,7 +8,7 @@ h1 {
     grid-column: 1 / 13;
     text-align: center;
     color: var(--primary);
-    margin-top: 2em;
+    padding: 1em;
 }
 
 h2 {
@@ -21,8 +21,12 @@ h2 {
 
 #cover-image {
     grid-column: 1 / 13;
+}
+
+#cover-image img {
     width: 100%;
     height: auto;
+
 }
 
 #square-logo {
@@ -69,7 +73,7 @@ h2 {
 @media (orientation: portrait) {
     h1 {
         grid-column: 1 / 7;
-        margin-top: 1em;
+        /* margin-top: 1em; */
     }
 
     h2 {
