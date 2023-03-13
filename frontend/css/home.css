@@ -110,6 +110,16 @@ h2 {
     border-radius: 10px;
 }
 
+#body-slogan {
+    grid-column: 1 / 13;
+    text-align: center;
+    background-color: black;
+    color: white;
+    margin-top: 2em;
+    padding: 2em;
+    
+}
+
 @media (orientation: portrait) {
     h1 {
         grid-column: 1 / 7;
@@ -166,5 +176,9 @@ h2 {
         margin-left: 27.5vw;
         padding: 1.2em;
         border-radius: 13px;
+    }
+
+    #body-slogan {
+        grid-column: 1 / 7;
     }
 }
