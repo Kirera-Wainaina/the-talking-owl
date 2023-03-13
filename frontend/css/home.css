@@ -49,8 +49,11 @@ h2 {
     gap: 5px;
 }
 
-.homepage-articles img {
+.homepage-articles picture {
     width: 20%;
+}
+
+.homepage-articles img {
     height: auto;
     border-radius: 5px;
 }
@@ -59,6 +62,8 @@ h2 {
     background-color: var(--primary);
     color: white;
     border-radius: 5px;
+    width: 30%;
+    padding: 1em;
 }
 
 @media (orientation: portrait) {
@@ -88,5 +93,9 @@ h2 {
 
     #business-articles {
         grid-column: 1 / 7;
+    }
+
+    .homepage-articles {
+        flex-direction: column;
     }
 }
