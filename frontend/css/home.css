@@ -98,4 +98,12 @@ h2 {
     .homepage-articles {
         flex-direction: column;
     }
+
+    .homepage-articles picture {
+        width: 90vw;
+    }
+
+    .homepage-articles div {
+        width: 60vw;
+    }
 }
