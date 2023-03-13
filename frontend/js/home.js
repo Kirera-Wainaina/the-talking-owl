@@ -43,6 +43,7 @@ function createBusinessArticleContainer(article) {
     ));
 
     a.href = `/article/${article.urlTitle}?id=${article.id}`;
+    a.classList.add('homepage-articles');
     a.append(div);
     return a
 }
