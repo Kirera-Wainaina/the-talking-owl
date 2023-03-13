@@ -80,11 +80,6 @@ export function getArticleId(url=location.href) {
     return params.get('id');
 }
 
-export function fetchData(url) {
-    return fetch(url)
-        .then(response => response.json());
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     // toggle menu sidebar on phone viewport
     const menuIcon = document.querySelector('nav input');
