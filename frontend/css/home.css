@@ -231,11 +231,13 @@ h2 {
         flex-direction: column  ;
         flex-wrap: nowrap;
         align-items: center;
+        gap: 0;
     }
 
     .technology-article {
         width: 90vw;
         flex-direction: column;
+        margin-bottom: 2em;
     }
 
     .technology-article div {
