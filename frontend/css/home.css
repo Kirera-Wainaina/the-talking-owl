@@ -125,10 +125,12 @@ h2 {
     grid-column: 2 / 12;
     display: flex;
     flex-wrap: wrap;
+    gap: 4%;
+    margin-bottom: 4em;
 }
 
 .technology-article {
-    width: 50%;
+    width: 48%;
     display: flex;
     text-decoration: none;
 }
@@ -141,10 +143,25 @@ h2 {
     flex: 1;
     background-color: #C8BFEF;
     box-shadow: var(--shadow);
+    color: black;
+    padding: 2em;
+    border-radius: 5px;
+    margin-top: 2em;
+    margin-left: -1em;
+}
+
+.technology-article div p:first-of-type {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.technology-article div p:last-of-type {
+    font-weight: 500;
 }
 
 .technology-article img {
     height: auto;
+    border-radius: 7px;
 }
 
 @media (orientation: portrait) {
