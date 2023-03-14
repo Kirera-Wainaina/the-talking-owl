@@ -226,7 +226,13 @@ h2 {
         grid-column: 1 / 7;
     }
 
-    #business-articles {
+    #technology-articles {
         grid-column: 1 / 7;
+        flex-direction: column  ;
+        flex-wrap: nowrap;
+    }
+
+    .technology-article {
+        width: 90%;
     }
 }
