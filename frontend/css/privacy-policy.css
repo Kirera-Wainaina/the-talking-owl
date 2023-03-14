@@ -1,0 +1,18 @@
+@import url('./base.css');
+
+body {
+    background-color: var(--primary-background-color);
+}
+
+h1 {
+    grid-column: 1 / 13;
+    text-align: center;
+    margin-top: 1em;
+    color: var(--primary);
+}
+
+@media (orientation: portrait) {
+    h1 {
+        grid-column: 1 / 7;
+    }
+}
