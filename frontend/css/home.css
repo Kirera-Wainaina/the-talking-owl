@@ -126,7 +126,7 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     gap: 4%;
-    margin-bottom: 4em;
+    /* margin-bottom: 4em; */
 }
 
 .technology-article {
