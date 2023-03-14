@@ -1,32 +1,32 @@
 import { createDateString, createImageElement, createTextElement } from "./general.js";
 
-document.addEventListener('DOMContentLoaded', displayBusinessArticles);
+document.addEventListener('DOMContentLoaded', () => {
+    displayBusinessArticles();
+    displayTechnologyArticles();
+});
 
 async function displayBusinessArticles() {
     const data = await retrieveBusinessArticles();
     const container = document.getElementById('business-articles');
 
-    container.append(createBusinessArticlesFragment(data));
-    console.log(data);
+    container.append(createArticlesFragment(data));
 }
 
 function retrieveBusinessArticles() {
     return fetch('/api/articles?field=squareThumbnail\
 &field=squareThumbnailText&field=landscapeImage&field=landscapeImageText&field=title&field=description\
-&field=publishedDate&field=urlTitle&orderBy=publishedDate\
+&field=publishedDate&field=urlTitle&field=category&orderBy=publishedDate\
 &orderByDirection=desc&category=business&limit=4')
     .then(response => response.json());   
 }
 
-function createBusinessArticlesFragment(data) {
+function createArticlesFragment(data) {
     const fragment = new DocumentFragment();
-    data.forEach(article => fragment.append(
-        createBusinessArticleContainer(article)
-    ))
+    data.forEach(article => fragment.append(createArticleComponent(article)))
     return fragment
 }
 
-function createBusinessArticleContainer(article) {
+function createArticleComponent(article) {
     const a = document.createElement('a');
     const div = document.createElement('div');
 
@@ -40,7 +40,11 @@ function createBusinessArticleContainer(article) {
     ));
 
     a.href = `/article/${article.urlTitle}?id=${article.id}`;
-    a.classList.add('homepage-articles');
+    if (article.category == 'business') {
+        a.classList.add('business-article');
+    } else {
+        a.classList.add('technology-article');
+    }
     a.append(div);
     return a
 }
@@ -71,4 +75,17 @@ function createSourceElement(src, media, width, height) {
     source.width = width;
     source.height = height;
     return source
+}
+
+async function displayTechnologyArticles() {
+    const data = await retrieveTechnologyArticles();
+    const container = document.getElementById('technology-articles');
+}
+
+function retrieveTechnologyArticles() {
+    return fetch('/api/articles?field=squareThumbnail\
+&field=squareThumbnailText&field=landscapeImage&field=landscapeImageText&field=title&field=description\
+&field=publishedDate&field=urlTitle&field=category&orderBy=publishedDate\
+&orderByDirection=desc&category=tech&limit=4')
+    .then(response => response.json())
 }
