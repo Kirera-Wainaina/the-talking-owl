@@ -107,6 +107,7 @@ h2 {
     font-weight: 600;
     font-family: 'Montserrat', sans-serif;
     margin-left: 42.5vw;
+    margin-bottom: 1em;
     border-radius: 10px;
 }
 
@@ -126,7 +127,7 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     gap: 4%;
-    /* margin-bottom: 4em; */
+    margin-bottom: 4em;
 }
 
 .technology-article {
