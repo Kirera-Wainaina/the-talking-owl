@@ -80,6 +80,8 @@ function createSourceElement(src, media, width, height) {
 async function displayTechnologyArticles() {
     const data = await retrieveTechnologyArticles();
     const container = document.getElementById('technology-articles');
+
+    container.append(createArticlesFragment(data));
 }
 
 function retrieveTechnologyArticles() {
