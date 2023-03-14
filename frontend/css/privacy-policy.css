@@ -11,8 +11,17 @@ h1 {
     color: var(--primary);
 }
 
+p {
+    grid-column: 4 / 10;
+    margin-top: 1.5em;
+}
+
 @media (orientation: portrait) {
     h1 {
+        grid-column: 1 / 7;
+    }
+
+    p {
         grid-column: 1 / 7;
     }
 }
