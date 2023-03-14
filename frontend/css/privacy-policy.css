@@ -44,6 +44,10 @@ li {
     margin-bottom: 2em;
 }
 
+.bold {
+    font-weight: 500;
+}
+
 @media (orientation: portrait) {
     h1 {
         grid-column: 1 / 7;
