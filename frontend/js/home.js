@@ -14,9 +14,10 @@ async function displayBusinessArticles() {
 
 function retrieveBusinessArticles() {
     return fetch('/api/articles?field=squareThumbnail\
-&field=squareThumbnailText&field=landscapeImage&field=landscapeImageText&field=title&field=description\
-&field=publishedDate&field=urlTitle&field=category&orderBy=publishedDate\
-&orderByDirection=desc&category=business&limit=4')
+&field=squareThumbnailText&field=landscapeImage\
+&field=landscapeImageText&field=title&field=description\
+&field=publishedDate&field=urlTitle&field=category\
+&orderBy=publishedDate&orderByDirection=desc&category=business&limit=4')
     .then(response => response.json());   
 }
 
@@ -86,8 +87,9 @@ async function displayTechnologyArticles() {
 
 function retrieveTechnologyArticles() {
     return fetch('/api/articles?field=squareThumbnail\
-&field=squareThumbnailText&field=landscapeImage&field=landscapeImageText&field=title&field=description\
-&field=publishedDate&field=urlTitle&field=category&orderBy=publishedDate\
-&orderByDirection=desc&category=tech&limit=4')
+&field=squareThumbnailText&field=landscapeImage\
+&field=landscapeImageText&field=title&field=description\
+&field=publishedDate&field=urlTitle&field=category\
+&orderBy=publishedDate&orderByDirection=desc&category=tech&limit=4')
     .then(response => response.json())
 }
