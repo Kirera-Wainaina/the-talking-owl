@@ -121,6 +121,32 @@ h2 {
     font-style: italic;
 }
 
+#technology-articles {
+    grid-column: 2 / 12;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.technology-article {
+    width: 50%;
+    display: flex;
+    text-decoration: none;
+}
+
+.technology-article picture {
+    flex: 1;
+}
+
+.technology-article div {
+    flex: 1;
+    background-color: #C8BFEF;
+    box-shadow: var(--shadow);
+}
+
+.technology-article img {
+    height: auto;
+}
+
 @media (orientation: portrait) {
     h1 {
         grid-column: 1 / 7;
@@ -180,6 +206,10 @@ h2 {
     }
 
     #body-slogan {
+        grid-column: 1 / 7;
+    }
+
+    #business-articles {
         grid-column: 1 / 7;
     }
 }
