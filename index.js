@@ -104,8 +104,7 @@ function handlePageRequest(stream, headers) {
     console.log(parsedUrl)
 
     if (headers['user-agent'] == 'thetalkingowl-puppeteer') {
-        const filePath = createPuppeteerFilePath(route);
-        respondWithFile(stream, filePath)    
+        handleRequestsFromPuppeteer(stream, route);
     } else {
         let filePath;
         if (dirname == '/article') {
@@ -143,12 +142,14 @@ function createArticleFilePath() {
     return path.join(__dirname, 'frontend/html/article.html')
 }
 
-function createPuppeteerFilePath(route) {
+function handleRequestsFromPuppeteer(stream, route) {
+    let filePath;
     if (path.dirname(route) == '/article') {
-        return createArticleFilePath()
+        filePath = createArticleFilePath()
     } else {
-        return createFilePathFromPageRequest(route);
+        filePath = createFilePathFromPageRequest(route);
     }
+    respondWithFile(stream, filePath)    
 }
 
 function isHomePage(route) {
