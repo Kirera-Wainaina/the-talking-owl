@@ -2,6 +2,8 @@ const FormDataHandler = require('../../utils/formDataHandler');
 const database = require('../../utils/database');
 const { wsEndpoint } = require('../../utils/renderer');
 const { default: puppeteer } = require('puppeteer');
+const fsPromises = require('fs/promises');
+const path = require('path');
 const dotenv = require('dotenv')
 dotenv.config();
 
@@ -17,7 +19,8 @@ exports.main = async function(request, response) {
             const doc = await database.saveData(fields, 'articles');
 
             if (doc.id) {
-                await renderArticle(fields.urlTitle, doc.id);
+                const content = await renderArticle(fields.urlTitle, doc.id);
+                await writeHTMLToFile(content, doc.id);
                 console.log('Data was saved successfully!')
                 response.writeHead(200, {'content-type': 'text/plain'})
                 response.end('success')
@@ -56,9 +59,7 @@ async function renderArticle(urlTitle, articleId) {
         { waitUntil: 'networkidle0' }
     );
 
-    const content = await page.content();
-    console.log(content);
-    return
+    return page.content();
 }
 
 async function setUpBrowser() {
@@ -80,4 +81,9 @@ function handleInterceptedRequest(interceptedRequest) {
         return interceptedRequest.abort()
     }
     interceptedRequest.continue();
+}
+
+function writeHTMLToFile(content, name) {
+    const filePath = path.join(__dirname, '..', '..', 'static', `${name}.html`);
+    return fsPromises.writeFile(filePath, content)
 }
