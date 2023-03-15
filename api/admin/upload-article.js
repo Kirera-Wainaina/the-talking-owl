@@ -1,5 +1,9 @@
 const FormDataHandler = require('../../utils/formDataHandler');
-const database = require('../../utils/database')
+const database = require('../../utils/database');
+const { wsEndpoint } = require('../../utils/renderer');
+const { default: puppeteer } = require('puppeteer');
+const dotenv = require('dotenv')
+dotenv.config();
 
 exports.main = async function(request, response) {
     try {
@@ -13,6 +17,7 @@ exports.main = async function(request, response) {
             const doc = await database.saveData(fields, 'articles');
 
             if (doc.id) {
+                await renderArticle(fields.urlTitle, doc.id);
                 console.log('Data was saved successfully!')
                 response.writeHead(200, {'content-type': 'text/plain'})
                 response.end('success')
@@ -34,4 +39,45 @@ function urlTitleExists(urlTitle) {
             if (querySnapshot.empty) return false;
             return true
         })
+}
+
+async function renderArticle(urlTitle, articleId) {
+    const browser = await setUpBrowser();
+    const page = await browser.newPage();
+    console.log(`${process.env.DOMAIN}/article/${urlTitle}?id=${articleId}`);
+
+    await page.setUserAgent('thetalkingowl-puppeteer');
+    await page.setRequestInterception(true);
+
+    page.on('request', handleInterceptedRequest);
+
+    await page.goto(
+        `${process.env.DOMAIN}/article/${urlTitle}?id=${articleId}`,
+        { waitUntil: 'networkidle0' }
+    );
+
+    const content = await page.content();
+    console.log(content);
+    return
+}
+
+async function setUpBrowser() {
+    if (global.wsEndpoint) {
+        return puppeteer.connect({ browserWSEndpoint: wsEndpoint });
+    } else {
+        browser = await puppeteer.launch({
+            args: ['--no-sandbox']
+        });
+        global.wsEndpoint = browser.wsEndpoint();
+        return browser
+    }
+}
+
+function handleInterceptedRequest(interceptedRequest) {
+    const allowList = ['document', 'script', 'xhr', 'fetch'];
+    
+    if (!allowList.includes(interceptedRequest.resourceType())) {
+        return interceptedRequest.abort()
+    }
+    interceptedRequest.continue();
 }
