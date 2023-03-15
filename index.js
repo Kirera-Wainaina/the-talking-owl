@@ -82,7 +82,7 @@ function routeRequests(stream, headers) {
             const filePath = path.join(__dirname, 'frontend/html/unauthorized.html');
             respondWithFile(stream, filePath, 401)
         } else {
-            handlePageRequest(stream, parsedUrl.pathname, headers['user-agent']);
+            handlePageRequest(stream, headers);
         }
     }
 }
@@ -96,12 +96,29 @@ function isFileRequest(route) {
     return Boolean(path.extname(route));
 }
 
-function handlePageRequest(stream, route, userAgent) {
-    if (userAgent == 'thetalkingowl-puppeteer') {
-        const filePath = createNonRenderedFilePath(route);
+function handlePageRequest(stream, headers) {
+    const route = headers[':path'];
+    const parsedUrl = new URL(route, process.env.DOMAIN);
+    const dirname = path.dirname(route);
+    const basename = path.basename(route);
+    console.log(parsedUrl)
+
+    if (headers['user-agent'] == 'thetalkingowl-puppeteer') {
+        const filePath = createPuppeteerFilePath(route);
         respondWithFile(stream, filePath)    
     } else {
-
+        let filePath;
+        if (dirname == '/article') {
+            const id = parsedUrl.searchParams.get('id');
+            filePath = path.join(__dirname, 'static', `${id}.html`);
+        } else if (basename == '/') {
+            filePath = path.join(__dirname, 'static', 'home.html');
+        } else if (basename == '/business' || basename == '/technology') {
+            filePath = path.join(__dirname, 'static', `${basename}.html`);
+        } else {
+            filePath = path.join(__dirname, `/frontend/html${route}.html`);
+        }
+        respondWithFile(stream, filePath)    
     }
 }
 
@@ -126,7 +143,7 @@ function createArticleFilePath() {
     return path.join(__dirname, 'frontend/html/article.html')
 }
 
-function createNonRenderedFilePath(route) {
+function createPuppeteerFilePath(route) {
     if (path.dirname(route) == '/article') {
         return createArticleFilePath()
     } else {
