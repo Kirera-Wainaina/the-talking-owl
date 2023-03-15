@@ -47,7 +47,6 @@ function urlTitleExists(urlTitle) {
 async function renderArticle(urlTitle, articleId) {
     const browser = await setUpBrowser();
     const page = await browser.newPage();
-    console.log(`${process.env.DOMAIN}/article/${urlTitle}?id=${articleId}`);
 
     await page.setUserAgent('thetalkingowl-puppeteer');
     await page.setRequestInterception(true);
