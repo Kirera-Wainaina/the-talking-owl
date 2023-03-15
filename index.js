@@ -66,6 +66,7 @@ function handleAPIPostRequest(request, response) {
 }
 
 function routeRequests(stream, headers) {
+    console.log(headers)
     const route = headers[':path'];
     const parsedUrl = new URL(route, process.env.DOMAIN);
 
@@ -81,7 +82,7 @@ function routeRequests(stream, headers) {
             const filePath = path.join(__dirname, 'frontend/html/unauthorized.html');
             respondWithFile(stream, filePath, 401)
         } else {
-            handlePageRequest(stream, parsedUrl.pathname)
+            handlePageRequest(stream, parsedUrl.pathname, headers['user-agent']);
         }
     }
 }
@@ -95,14 +96,13 @@ function isFileRequest(route) {
     return Boolean(path.extname(route));
 }
 
-function handlePageRequest(stream, route) {
-    let filePath = null;
-    if (path.dirname(route) == '/article') {
-        filePath = createArticleFilePath()
+function handlePageRequest(stream, route, userAgent) {
+    if (userAgent == 'thetalkingowl-puppeteer') {
+        const filePath = createNonRenderedFilePath(route);
+        respondWithFile(stream, filePath)    
     } else {
-        filePath = createFilePathFromPageRequest(route);
+
     }
-    respondWithFile(stream, filePath)   
 }
 
 function handleFileRequest(stream, route) {
@@ -124,6 +124,14 @@ function createFilePathFromFileRequest(route) {
 
 function createArticleFilePath() {
     return path.join(__dirname, 'frontend/html/article.html')
+}
+
+function createNonRenderedFilePath(route) {
+    if (path.dirname(route) == '/article') {
+        return createArticleFilePath()
+    } else {
+        return createFilePathFromPageRequest(route);
+    }
 }
 
 function isHomePage(route) {
