@@ -58,7 +58,9 @@ async function renderArticle(urlTitle, articleId) {
         { waitUntil: 'networkidle0' }
     );
 
-    return page.content();
+    const content = await page.content();
+    await page.close();
+    return content
 }
 
 async function setUpBrowser() {
