@@ -98,26 +98,11 @@ function isFileRequest(route) {
 
 function handlePageRequest(stream, headers) {
     const route = headers[':path'];
-    const parsedUrl = new URL(route, process.env.DOMAIN);
-    const dirname = path.dirname(route);
-    const basename = path.basename(route);
-    console.log(parsedUrl)
 
     if (headers['user-agent'] == 'thetalkingowl-puppeteer') {
-        handleRequestsFromPuppeteer(stream, route);
+        handlePageRequestsFromPuppeteer(stream, route);
     } else {
-        let filePath;
-        if (dirname == '/article') {
-            const id = parsedUrl.searchParams.get('id');
-            filePath = path.join(__dirname, 'static', `${id}.html`);
-        } else if (basename == '/') {
-            filePath = path.join(__dirname, 'static', 'home.html');
-        } else if (basename == '/business' || basename == '/technology') {
-            filePath = path.join(__dirname, 'static', `${basename}.html`);
-        } else {
-            filePath = path.join(__dirname, `/frontend/html${route}.html`);
-        }
-        respondWithFile(stream, filePath)    
+        handlePageRequestsFromUsers(stream, route);
     }
 }
 
@@ -142,12 +127,31 @@ function createArticleFilePath() {
     return path.join(__dirname, 'frontend/html/article.html')
 }
 
-function handleRequestsFromPuppeteer(stream, route) {
+function handlePageRequestsFromPuppeteer(stream, route) {
     let filePath;
     if (path.dirname(route) == '/article') {
         filePath = createArticleFilePath()
     } else {
         filePath = createFilePathFromPageRequest(route);
+    }
+    respondWithFile(stream, filePath)    
+}
+
+function handlePageRequestsFromUsers(stream, route) {
+    const parsedUrl = new URL(route, process.env.DOMAIN);
+    const dirname = path.dirname(route);
+    const basename = path.basename(route);
+    let filePath;
+
+    if (dirname == '/article') {
+        const id = parsedUrl.searchParams.get('id');
+        filePath = path.join(__dirname, 'static', `${id}.html`);
+    } else if (basename == '/') {
+        filePath = path.join(__dirname, 'static', 'home.html');
+    } else if (basename == '/business' || basename == '/technology') {
+        filePath = path.join(__dirname, 'static', `${basename}.html`);
+    } else {
+        filePath = path.join(__dirname, `/frontend/html${route}.html`);
     }
     respondWithFile(stream, filePath)    
 }
