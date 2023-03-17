@@ -139,21 +139,19 @@ function handlePageRequestsFromPuppeteer(stream, route) {
 
 function handlePageRequestsFromUsers(stream, route) {
     const parsedUrl = new URL(route, process.env.DOMAIN);
-    const dirname = path.dirname(parsedUrl.pathname);
-    const basename = path.basename(parsedUrl.pathname);
     let filePath;
 
-    if (dirname == '/articles') {
+    if (parsedUrl.pathname == '/articles') {
         const id = parsedUrl.searchParams.get('id');
         filePath = path.join(__dirname, 'static', 'articles', `${id}.html`);
-    } else if (basename == '/') {
+    } else if (parsedUrl.pathname == '/') {
         filePath = path.join(__dirname, 'static', 'home.html');
-    } else if (basename == '/business' || basename == '/technology') {
+    } else if (parsedUrl.pathname == '/business' || parsedUrl.pathname == '/technology') {
         const pageNumber = parsedUrl.searchParams.get('page');
         filePath = path.join(
             __dirname, 
             'static', 
-            basename, 
+            parsedUrl.pathname, 
             `${pageNumber}.html`
         );
     } else {
