@@ -141,7 +141,7 @@ function handlePageRequestsFromUsers(stream, route) {
     const parsedUrl = new URL(route, process.env.DOMAIN);
     let filePath;
 
-    if (parsedUrl.pathname == '/articles') {
+    if (path.dirname(parsedUrl.pathname) == '/articles') {
         const id = parsedUrl.searchParams.get('id');
         filePath = path.join(__dirname, 'static', 'articles', `${id}.html`);
     } else if (parsedUrl.pathname == '/') {
