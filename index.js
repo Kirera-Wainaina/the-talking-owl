@@ -111,10 +111,11 @@ function handleFileRequest(stream, route) {
 }
 
 function createFilePathFromPageRequest(route) {
+    const parsedUrl = new URL(route, process.env.DOMAIN);
     if (isHomePage(route)) {
         return path.join(__dirname, `/frontend/html/home.html`)
     } else {
-        return path.join(__dirname, `/frontend/html${route}.html`)
+        return path.join(__dirname, `/frontend/html${parsedUrl.pathname}.html`)
     }
 }
 
@@ -138,17 +139,25 @@ function handlePageRequestsFromPuppeteer(stream, route) {
 
 function handlePageRequestsFromUsers(stream, route) {
     const parsedUrl = new URL(route, process.env.DOMAIN);
-    const dirname = path.dirname(route);
-    const basename = path.basename(route);
+    const dirname = path.dirname(parsedUrl.pathname);
+    const basename = path.basename(parsedUrl.pathname);
     let filePath;
 
     if (dirname == '/articles') {
         const id = parsedUrl.searchParams.get('id');
-        filePath = path.join(__dirname, 'static', `${id}.html`);
+        filePath = path.join(__dirname, 'static', 'articles', `${id}.html`);
     } else if (basename == '/') {
         filePath = path.join(__dirname, 'static', 'home.html');
     } else if (basename == '/business' || basename == '/technology') {
-        filePath = path.join(__dirname, 'static', `${basename}.html`);
+        const pageNumber = parsedUrl.searchParams.get('page');
+        filePath = path.join(
+            __dirname, 
+            'static', 
+            basename, 
+            `${pageNumber}.html`
+        );
+        console.log(filePath)
+
     } else {
         filePath = path.join(__dirname, `/frontend/html${route}.html`);
     }
