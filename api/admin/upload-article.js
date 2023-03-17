@@ -69,6 +69,8 @@ async function renderPage(url) {
     await page.goto(url, { waitUntil: 'networkidle0' });
 
     const content = await page.content();
+    console.log(url, '===>')
+    // console.log(content)
     await page.close();
     await tearDownBrowser(browser);
     return { content, url }
@@ -90,6 +92,7 @@ function tearDownBrowser(browser) {
     if (browser.pages.length >= 1) {
         return;
     }
+    global.wsEndpoint = null;
     return browser.close();
 }
 
