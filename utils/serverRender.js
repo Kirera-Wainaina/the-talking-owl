@@ -1,6 +1,6 @@
 const { default: puppeteer } = require('puppeteer');
 const fsPromises = require('fs/promises');
-const database = require('../../utils/database');
+const database = require('./database');
 const path = require('path');
 const dotenv = require('dotenv')
 dotenv.config();
