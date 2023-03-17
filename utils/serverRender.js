@@ -65,7 +65,7 @@ function handleInterceptedRequest(interceptedRequest) {
 }
 
 function writeHTMLToFile(content, name) {
-    const filePath = path.join(__dirname, '..', '..', 'static', name);
+    const filePath = path.join(__dirname, '..', 'static', name);
     return fsPromises.writeFile(filePath, content)
 }
 
