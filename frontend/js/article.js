@@ -2,10 +2,7 @@ import { getArticleId, getArticleUrlTitle } from './general.js';
 import { renderOnArticlePage } from './render.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-    if (navigator.userAgent != 'thetalkingowl-puppeteer') {
-        // a user
-        return // already rendered
-    }
+    if (navigator.userAgent != 'thetalkingowl-puppeteer') return;
     const [ data ] = await retrieveArticle();
     renderOnArticlePage(data);
     fillStructuredData(data);
