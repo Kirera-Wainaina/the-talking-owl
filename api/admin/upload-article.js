@@ -1,6 +1,6 @@
 const FormDataHandler = require('../../utils/formDataHandler');
 const database = require('../../utils/database');
-const { wsEndpoint } = require('../../utils/renderer');
+// const { wsEndpoint } = require('../../utils/renderer');
 const { default: puppeteer } = require('puppeteer');
 const fsPromises = require('fs/promises');
 const path = require('path');
@@ -19,8 +19,8 @@ exports.main = async function(request, response) {
             const doc = await database.saveData(fields, 'articles');
 
             if (doc.id) {
-                const content = await renderArticle(fields.urlTitle, doc.id);
-                await writeHTMLToFile(content, doc.id);
+                await renderAllPages(fields.urlTitle, doc.id, fields.category);
+                // await writeHTMLToFile(content, doc.id);
                 console.log('Data was saved successfully!')
                 response.writeHead(200, {'content-type': 'text/plain'})
                 response.end('success')
@@ -44,7 +44,20 @@ function urlTitleExists(urlTitle) {
         })
 }
 
-async function renderArticle(urlTitle, articleId) {
+async function renderAllPages(urlTitle, articleId, category) {
+    const articleUrl = createArticleUrl(urlTitle, articleId);
+    const homeUrl = createHomeUrl();
+    const categoryUrls = await createCategoryUrls(category);
+    const urlArray = [articleUrl, homeUrl, ...categoryUrls];
+
+    const contentAndUrl = await Promise.all(urlArray.map(url => renderPage(url)));
+    await Promise.all(contentAndUrl.map(
+        obj => writeHTMLToFile(obj.content, createFileNameFromUrl(obj.url))
+    ));
+    return
+}
+
+async function renderPage(url) {
     const browser = await setUpBrowser();
     const page = await browser.newPage();
 
@@ -53,14 +66,12 @@ async function renderArticle(urlTitle, articleId) {
 
     page.on('request', handleInterceptedRequest);
 
-    await page.goto(
-        `${process.env.DOMAIN}/article/${urlTitle}?id=${articleId}`,
-        { waitUntil: 'networkidle0' }
-    );
+    await page.goto(url, { waitUntil: 'networkidle0' });
 
     const content = await page.content();
     await page.close();
-    return content
+    await tearDownBrowser(browser);
+    return { content, url }
 }
 
 async function setUpBrowser() {
@@ -75,6 +86,13 @@ async function setUpBrowser() {
     }
 }
 
+function tearDownBrowser(browser) {
+    if (browser.pages.length >= 1) {
+        return;
+    }
+    return browser.close();
+}
+
 function handleInterceptedRequest(interceptedRequest) {
     const allowList = ['document', 'script', 'xhr', 'fetch'];
     
@@ -85,6 +103,53 @@ function handleInterceptedRequest(interceptedRequest) {
 }
 
 function writeHTMLToFile(content, name) {
-    const filePath = path.join(__dirname, '..', '..', 'static', `${name}.html`);
+    const filePath = path.join(__dirname, '..', '..', 'static', name);
     return fsPromises.writeFile(filePath, content)
+}
+
+function createArticleUrl(urlTitle, articleId) {
+    return `${process.env.DOMAIN}/articles/${urlTitle}?id=${articleId}`
+}
+
+function createHomeUrl() {
+    return `${process.env.DOMAIN}/`
+}
+
+async function createCategoryUrls(category) {
+    const count = await getArticleNumberInCategory(category);
+    const numberOfPages = Math.ceil(count / 10);
+    const categoryRoute = category == 'business' ? 'business' : 'technology';
+    const urls = [];
+
+    for (let pageNumber = 1; pageNumber <= numberOfPages; pageNumber++) {
+        urls.push(
+            `${process.env.DOMAIN}/${categoryRoute}?page=${pageNumber}`
+        )
+    }
+    return urls
+}
+
+async function getArticleNumberInCategory(category) {
+    let collection = database.firestore.collection('articles');
+    collection = collection.where(
+        'category', 
+        '==', 
+        category == 'business' ? 'business' : 'tech'
+    );
+    collection = collection.count();
+    const snapshot = await collection.get();
+    return snapshot.data().count
+}
+
+function createFileNameFromUrl(url) {
+    const parsedUrl = new URL(url);
+    console.log(parsedUrl)
+    if (parsedUrl.pathname == '/') {
+        return '/home.html'
+    } else if (parsedUrl.pathname == '/technology' || parsedUrl == '/business') {
+        const page = parsedUrl.searchParams.get('page');
+        return `${parsedUrl.pathname}/${page}.html`;
+    } else {
+        return `/articles/${parsedUrl.searchParams.get('id')}.html`
+    }
 }
