@@ -61,11 +61,11 @@ async function handleEditResponse(response) {
 
 function createDataToEdit() {
     const previewData = createPreviewData();
-    delete previewData.urlTitle;
     const params = new URLSearchParams(location.search);
 
     return {
         ...previewData,
-        id: params.get('id')
+        id: params.get('id'),
+        urlTitle: params.get('urlTitle')
     }
 }
