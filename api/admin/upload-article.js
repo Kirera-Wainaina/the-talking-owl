@@ -1,6 +1,5 @@
 const FormDataHandler = require('../../utils/formDataHandler');
 const database = require('../../utils/database');
-// const { wsEndpoint } = require('../../utils/renderer');
 const { default: puppeteer } = require('puppeteer');
 const fsPromises = require('fs/promises');
 const path = require('path');
@@ -20,7 +19,6 @@ exports.main = async function(request, response) {
 
             if (doc.id) {
                 await renderAllPages(fields.urlTitle, doc.id, fields.category);
-                // await writeHTMLToFile(content, doc.id);
                 console.log('Data was saved successfully!')
                 response.writeHead(200, {'content-type': 'text/plain'})
                 response.end('success')
@@ -69,8 +67,6 @@ async function renderPage(url) {
     await page.goto(url, { waitUntil: 'networkidle0' });
 
     const content = await page.content();
-    console.log(url, '===>')
-    // console.log(content)
     await page.close();
     await tearDownBrowser(browser);
     return { content, url }
@@ -146,7 +142,6 @@ async function getArticleNumberInCategory(category) {
 
 function createFileNameFromUrl(url) {
     const parsedUrl = new URL(url);
-    console.log(parsedUrl)
     if (parsedUrl.pathname == '/') {
         return '/home.html'
     } else if (parsedUrl.pathname == '/technology' || parsedUrl == '/business') {
