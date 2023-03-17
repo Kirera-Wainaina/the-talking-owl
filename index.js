@@ -155,7 +155,7 @@ function handlePageRequestsFromUsers(stream, route) {
             `${pageNumber}.html`
         );
     } else {
-        filePath = path.join(__dirname, `/frontend/html${route}.html`);
+        filePath = path.join(__dirname, `/frontend/html${parsedUrl.pathname}.html`);
     }
     respondWithFile(stream, filePath)    
 }
