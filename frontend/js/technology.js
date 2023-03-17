@@ -1,10 +1,10 @@
 import { displayArticleList, getCurrentPageNumber, displayPageNumbers } from "./article-list.js";
 
-document.addEventListener('DOMContentLoaded', retrieveArticleData);
-
-document.addEventListener(
-    'DOMContentLoaded', 
-    async () => displayPageNumbers(await retrieveBusinessArticleCount()));
+document.addEventListener('DOMContentLoaded', async () =>{
+    if (navigator.userAgent != 'thetalkingowl-puppeteer') return;
+    retrieveArticleData();
+    displayPageNumbers(await retrieveTechnologyArticleCount());
+})
 
 function retrieveArticleData() {
     const pageNumber = getCurrentPageNumber();
@@ -25,7 +25,7 @@ function createArticleHref(urlTitle, id) {
     return `/articles/${urlTitle}?id=${id}`
 }
 
-function retrieveBusinessArticleCount() {
+function retrieveTechnologyArticleCount() {
     return fetch('/api/articles?category=tech&count=true')
         .then(response => response.json())
 }
