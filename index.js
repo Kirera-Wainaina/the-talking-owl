@@ -156,8 +156,6 @@ function handlePageRequestsFromUsers(stream, route) {
             basename, 
             `${pageNumber}.html`
         );
-        console.log(filePath)
-
     } else {
         filePath = path.join(__dirname, `/frontend/html${route}.html`);
     }
