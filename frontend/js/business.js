@@ -1,10 +1,10 @@
 import { displayArticleList, getCurrentPageNumber, displayPageNumbers } from "./article-list.js";
 
-document.addEventListener('DOMContentLoaded', retrieveArticleData);
-
-document.addEventListener(
-    'DOMContentLoaded', 
-    async () => displayPageNumbers(await retrieveBusinessArticleCount()));
+document.addEventListener('DOMContentLoaded', async () =>{
+    if (navigator.userAgent != 'thetalkingowl-puppeteer') return;
+    retrieveArticleData();
+    displayPageNumbers(await retrieveBusinessArticleCount());
+})
 
 function retrieveArticleData() {
     const pageNumber = getCurrentPageNumber();
