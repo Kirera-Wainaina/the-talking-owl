@@ -147,7 +147,7 @@ function handlePageRequestsFromUsers(stream, route) {
     } else if (parsedUrl.pathname == '/') {
         filePath = path.join(__dirname, 'static', 'home.html');
     } else if (parsedUrl.pathname == '/business' || parsedUrl.pathname == '/technology') {
-        const pageNumber = parsedUrl.searchParams.get('page');
+        const pageNumber = parsedUrl.searchParams.get('page') || 1;
         filePath = path.join(
             __dirname, 
             'static', 
