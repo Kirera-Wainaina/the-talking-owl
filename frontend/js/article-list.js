@@ -46,8 +46,6 @@ export function getCurrentPageNumber() {
 }
 
 export async function displayPageNumbers(articleCount) {
-    // const articleCount = await retrieveNumberOfPages();
-    console.log(articleCount)
     const currentPageNumber = getCurrentPageNumber();
     const container = document.getElementById('page-numbers');
 
