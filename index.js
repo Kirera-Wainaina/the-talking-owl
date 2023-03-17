@@ -66,7 +66,6 @@ function handleAPIPostRequest(request, response) {
 }
 
 function routeRequests(stream, headers) {
-    console.log(headers)
     const route = headers[':path'];
     const parsedUrl = new URL(route, process.env.DOMAIN);
 
@@ -129,7 +128,7 @@ function createArticleFilePath() {
 
 function handlePageRequestsFromPuppeteer(stream, route) {
     let filePath;
-    if (path.dirname(route) == '/article') {
+    if (path.dirname(route) == '/articles') {
         filePath = createArticleFilePath()
     } else {
         filePath = createFilePathFromPageRequest(route);
@@ -143,7 +142,7 @@ function handlePageRequestsFromUsers(stream, route) {
     const basename = path.basename(route);
     let filePath;
 
-    if (dirname == '/article') {
+    if (dirname == '/articles') {
         const id = parsedUrl.searchParams.get('id');
         filePath = path.join(__dirname, 'static', `${id}.html`);
     } else if (basename == '/') {
