@@ -2,7 +2,7 @@ import { getArticleId, getArticleUrlTitle } from './general.js';
 import { renderOnArticlePage } from './render.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-    if (!navigator.userAgent == 'thetalkingowl-puppeteer') {
+    if (navigator.userAgent != 'thetalkingowl-puppeteer') {
         // a user
         return // already rendered
     }
