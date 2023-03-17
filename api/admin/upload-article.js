@@ -144,7 +144,7 @@ function createFileNameFromUrl(url) {
     const parsedUrl = new URL(url);
     if (parsedUrl.pathname == '/') {
         return '/home.html'
-    } else if (parsedUrl.pathname == '/technology' || parsedUrl == '/business') {
+    } else if (parsedUrl.pathname == '/technology' || parsedUrl.pathname == '/business') {
         const page = parsedUrl.searchParams.get('page');
         return `${parsedUrl.pathname}/${page}.html`;
     } else {
