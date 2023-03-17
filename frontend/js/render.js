@@ -191,7 +191,7 @@ function createRelatedArticleContainer(url) {
         fetchRelatedArticleData(id, urlTitle)
             .then(data => {
                 const a = createArticleContainer(data[0], 5);
-                a.href = `/article/${urlTitle}?id=${id}`;
+                a.href = `/articles/${urlTitle}?id=${id}`;
                 resolve(a);
             })
             .catch(error => reject(error))
