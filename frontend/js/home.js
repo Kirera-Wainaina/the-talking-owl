@@ -1,6 +1,7 @@
 import { createDateString, createImageElement, createTextElement } from "./general.js";
 
 document.addEventListener('DOMContentLoaded', () => {
+    if (navigator.userAgent != 'thetalkingowl-puppeteer') return;
     displayBusinessArticles();
     displayTechnologyArticles();
 });
