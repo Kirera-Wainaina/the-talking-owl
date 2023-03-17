@@ -40,7 +40,7 @@ function createArticleComponent(article) {
         createDateString(article.publishedDate)
     ));
 
-    a.href = `/article/${article.urlTitle}?id=${article.id}`;
+    a.href = `/articles/${article.urlTitle}?id=${article.id}`;
     if (article.category == 'business') {
         a.classList.add('business-article');
     } else {

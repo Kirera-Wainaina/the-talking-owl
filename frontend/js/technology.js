@@ -22,7 +22,7 @@ publishedDate&field=urlTitle&field=landscapeImageText&category=tech\
 }
 
 function createArticleHref(urlTitle, id) {
-    return `/article/${urlTitle}?id=${id}`
+    return `/articles/${urlTitle}?id=${id}`
 }
 
 function retrieveBusinessArticleCount() {
