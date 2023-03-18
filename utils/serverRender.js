@@ -18,7 +18,7 @@ exports.renderArticleRelatedPages = async function(urlTitle, articleId, category
     return
 }
 
-exports.renderPage = async function (url) {
+async function renderPage(url) {
     const browser = await setUpBrowser();
     const page = await browser.newPage();
 
@@ -37,7 +37,12 @@ exports.renderPage = async function (url) {
 
 exports.renderAllPages = async function() {
     const urls = await createAllUrls()
-    return urls
+    const contentAndUrl = await Promise.all(urls.map(url => renderPage(url)));
+    await Promise.all(contentAndUrl.map(
+        ({content, url}) => writeHTMLToFile(content, createFileNameFromUrl(url))
+    ))
+    console.log('All pages rendered')
+    return;
 }
 
 async function setUpBrowser() {
