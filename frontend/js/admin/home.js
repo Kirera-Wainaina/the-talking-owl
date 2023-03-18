@@ -32,13 +32,17 @@ function handleRenderAllPagesResponse(response) {
     hideLoadingModal();
     if (response == 'success') {
         slider = document.getElementById('render-success-slider');
+        slider.addEventListener(
+            'animationend', 
+            () => toggleElementClass(slider, 'hide')
+        );
         toggleElementClass(slider, 'hide');
     } else {
         slider = document.getElementById('render-error-slider')
+        slider.addEventListener(
+            'animationend', 
+            () => toggleElementClass(slider, 'hide')
+        );
         toggleElementClass(slider, 'hide')
     }
-    slider.addEventListener(
-        'animationend', 
-        () => toggleElementClass(slider, 'hide')
-    );
 }
