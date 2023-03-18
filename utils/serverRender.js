@@ -33,6 +33,11 @@ exports.renderPage = async function (url) {
     await page.close();
     await tearDownBrowser(browser);
     return { content, url }
+} 
+
+exports.renderAllPages = async function() {
+    const urls = await createAllUrls()
+    return urls
 }
 
 async function setUpBrowser() {
@@ -113,4 +118,32 @@ function createFileNameFromUrl(url) {
     } else {
         return `/articles/${parsedUrl.searchParams.get('id')}.html`
     }
+}
+
+async function retrieveAllArticleUrltitles() {
+    const articleUrls = [];
+    let collection = database.firestore.collection('articles');
+    collection = collection.select('urlTitle');
+    
+    const snapshot = await collection.get();
+    snapshot.forEach(snapshotDoc => articleUrls.push({
+        id: snapshotDoc.id,
+        urlTitle: snapshotDoc.data().urlTitle
+    }));
+    return articleUrls
+}
+
+async function createAllArticleUrls() {
+    return (await retrieveAllArticleUrltitles())
+        .map(({urlTitle, id}) => createArticleUrl(urlTitle, id))
+}
+
+async function createAllUrls() {
+    const urls = await Promise.all([
+        createCategoryUrls('business'), 
+        createCategoryUrls('technology'), 
+        createAllArticleUrls()
+    ])
+    urls.push(createHomeUrl());
+    return urls.flat()
 }
