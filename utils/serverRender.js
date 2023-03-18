@@ -18,7 +18,7 @@ exports.renderArticleRelatedPages = async function(urlTitle, articleId, category
     return
 }
 
-async function renderPage(url) {
+exports.renderPage = async function (url) {
     const browser = await setUpBrowser();
     const page = await browser.newPage();
 
