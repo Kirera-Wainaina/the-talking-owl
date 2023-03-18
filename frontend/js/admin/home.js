@@ -6,12 +6,7 @@ renderButton.addEventListener('click', renderAllPages);
 async function renderAllPages(event) {
     showLoadingModal();
     const response = await submitRenderAllPagesRequest();
-    hideLoadingModal();
-    if (response == 'success') {
-        toggleElementClass(document.getElementById('render-success-slider'), 'hide')
-    } else {
-        toggleElementClass(document.getElementById('render-error-slider'), 'hide')
-    }
+    handleRenderAllPagesResponse(response)
 }
 
 function showLoadingModal() {
@@ -30,4 +25,20 @@ function submitRenderAllPagesRequest() {
         '/api/admin/render-all-pages',
         { method: 'POST'}
     ).then(response => response.text())
+}
+
+function handleRenderAllPagesResponse(response) {
+    let slider;
+    hideLoadingModal();
+    if (response == 'success') {
+        slider = document.getElementById('render-success-slider');
+        toggleElementClass(slider, 'hide');
+    } else {
+        slider = document.getElementById('render-error-slider')
+        toggleElementClass(slider, 'hide')
+    }
+    slider.addEventListener(
+        'animationend', 
+        () => toggleElementClass(slider, 'hide')
+    );
 }
