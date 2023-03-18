@@ -45,6 +45,11 @@ h1 {
     opacity: .7;
 }
 
+#render-success-slider {
+    background-color: lightgreen;
+    color: var(--primary);
+} 
+
 @media (orientation: portrait) {
     h1 {
         grid-column: 1 / 7;
