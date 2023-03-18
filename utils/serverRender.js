@@ -5,7 +5,7 @@ const path = require('path');
 const dotenv = require('dotenv')
 dotenv.config();
 
-exports.renderAllPages = async function(urlTitle, articleId, category) {
+exports.renderArticleRelatedPages = async function(urlTitle, articleId, category) {
     const articleUrl = createArticleUrl(urlTitle, articleId);
     const homeUrl = createHomeUrl();
     const categoryUrls = await createCategoryUrls(category);

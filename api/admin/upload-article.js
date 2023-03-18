@@ -1,6 +1,6 @@
 const FormDataHandler = require('../../utils/formDataHandler');
 const database = require('../../utils/database');
-const { renderAllPages } = require('../../utils/serverRender');
+const { renderArticleRelatedPages } = require('../../utils/serverRender');
 
 exports.main = async function(request, response) {
     try {
@@ -14,7 +14,7 @@ exports.main = async function(request, response) {
             const doc = await database.saveData(fields, 'articles');
 
             if (doc.id) {
-                await renderAllPages(fields.urlTitle, doc.id, fields.category);
+                await renderArticleRelatedPages(fields.urlTitle, doc.id, fields.category);
                 console.log('Data was saved successfully!')
                 response.writeHead(200, {'content-type': 'text/plain'})
                 response.end('success')

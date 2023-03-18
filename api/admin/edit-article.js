@@ -1,6 +1,6 @@
 const FormDataHandler = require('../../utils/formDataHandler');
 const database = require('../../utils/database');
-const { renderAllPages } = require('../../utils/serverRender');
+const { renderArticleRelatedPages } = require('../../utils/serverRender');
 
 exports.main = async function(request, response) {
     try {
@@ -11,7 +11,7 @@ exports.main = async function(request, response) {
         const result = await editArticle(fields)
         
         if (result.writeTime) {
-            renderAllPages(urlTitle, id, fields.category);
+            renderArticleRelatedPages(urlTitle, id, fields.category);
             console.log('Data was edited successfully!')
                 response.writeHead(200, {'content-type': 'text/plain'})
                 response.end('success')
