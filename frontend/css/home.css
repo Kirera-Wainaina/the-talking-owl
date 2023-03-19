@@ -137,6 +137,7 @@ h2 {
     width: 48%;
     display: flex;
     text-decoration: none;
+    margin-bottom: 1.5em;
 }
 
 .technology-article picture {
