@@ -1,10 +1,17 @@
 import { createDateString, createImageElement, createTextElement } from "./general.js";
 
 document.addEventListener('DOMContentLoaded', () => {
+    // dom related functions
     if (navigator.userAgent != 'thetalkingowl-puppeteer') return;
     displayBusinessArticles();
     displayTechnologyArticles();
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    // animation related functionality
+    if (navigator.userAgent == 'thetalkingowl-puppeteer') return;
+    setAnimationOnBusinessArticleCards();
+})
 
 async function displayBusinessArticles() {
     const data = await retrieveBusinessArticles();
@@ -93,4 +100,30 @@ function retrieveTechnologyArticles() {
 &field=publishedDate&field=urlTitle&field=category\
 &orderBy=publishedDate&orderByDirection=desc&category=tech&limit=4')
     .then(response => response.json())
+}
+
+function setAnimationOnBusinessArticleCards() {
+    setAnimationOnBusinessImage()
+}
+
+function setAnimationOnBusinessImage() {
+    const imageElements = document
+        .querySelectorAll('#business-articles picture');
+    const options = {
+        root: null,
+        rootMargin: '0%',
+        threshold: .1
+    }
+    imageElements.forEach(element => {
+        const observer = new IntersectionObserver(setAnimationClassonBusinessImage, options);
+        observer.observe(element);
+    })
+}
+
+function setAnimationClassonBusinessImage(entries) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            console.log(entry.target);
+        }
+    })
 }
