@@ -195,12 +195,12 @@ h2 {
 
 @keyframes slide-up {
     from {
-        margin-top: 20em;
+        transform: translateY(20em);
         opacity: 0;
     }
 
     to {
-        margin-top: 4em;
+        transform: translateY(0);
         opacity: 1;
     }
 }
@@ -308,35 +308,5 @@ h2 {
         margin-top: -2em;
         width: 60vw;
         align-self: flex-end;
-    }
-
-    @keyframes expand-left {
-        from {
-            width: 0;
-            opacity: 0;
-        }
-    
-        to {
-            width: 90vw;
-            opacity: 1;
-        }
-    }
-    
-    @keyframes slide-up {
-        0% {
-            margin-top: 10em;
-            margin-left: 3vw;
-            opacity: 0;
-        }
-    
-        50% {
-            margin-left: 0;
-        }
-
-        100% {
-            margin-top: -2em;
-            margin-left: -3vw;
-            opacity: 1;
-        }
-    }
-    }
+    }   
+}
