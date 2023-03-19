@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // animation related functionality
     if (navigator.userAgent == 'thetalkingowl-puppeteer') return;
     setAnimationOnBusinessArticleCards();
+    setAnimationOnTechnologyArticleCards();
 })
 
 async function displayBusinessArticles() {
@@ -103,15 +104,27 @@ function retrieveTechnologyArticles() {
 }
 
 function setAnimationOnBusinessArticleCards() {
-    setAnimationOnBusinessContainers(
+    setAnimationOnArticleContainers(
         '#business-articles picture', 
-        setAnimationClassonBusinessImage
+        setAnimationClassOnElement,
+        'expand-left'
     );
-    setAnimationOnBusinessContainers('#business-articles div', setAnimationClassOnBusinessDescription)
-    // setAnimationOnBusinessContainers('#business-articles div');
+    setAnimationOnArticleContainers(
+        '#business-articles div', 
+        setAnimationClassOnElement,
+        'slide-up'
+    )
 }
 
-function setAnimationOnBusinessContainers(querySelectorString, intersectionCallback) {
+function setAnimationOnTechnologyArticleCards() {
+    setAnimationOnArticleContainers(
+        '#technology-articles picture',
+        setAnimationClassOnElement,
+        'roll-down'
+    )
+}
+
+function setAnimationOnArticleContainers(querySelectorString, intersectionCallback, className) {
     const elements = document.querySelectorAll(querySelectorString);
     const options = {
         root: null,
@@ -119,28 +132,20 @@ function setAnimationOnBusinessContainers(querySelectorString, intersectionCallb
         threshold: .1
     }
     elements.forEach(element => {
-        const observer = new IntersectionObserver(intersectionCallback, options);
+        const observer = new IntersectionObserver(
+            (entries, observer) => intersectionCallback(entries, className), 
+            options
+        );
         observer.observe(element);
     })
 }
 
-function setAnimationClassonBusinessImage(entries) {
+function setAnimationClassOnElement(entries, className) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('expand-left');
+            entry.target.classList.add(className);
             entry.target.addEventListener('animationend', () => {
-                entry.target.classList.remove('expand-left');
-            })
-        }
-    })
-}
-
-function setAnimationClassOnBusinessDescription(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('slide-up');
-            entry.target.addEventListener('animationend', () => {
-                entry.target.classList.remove('slide-up');
+                entry.target.classList.remove(className);
             })
         }
     })
