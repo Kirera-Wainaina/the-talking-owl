@@ -45,6 +45,7 @@
 .article-card p:last-of-type {
     margin-top: .8em;
     font-weight: 600;
+    font-size: 1em;
 }
 
 @media (orientation: portrait) {
