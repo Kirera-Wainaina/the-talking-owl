@@ -103,19 +103,22 @@ function retrieveTechnologyArticles() {
 }
 
 function setAnimationOnBusinessArticleCards() {
-    setAnimationOnBusinessImage()
+    setAnimationOnBusinessContainers(
+        '#business-articles picture', 
+        setAnimationClassonBusinessImage
+    );
+    // setAnimationOnBusinessContainers('#business-articles div');
 }
 
-function setAnimationOnBusinessImage() {
-    const imageElements = document
-        .querySelectorAll('#business-articles picture');
+function setAnimationOnBusinessContainers(querySelectorString, intersectionCallback) {
+    const elements = document.querySelectorAll(querySelectorString);
     const options = {
         root: null,
         rootMargin: '10%',
         threshold: .1
     }
-    imageElements.forEach(element => {
-        const observer = new IntersectionObserver(setAnimationClassonBusinessImage, options);
+    elements.forEach(element => {
+        const observer = new IntersectionObserver(intersectionCallback, options);
         observer.observe(element);
     })
 }
