@@ -214,6 +214,7 @@ h2 {
 
     .business-article div {
         width: 60vw;
+        height: auto;
         margin-top: -2em;
         margin-left: -3vw;
     }
