@@ -171,7 +171,9 @@ h2 {
 
 @media (orientation: portrait) {
     h1 {
-        width: 100vw;
+        width: 95vw;
+        padding-left: 2.5vw;
+        padding-right: 2.5vw;
     }
 
     h2 {
