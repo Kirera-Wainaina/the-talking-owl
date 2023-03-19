@@ -187,6 +187,21 @@ h2 {
     }
 }
 
+.slide-up {
+    animation-name: slide-up;
+    animation-duration: 1.5s;
+}
+
+@keyframes slide-up {
+    from {
+
+    }
+
+    to {
+
+    }
+}
+
 @media (orientation: portrait) {
     h1 {
         width: 95vw;
@@ -272,5 +287,17 @@ h2 {
         margin-top: -2em;
         width: 60vw;
         align-self: flex-end;
+    }
+
+    @keyframes expand-left {
+        from {
+            width: 0;
+            opacity: 0;
+        }
+    
+        to {
+            width: 90vw;
+            opacity: 1;
+        }
     }
 }
