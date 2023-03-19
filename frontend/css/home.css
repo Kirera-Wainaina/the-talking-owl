@@ -169,6 +169,24 @@ h2 {
     border-radius: 7px;
 }
 
+.expand-left {
+    animation-name: expand-left;
+    animation-duration: 1s;
+    z-index: -1;
+}
+
+@keyframes expand-left {
+    from {
+        width: 0;
+        opacity: 0;
+    }
+
+    to {
+        width: 18vw;
+        opacity: 1;
+    }
+}
+
 @media (orientation: portrait) {
     h1 {
         width: 95vw;

@@ -123,7 +123,10 @@ function setAnimationOnBusinessImage() {
 function setAnimationClassonBusinessImage(entries) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            console.log(entry.target);
+            entry.target.classList.add('expand-left');
+            entry.target.addEventListener('animationEnd', () => {
+                entry.target.classList.remove('expand-left');
+            })
         }
     })
 }
