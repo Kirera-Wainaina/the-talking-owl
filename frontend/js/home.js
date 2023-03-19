@@ -107,6 +107,7 @@ function setAnimationOnBusinessArticleCards() {
         '#business-articles picture', 
         setAnimationClassonBusinessImage
     );
+    setAnimationOnBusinessContainers('#business-articles div', setAnimationClassOnBusinessDescription)
     // setAnimationOnBusinessContainers('#business-articles div');
 }
 
@@ -129,6 +130,17 @@ function setAnimationClassonBusinessImage(entries) {
             entry.target.classList.add('expand-left');
             entry.target.addEventListener('animationend', () => {
                 entry.target.classList.remove('expand-left');
+            })
+        }
+    })
+}
+
+function setAnimationClassOnBusinessDescription(entries) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('slide-up');
+            entry.target.addEventListener('animationend', () => {
+                entry.target.classList.remove('slide-up');
             })
         }
     })

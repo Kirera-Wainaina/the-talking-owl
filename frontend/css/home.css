@@ -194,11 +194,13 @@ h2 {
 
 @keyframes slide-up {
     from {
-
+        margin-top: 20em;
+        opacity: 0;
     }
 
     to {
-
+        margin-top: 4em;
+        opacity: 1;
     }
 }
 
@@ -300,4 +302,22 @@ h2 {
             opacity: 1;
         }
     }
-}
+    
+    @keyframes slide-up {
+        0% {
+            margin-top: 10em;
+            margin-left: 3vw;
+            opacity: 0;
+        }
+    
+        50% {
+            margin-left: 0;
+        }
+
+        100% {
+            margin-top: -2em;
+            margin-left: -3vw;
+            opacity: 1;
+        }
+    }
+    }
