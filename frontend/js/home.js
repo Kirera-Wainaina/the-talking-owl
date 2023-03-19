@@ -121,6 +121,11 @@ function setAnimationOnTechnologyArticleCards() {
         '#technology-articles picture',
         setAnimationClassOnElement,
         'rotate-up'
+    );
+    setAnimationOnArticleContainers(
+        '#technology-articles div',
+        setAnimationClassOnElement,
+        'roll-down'
     )
 }
 

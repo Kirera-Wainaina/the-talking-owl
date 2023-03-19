@@ -206,11 +206,10 @@ h2 {
 }
 
 .rotate-up {
-    animation-name: roll-down;
+    animation-name: rotate-up;
     animation-duration: 2s;
     transform-origin: center;
     z-index: -1;
-    object-fit: cover;
 }
 
 @keyframes rotate-up {
@@ -223,6 +222,25 @@ h2 {
     to {
         opacity: 1;
         transform: rotateX(0deg);
+    }
+}
+
+.roll-down {
+    animation-name: roll-down;
+    animation-duration: 2s;
+}
+
+@keyframes roll-down {
+    from {
+        opacity: 0;
+        transform: scaleY(0);
+        transform: translateY(3em);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+        transform: translateY(0);
     }
 }
 
