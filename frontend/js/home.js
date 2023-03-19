@@ -111,7 +111,7 @@ function setAnimationOnBusinessImage() {
         .querySelectorAll('#business-articles picture');
     const options = {
         root: null,
-        rootMargin: '0%',
+        rootMargin: '10%',
         threshold: .1
     }
     imageElements.forEach(element => {
@@ -124,7 +124,7 @@ function setAnimationClassonBusinessImage(entries) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('expand-left');
-            entry.target.addEventListener('animationEnd', () => {
+            entry.target.addEventListener('animationend', () => {
                 entry.target.classList.remove('expand-left');
             })
         }
