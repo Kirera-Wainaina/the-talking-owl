@@ -5,10 +5,13 @@ body {
 }
 
 h1 {
-    grid-column: 1 / 13;
     text-align: center;
     color: var(--primary);
     padding: 1em;
+    position: absolute;
+    top: 10vh;
+    left: 0;
+    width: 100vw;
 }
 
 h2 {
@@ -166,7 +169,9 @@ h2 {
 
 @media (orientation: portrait) {
     h1 {
-        grid-column: 1 / 7;
+        width: 99vw;
+        padding: 0;
+        padding-top: 1em;
     }
 
     h2 {

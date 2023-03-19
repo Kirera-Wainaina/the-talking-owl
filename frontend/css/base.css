@@ -109,7 +109,7 @@ img {
 
 nav {
     grid-column: 1 / 13;
-    height: 4em;
+    height: 10vh;
     display: flex;
     align-items: center;
     box-shadow: var(--shadow);
@@ -231,7 +231,6 @@ footer div img {
 
     nav {
         grid-column: 1 / 7;
-        height: 4em;
         justify-content: space-around;
         padding: 0;
     }
