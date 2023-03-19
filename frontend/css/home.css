@@ -205,21 +205,24 @@ h2 {
     }
 }
 
-.roll-down {
+.rotate-up {
     animation-name: roll-down;
-    animation-duration: 3s;
+    animation-duration: 2s;
+    transform-origin: center;
     z-index: -1;
     object-fit: cover;
 }
 
-@keyframes roll-down {
-    to {
+@keyframes rotate-up {
+    from {
         opacity: 0;
+        transform: rotateX(90deg);
 
     }
 
     to {
         opacity: 1;
+        transform: rotateX(0deg);
     }
 }
 
