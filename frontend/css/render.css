@@ -108,7 +108,7 @@ article > p {
     margin-top: 1em;
 }
 
-article > img {
+article img {
     border-radius: 9px;
 }
 
@@ -179,6 +179,10 @@ article > img {
 #related-articles a {
     margin-right: 0;
     width: 47%;
+}
+
+figcaption {
+    text-align: center;
 }
 
 @media (orientation: portrait) {
