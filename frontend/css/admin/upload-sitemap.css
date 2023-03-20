@@ -1,0 +1,41 @@
+@import url('../base.css');
+
+h1 {
+    grid-column: 1 / 13;
+    text-align: center;
+    color: var(--primary);
+    margin-top: 1em;
+}
+
+form {
+    grid-column: 5 / 9;
+    margin-top: 1em;
+    box-shadow: var(--shadow);
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    height: 40vh;
+    justify-content: space-around;
+}
+
+button {
+    background-color: var(--secondary);
+    color: white;
+    padding: 1em;
+    margin-top: 1em;
+    border-radius: 5px;
+    font-weight: 800;
+    font-size: 1.2em;
+}
+
+@media (orientation: portrait) {
+    h1 {
+        grid-column: 1 / 7;
+    }
+
+    form {
+        grid-column: 1 / 7;
+        margin-left: 1em;
+        margin-right: 1em;
+    }
+}
