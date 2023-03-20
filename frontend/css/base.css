@@ -20,7 +20,7 @@ h1, h2, h3, h4, h5, h6, button {
     font-family: 'Montserrat', sans-serif;
 }
 
-p, a, label, input, select, textarea, li {
+p, a, label, input, select, textarea, li, figcaption {
     font-family: 'Jost', sans-serif;
 }
 
