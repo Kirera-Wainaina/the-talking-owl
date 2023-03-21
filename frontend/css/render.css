@@ -112,6 +112,11 @@ article img {
     border-radius: 9px;
 }
 
+article img.portrait {
+    width: 60%;
+    margin-left: 20%;
+}
+
 #table-of-contents {
     grid-column: 1 / 4;
     margin-top: 2em;
@@ -225,6 +230,11 @@ figcaption {
         grid-column: 1 / 7;
         margin-left: 2em;
         margin-right: 2em;
+    }
+
+    article img.portrait {
+        width: 100%;
+        margin: 0%;
     }
 
     #table-of-contents {
