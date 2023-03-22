@@ -23,6 +23,10 @@ h1 {
     font-size: 1.3em;
 }
 
+.render p > a {
+    font-size: 1em
+}
+
 .render h1 {
     color: white;
     display: flex;
