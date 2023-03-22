@@ -29,7 +29,7 @@ p {
     margin-top: 1em;
 }
 
-ul {
+ul, ol {
     grid-column: 4 / 10;
     margin-top: 1em;
 }
