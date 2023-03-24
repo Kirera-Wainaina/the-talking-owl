@@ -19,7 +19,8 @@ h1 {
     display: none;
 }
 
-.render p {
+.render p,
+.render li {
     font-size: 1.3em;
 }
 
