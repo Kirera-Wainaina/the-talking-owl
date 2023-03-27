@@ -87,6 +87,17 @@ function createPublishedDate(milliseconds) {
     return div;
 }
 
+function createAffiliateDisclaimer() {
+    const div = document.createElement('div');
+    const p = document.createElement('p');
+
+    p.textContent = 'When you buy something through one of the links on our site, \
+we may earn an affiliate commission';
+    div.id = 'affiliate-disclaimer';
+    div.append(p);
+    return div
+}
+
 function createClockIcon() {
     const img = document.createElement('img');
     img.src = '/frontend/images/clock-icon.svg';
@@ -99,6 +110,7 @@ function createClockIcon() {
 function createArticleContent(content, date) {
     const article = document.createElement('article');
     article.append(createPublishedDate(date))
+    article.append(createAffiliateDisclaimer())
     article.innerHTML += content;
     return article;
 }
