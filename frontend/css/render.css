@@ -273,26 +273,6 @@ figcaption {
         margin-right: 0;
     }
 
-    #table-of-contents .h2-margin-left {
-        margin-left: .5em;
-    }
-    
-    #table-of-contents .h3-margin-left {
-        margin-left: 1.7em;
-    }
-    
-    #table-of-contents .h4-margin-left {
-        margin-left: 2.9em;
-    }
-    
-    #table-of-contents .h5-margin-left {
-        margin-left: 4.1em;
-    }
-    
-    #table-of-contents .h6-margin-left {
-        margin-left: 5.3em;
-    }
-
     #related-articles-heading {
         grid-column: 1 / 7;
         margin-left: 2em;
