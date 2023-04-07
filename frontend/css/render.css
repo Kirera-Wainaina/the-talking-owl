@@ -117,8 +117,11 @@ article > p {
     margin-top: 1em;
 }
 
-article img {
+article > img,
+article figure img {
     border-radius: 9px;
+    width: 100%;
+    height: auto;
 }
 
 article img.portrait {
