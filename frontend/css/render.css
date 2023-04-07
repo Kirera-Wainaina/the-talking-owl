@@ -269,6 +269,10 @@ figcaption {
         margin-left: 1em;
     }
 
+    #table-of-contents a {
+        margin-right: 0;
+    }
+
     #table-of-contents .h2-margin-left {
         margin-left: .5em;
     }
