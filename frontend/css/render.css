@@ -230,16 +230,18 @@ figcaption {
 
 table {
     width: 100%;
-    border: 3px ridge var(--primary);
+    border: 3px ridge lightgray;
     margin-top: 2em;
     margin-bottom: 3em;
 }
 
 table th, table td {
     font-size: 1.3em;
-    border: 1px solid var(--primary);
+    border: 1px solid gray;
     width: 50%;
     padding: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
 }
 
 table th {
