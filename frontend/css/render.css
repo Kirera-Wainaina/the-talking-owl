@@ -44,7 +44,7 @@ h1 {
     padding-top: 3vh;
     padding-bottom: 3vh;
     border-radius: 5px 5px 0 0;
-    backdrop-filter: blur(1px);
+    backdrop-filter: blur(2px);
     padding-left: 1vw;
     padding-right: 1vw;
 }
@@ -246,6 +246,10 @@ table th, table td {
 
 table th {
     background-color: var(--light-pink);
+}
+
+figure {
+    margin-bottom: 2em;
 }
 
 @media (orientation: portrait) {
