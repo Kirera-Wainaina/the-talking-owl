@@ -44,6 +44,7 @@ if (require.main == module) { // create HTTPS Server
     const options = {
         key: fs.readFileSync(process.env.KEY),
         cert: fs.readFileSync(process.env.CERT),
+        ca: fs.readFileSync(process.env.CA),
         allowHTTP1: true
     }
 
