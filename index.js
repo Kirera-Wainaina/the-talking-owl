@@ -204,7 +204,7 @@ async function respondWithFile(response, filePath, statusCode=200) {
     }
 
     response.writeHead(
-        '200',
+        statusCode,
         {
             'content-type': mimes.findMIMETypeFromExtension(path.extname(filePath)),
             'content-encoding': 'gzip',
