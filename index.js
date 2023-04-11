@@ -106,6 +106,8 @@ function routeRequests(request, response) {
         } else if (headers[':method'] == 'POST') {
             handleAPIPostRequest(request, response)
         }
+    } else if (isFileRequest(route)) {
+        handleFileRequest(stream, route)
     }
 }
 
@@ -128,9 +130,9 @@ function handlePageRequest(stream, headers) {
     }
 }
 
-function handleFileRequest(stream, route) {
+function handleFileRequest(response, route) {
     const filePath = createFilePathFromFileRequest(route);
-    respondWithFile(stream, filePath)
+    respondWithFile(response, filePath)
 }
 
 function createFilePathFromPageRequest(route) {
@@ -188,23 +190,25 @@ function isHomePage(route) {
     return false
 }
 
-async function respondWithFile(stream, filePath, statusCode=200) {
+async function respondWithFile(response, filePath, statusCode=200) {
     const existing = await isExistingFile(filePath);
     if (!existing) {
         filePath = path.join(__dirname, 'frontend/html/error.html');
         statusCode = 404;
     }
 
-    stream.respond({
-        ':status': statusCode,
-        'content-type': mimes.findMIMETypeFromExtension(path.extname(filePath)),
-        'content-encoding': 'gzip',
-        'cache-control': 'max-age=1209600'
-    })
+    response.writeHead(
+        '200',
+        {
+            'content-type': mimes.findMIMETypeFromExtension(path.extname(filePath)),
+            'content-encoding': 'gzip',
+            'cache-control': 'max-age=1209600'
+        }
+    )
 
     fs.createReadStream(filePath)
         .pipe(zlib.createGzip())
-        .pipe(stream)
+        .pipe(response)
 }
 
 function isExistingFile(filePath) {
