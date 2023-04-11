@@ -95,7 +95,8 @@ function routeRequests_(stream, headers) {
 }
 
 function routeRequests(request, response) {
-    const route = request.headers[':path'];
+    const headers = request.headers;
+    const route = headers[':path'];
     const parsedUrl = new URL(route, process.env.DOMAIN);
     console.log(parsedUrl)
 
@@ -108,6 +109,11 @@ function routeRequests(request, response) {
         }
     } else if (isFileRequest(route)) {
         handleFileRequest(response, route)
+    } else { // browser request
+        if (isAdminPageRequest(route) && !isAuthorized(headers.cookie)) { 
+            const filePath = path.join(__dirname, 'frontend/html/unauthorized.html');
+            respondWithFile(response, filePath, 401)
+        }
     }
 }
 
