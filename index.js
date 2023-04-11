@@ -50,14 +50,7 @@ if (require.main == module) { // create HTTPS Server
 
     const server = http2.createSecureServer(options);
     server.listen(port, () => console.log(`HTTP2 Server listening on port ${port}`));
-    // server.on('stream', handleHTTP2Request);
     server.on('request', handleHTTP2Request);
-    // server.on('request', handleAPIPostRequest);
-}
-
-function handleHTTP2Request_(stream, headers) {
-    console.log(createLogMessage(headers[':method'], headers[':path']))
-    routeRequests(stream, headers)
 }
 
 function handleHTTP2Request(request, response) {
@@ -70,27 +63,6 @@ function handleAPIPostRequest(request, response) {
     if (request.method == 'POST' && isAPIRequest(request.url)) {
         console.log(createLogMessage(request.method, request.url));
         getAPIModule(request.url).main(request, response)
-    }
-}
-
-function routeRequests_(stream, headers) {
-    const route = headers[':path'];
-    const parsedUrl = new URL(route, process.env.DOMAIN);
-
-    if (isAPIRequest(route)) { // api routes request for data
-        if (headers[':method'] == 'GET') {
-            //handle get requests
-            handleAPIGetRequest(stream, parsedUrl);
-        }
-    } else if (isFileRequest(route)) {
-        handleFileRequest(stream, route)
-    } else { // browser request
-        if (isAdminPageRequest(route) && !isAuthorized(headers.cookie)) { 
-            const filePath = path.join(__dirname, 'frontend/html/unauthorized.html');
-            respondWithFile(stream, filePath, 401)
-        } else {
-            handlePageRequest(stream, headers);
-        }
     }
 }
 
