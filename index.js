@@ -107,7 +107,7 @@ function routeRequests(request, response) {
             handleAPIPostRequest(request, response)
         }
     } else if (isFileRequest(route)) {
-        handleFileRequest(stream, route)
+        handleFileRequest(response, route)
     }
 }
 
@@ -159,7 +159,7 @@ function handlePageRequestsFromPuppeteer(stream, route) {
     } else {
         filePath = createFilePathFromPageRequest(route);
     }
-    respondWithFile(stream, filePath)    
+    respondWithFile(response, filePath)    
 }
 
 function handlePageRequestsFromUsers(stream, route) {
@@ -182,7 +182,7 @@ function handlePageRequestsFromUsers(stream, route) {
     } else {
         filePath = path.join(__dirname, `/frontend/html${parsedUrl.pathname}.html`);
     }
-    respondWithFile(stream, filePath)    
+    respondWithFile(response, filePath)    
 }
 
 function isHomePage(route) {
