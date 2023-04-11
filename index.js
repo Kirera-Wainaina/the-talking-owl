@@ -97,11 +97,12 @@ function routeRequests_(stream, headers) {
 function routeRequests(request, response) {
     const route = request.headers[':path'];
     const parsedUrl = new URL(route, process.env.DOMAIN);
+    console.log(parsedUrl)
 
     if (isAPIRequest(route)) { // api routes request for data
         if (headers[':method'] == 'GET') {
             //handle get requests
-            handleAPIGetRequest(stream, parsedUrl);
+            handleAPIGetRequest(response, parsedUrl);
         } else if (headers[':method'] == 'POST') {
             handleAPIPostRequest(request, response)
         }
@@ -249,26 +250,32 @@ async function JWTTokenIsValid(token) {
     return false
 }
 
-async function handleAPIGetRequest(stream, parsedUrl) {
+async function handleAPIGetRequest(response, parsedUrl) {
     try {
         const collectionName = path.basename(parsedUrl.pathname);
 
         const data = await database.getData(parsedUrl.searchParams, collectionName);
-        respondWithJSON(stream, JSON.stringify(data));
+        respondWithJSON(response, JSON.stringify(data));
     } catch (error) {
         console.log(error);
-        respondWithError(stream);
+        respondWithError(response);
     }
 }
 
-function respondWithJSON(stream, data) {
-    stream.respond({':status': 200, 'content-type':'application/json'})
-    stream.end(data)
+function respondWithJSON(response, data) {
+    response.writeHead(
+        '200',
+        { 'content-type':'application/json' }
+    );
+    response.end(data);
 }
 
-function respondWithError(stream) {
-    stream.respond({':status': 500})
-    stream.end();
+function respondWithError(response) {
+    response.writeHead(
+        '500',
+        { 'content-type': 'text/plain'}
+    );
+    response.end('error');
 }
 
 process.on('uncaughtException', error => console.log(error))
