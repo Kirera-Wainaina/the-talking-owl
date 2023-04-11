@@ -28,6 +28,10 @@ button {
     font-size: 1.2em;
 }
 
+input {
+    font-size: 1.2em;
+}
+
 @media (orientation: portrait) {
     h1 {
         grid-column: 1 / 7;

@@ -54,8 +54,7 @@ if (require.main == module) { // create HTTPS Server
 }
 
 function handleHTTP2Request(request, response) {
-    const headers = request.headers;
-    console.log(createLogMessage(headers[':method'], headers[':path']))
+    console.log(createLogMessage(request.method, request.url))
     routeRequests(request, response);
 }
 
@@ -68,20 +67,19 @@ function handleAPIPostRequest(request, response) {
 
 function routeRequests(request, response) {
     const headers = request.headers;
-    const route = headers[':path'];
-    const parsedUrl = new URL(route, process.env.DOMAIN);
+    const parsedUrl = new URL(request.url, process.env.DOMAIN);
 
-    if (isAPIRequest(route)) { // api routes request for data
-        if (headers[':method'] == 'GET') {
+    if (isAPIRequest(request.url)) { // api routes request for data
+        if (request.method == 'GET') {
             //handle get requests
             handleAPIGetRequest(response, parsedUrl);
-        } else if (headers[':method'] == 'POST') {
+        } else if (request.method == 'POST') {
             handleAPIPostRequest(request, response)
         }
-    } else if (isFileRequest(route)) {
-        handleFileRequest(response, route)
+    } else if (isFileRequest(request.url)) {
+        handleFileRequest(response, request.url)
     } else { // browser request
-        if (isAdminPageRequest(route) && !isAuthorized(headers.cookie)) { 
+        if (isAdminPageRequest(request.url) && !isAuthorized(headers.cookie)) { 
             const filePath = path.join(__dirname, 'frontend/html/unauthorized.html');
             respondWithFile(response, filePath, 401)
         } else {
@@ -101,7 +99,7 @@ function isFileRequest(route) {
 
 function handlePageRequest(request, response) {
     const headers = request.headers;
-    const route = headers[':path'];
+    const route = request.url;
 
     if (headers['user-agent'] == 'thetalkingowl-puppeteer') {
         handlePageRequestsFromPuppeteer(response, route);

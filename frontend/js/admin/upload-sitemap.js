@@ -2,7 +2,7 @@ import { showSpinningIcon } from '../general.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('form');
-    // form.addEventListener('submit', submitSitemap);
+    form.addEventListener('submit', submitSitemap);
 })
 
 function submitSitemap(event) {
