@@ -10,3 +10,5 @@ static/
 
 # file used to start server and pass environment variables
 server-start.sh
+
+sitemap.xml
