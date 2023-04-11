@@ -20,6 +20,7 @@ function transferSitemapToFormData() {
     const formdata = new FormData()
     const input = document.querySelector('form input');
     formdata.append('sitemap', input.files[0]);
+    formdata.append('fileNumber', 1);
     return formdata
 }
 
