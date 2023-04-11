@@ -47,6 +47,7 @@ class FormDataHandler {
         console.log(`${name} written to disk`);
         this.fileNumber += 1;
         this.uploadedFiles.push(filePath);
+        if (!this.fields.fileNumber) throw new Error('fileNumber field not uploaded');
         if (this.fileNumber == this.fields.fileNumber) resolve()
     }
 
