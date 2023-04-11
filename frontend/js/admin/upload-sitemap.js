@@ -1,4 +1,4 @@
-import { showSpinningIcon, hideSpinningIcon } from '../general.js';
+import { showSpinningIcon, hideSpinningIcon, displaySliderAnimation } from '../general.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('form');
@@ -29,6 +29,6 @@ function handleResponse(responseText) {
         hideSpinningIcon('UPLOAD SITEMAP');
         location.href = '/admin/home';
     } else {
-        
+        displaySliderAnimation('sitemap-upload-error');
     }
 }
