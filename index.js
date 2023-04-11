@@ -98,7 +98,6 @@ function routeRequests(request, response) {
     const headers = request.headers;
     const route = headers[':path'];
     const parsedUrl = new URL(route, process.env.DOMAIN);
-    console.log(parsedUrl)
 
     if (isAPIRequest(route)) { // api routes request for data
         if (headers[':method'] == 'GET') {
@@ -113,6 +112,8 @@ function routeRequests(request, response) {
         if (isAdminPageRequest(route) && !isAuthorized(headers.cookie)) { 
             const filePath = path.join(__dirname, 'frontend/html/unauthorized.html');
             respondWithFile(response, filePath, 401)
+        } else {
+            handlePageRequest(request, response);
         }
     }
 }
@@ -126,13 +127,14 @@ function isFileRequest(route) {
     return Boolean(path.extname(route));
 }
 
-function handlePageRequest(stream, headers) {
+function handlePageRequest(request, response) {
+    const headers = request.headers;
     const route = headers[':path'];
 
     if (headers['user-agent'] == 'thetalkingowl-puppeteer') {
-        handlePageRequestsFromPuppeteer(stream, route);
+        handlePageRequestsFromPuppeteer(response, route);
     } else {
-        handlePageRequestsFromUsers(stream, route);
+        handlePageRequestsFromUsers(response, route);
     }
 }
 
@@ -158,7 +160,7 @@ function createArticleFilePath() {
     return path.join(__dirname, 'frontend/html/article.html')
 }
 
-function handlePageRequestsFromPuppeteer(stream, route) {
+function handlePageRequestsFromPuppeteer(response, route) {
     let filePath;
     if (path.dirname(route) == '/articles') {
         filePath = createArticleFilePath()
@@ -168,7 +170,7 @@ function handlePageRequestsFromPuppeteer(stream, route) {
     respondWithFile(response, filePath)    
 }
 
-function handlePageRequestsFromUsers(stream, route) {
+function handlePageRequestsFromUsers(response, route) {
     const parsedUrl = new URL(route, process.env.DOMAIN);
     let filePath;
 
