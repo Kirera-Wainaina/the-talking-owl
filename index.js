@@ -73,7 +73,7 @@ function handleAPIPostRequest(request, response) {
     }
 }
 
-function routeRequests(stream, headers) {
+function routeRequests_(stream, headers) {
     const route = headers[':path'];
     const parsedUrl = new URL(route, process.env.DOMAIN);
 
@@ -90,6 +90,20 @@ function routeRequests(stream, headers) {
             respondWithFile(stream, filePath, 401)
         } else {
             handlePageRequest(stream, headers);
+        }
+    }
+}
+
+function routeRequests(request, response) {
+    const route = request.headers[':path'];
+    const parsedUrl = new URL(route, process.env.DOMAIN);
+
+    if (isAPIRequest(route)) { // api routes request for data
+        if (headers[':method'] == 'GET') {
+            //handle get requests
+            handleAPIGetRequest(stream, parsedUrl);
+        } else if (headers[':method'] == 'POST') {
+            handleAPIPostRequest(request, response)
         }
     }
 }
