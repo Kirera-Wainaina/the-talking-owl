@@ -44,7 +44,7 @@ h1 {
     padding-top: 3vh;
     padding-bottom: 3vh;
     border-radius: 5px 5px 0 0;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(5px);
     padding-left: 1vw;
     padding-right: 1vw;
 }
@@ -73,7 +73,7 @@ h1 {
     padding-right: 6vw;
     padding-bottom: 3vh;
     border-radius: 0 0 5px 5px;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(5px);
 }
 
 picture {
