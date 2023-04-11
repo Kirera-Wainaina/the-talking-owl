@@ -50,13 +50,20 @@ if (require.main == module) { // create HTTPS Server
 
     const server = http2.createSecureServer(options);
     server.listen(port, () => console.log(`HTTP2 Server listening on port ${port}`));
-    server.on('stream', handleHTTP2Request);
-    server.on('request', handleAPIPostRequest);
+    // server.on('stream', handleHTTP2Request);
+    server.on('request', handleHTTP2Request);
+    // server.on('request', handleAPIPostRequest);
 }
 
-function handleHTTP2Request(stream, headers) {
+function handleHTTP2Request_(stream, headers) {
     console.log(createLogMessage(headers[':method'], headers[':path']))
     routeRequests(stream, headers)
+}
+
+function handleHTTP2Request(request, response) {
+    const headers = request.headers;
+    console.log(createLogMessage(headers[':method'], headers[':path']))
+    routeRequests(request, response);
 }
 
 function handleAPIPostRequest(request, response) {
