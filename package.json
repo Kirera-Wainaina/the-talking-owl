@@ -22,6 +22,6 @@
     "imagemin": "7.0.1",
     "imagemin-webp": "6.0.0",
     "jsonwebtoken": "^9.0.0",
-    "puppeteer": "^19.7.5"
+    "puppeteer": "^19.8.5"
   }
 }
