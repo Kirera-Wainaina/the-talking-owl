@@ -12,3 +12,6 @@ static/
 server-start.sh
 
 sitemap.xml
+
+#the cache dir for puppeteer
+.cache
