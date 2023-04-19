@@ -25,6 +25,9 @@ function fillStructuredData(article) {
     structuredData['datePublished'] = convertMillisecondsToISO(article.publishedDate);
     structuredData['headline'] = article.title;
     structuredData['image'] = [article.landscapeImage, article.portraitImage];
+    if (article.updatedDate) {
+        structuredData['dateModified'] = convertMillisecondsToISO(article.updatedDate);
+    }
 
     structuredDataElement.textContent = JSON.stringify(structuredData);
 }
