@@ -86,7 +86,7 @@ picture img, picture source {
     height: auto;
 }
 
-#publish-date {
+#date-byline {
     display: flex;
     color: #333333;
     gap: 10px;
@@ -95,7 +95,7 @@ picture img, picture source {
     align-items: center;
 }
 
-#publish-date img {
+#date-byline img {
     height: 1.2em;
 }
 
