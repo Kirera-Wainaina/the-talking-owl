@@ -1,6 +1,7 @@
 import { createArticleContainer } from "./article-list.js";
 import { 
-    createDateString, createTextElement, getArticleId, 
+    createDateBylineElement,
+    createTextElement, getArticleId, 
     getArticleUrlTitle, urlifySentence 
 } from "./general.js";
 
@@ -87,20 +88,8 @@ function createDateBylineContainer(publishedDate, updatedDate) {
     const div = document.createElement('div');
     div.id = 'date-byline';
     div.append(createClockIcon());
-    if (isOneWeekSincePublishing(publishedDate, updatedDate)) {
-        div.append(createTextElement('p', `Updated: ${createDateString(updatedDate)}`))
-    } else {
-        div.append(createTextElement('p', `Published: ${createDateString(publishedDate)}`))
-    }
+    div.append(createDateBylineElement(publishedDate, updatedDate));
     return div;
-}
-
-function isOneWeekSincePublishing(publishedDate, updatedDate) {
-    const oneWeekInMilliseconds = 7*24*60*60*1000;
-    const timeDifference = Number(updatedDate) - Number(publishedDate);
-    
-    if (timeDifference >= oneWeekInMilliseconds) return true;
-    return false
 }
 
 function createAffiliateDisclaimer() {

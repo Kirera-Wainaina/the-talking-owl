@@ -76,6 +76,22 @@ export function createDateString(milliseconds) {
     return `${month} ${day}, ${year}`;
 }
 
+export function createDateBylineElement(publishedDate, updatedDate) {
+    if (isOneWeekSincePublishing(publishedDate, updatedDate)) {
+        return createTextElement('p', `Updated: ${createDateString(updatedDate)}`)
+    } else {
+        return createTextElement('p', `Published: ${createDateString(publishedDate)}`)
+    }
+}
+
+function isOneWeekSincePublishing(publishedDate, updatedDate) {
+    const oneWeekInMilliseconds = 7*24*60*60*1000;
+    const timeDifference = Number(updatedDate) - Number(publishedDate);
+    
+    if (timeDifference >= oneWeekInMilliseconds) return true;
+    return false
+}
+
 export function getArticleUrlTitle(articleUrl=location.href) {
     const urlObject = new URL(articleUrl);
     const [ urlTitle ] = urlObject.pathname.match(/(?<=\/articles\/).*/);
