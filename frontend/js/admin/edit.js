@@ -62,16 +62,11 @@ async function handleEditResponse(response) {
 function createDataToEdit() {
     const previewData = createPreviewData();
     const params = new URLSearchParams(location.search);
-    handleDatesInUploadData(previewData);
+    delete previewData.publishedDate
 
     return {
         ...previewData,
         id: params.get('id'),
         urlTitle: params.get('urlTitle')
     }
-}
-
-function handleDatesInUploadData(uploadData) {
-    delete uploadData.publishedDate;
-    uploadData.updatedDate = Date.now();
 }
