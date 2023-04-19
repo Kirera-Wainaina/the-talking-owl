@@ -84,7 +84,7 @@ export function createDateBylineElement(publishedDate, updatedDate) {
     }
 }
 
-function isOneWeekSincePublishing(publishedDate, updatedDate) {
+export function isOneWeekSincePublishing(publishedDate, updatedDate) {
     const oneWeekInMilliseconds = 7*24*60*60*1000;
     const timeDifference = Number(updatedDate) - Number(publishedDate);
     
