@@ -10,8 +10,9 @@ function retrieveArticleData() {
     const pageNumber = getCurrentPageNumber();
     const offset = (pageNumber -1) * 10;
     
-    fetch(`/api/articles?field=title&field=description&field=landscapeImage&field=\
-publishedDate&field=urlTitle&field=landscapeImageText&category=business\
+    fetch(`/api/articles?field=title&field=description&\
+field=landscapeImage&field=publishedDate&field=updatedDate\
+&field=urlTitle&field=landscapeImageText&category=business\
 &orderBy=publishedDate&orderByDirection=desc&limit=10&offset=${offset}`)
         .then(response => response.json())
         .then(data => displayArticleList(

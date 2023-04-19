@@ -83,12 +83,11 @@ function createDescription(descriptionText) {
     return p
 }
 
-function createDateByline(publishedDate, updatedDate) {
-    console.log(publishedDate, updatedDate)
+function createDateBylineContainer(publishedDate, updatedDate) {
     const div = document.createElement('div');
     div.id = 'date-byline';
     div.append(createClockIcon());
-    if (isOneWeekSincePublishing()) {
+    if (isOneWeekSincePublishing(publishedDate, updatedDate)) {
         div.append(createTextElement('p', `Updated: ${createDateString(updatedDate)}`))
     } else {
         div.append(createTextElement('p', `Published: ${createDateString(publishedDate)}`))
@@ -126,7 +125,7 @@ function createClockIcon() {
 
 function createArticleContent(content, publishedDate, updatedDate) {
     const article = document.createElement('article');
-    article.append(createDateByline(publishedDate, updatedDate))
+    article.append(createDateBylineContainer(publishedDate, updatedDate))
     article.append(createAffiliateDisclaimer())
     article.innerHTML += content;
     return article;
