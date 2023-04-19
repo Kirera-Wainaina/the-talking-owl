@@ -1,4 +1,4 @@
-import { createDateString, createImageElement, createTextElement } from "./general.js";
+import { createDateString, createImageElement, createTextElement, isOneWeekSincePublishing } from "./general.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     // dom related functions
@@ -25,8 +25,9 @@ function retrieveBusinessArticles() {
     return fetch('/api/articles?field=squareThumbnail\
 &field=squareThumbnailText&field=landscapeImage\
 &field=landscapeImageText&field=title&field=description\
-&field=publishedDate&field=urlTitle&field=category\
-&orderBy=publishedDate&orderByDirection=desc&category=business&limit=4')
+&field=publishedDate&field=updatedDate&field=urlTitle\
+&field=category&orderBy=publishedDate&orderByDirection=desc\
+&category=business&limit=4')
     .then(response => response.json());   
 }
 
@@ -46,7 +47,11 @@ function createArticleComponent(article) {
     div.append(createTextElement('p', article.description));
     div.append(createTextElement(
         'p', 
-        createDateString(article.publishedDate)
+        createDateString(
+            isOneWeekSincePublishing(article.publishedDate, article.updatedDate)
+            ? article.updatedDate 
+            : article.publishedDate
+        )
     ));
 
     a.href = `/articles/${article.urlTitle}?id=${article.id}`;
@@ -98,8 +103,9 @@ function retrieveTechnologyArticles() {
     return fetch('/api/articles?field=squareThumbnail\
 &field=squareThumbnailText&field=landscapeImage\
 &field=landscapeImageText&field=title&field=description\
-&field=publishedDate&field=urlTitle&field=category\
-&orderBy=publishedDate&orderByDirection=desc&category=tech&limit=4')
+&field=publishedDate&field=updatedDate&field=urlTitle\
+&field=category&orderBy=publishedDate&orderByDirection=desc\
+&category=tech&limit=4')
     .then(response => response.json())
 }
 
