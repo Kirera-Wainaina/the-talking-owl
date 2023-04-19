@@ -73,5 +73,5 @@ function createDataToEdit() {
 
 function handleDatesInUploadData(uploadData) {
     delete uploadData.publishedDate;
-    uploadData.updateDate = Date.now();
+    uploadData.updatedDate = Date.now();
 }
