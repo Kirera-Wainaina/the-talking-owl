@@ -23,7 +23,7 @@ export async function render(parentContainer, data) {
     container.append(createArticleContent(
         data.content, 
         data.publishedDate, 
-        data.updatedDate ?? data.publishedDate
+        data.updatedDate ?? data.publishedDate // some articles don't have an updatedDate
         ));
     if (data.relatedArticle1 || data.relatedArticle2) {
         container.append(
