@@ -2,7 +2,7 @@
 * the pages that will need this are edit-article, general and tech pages
 */
 
-import { createDateString, createImageElement, createTextElement } from "./general.js";
+import { createDateBylineElement, createDateString, createImageElement, createTextElement } from "./general.js";
 
 export function createArticleContainer(articleData, index) {
     const a = document.createElement('a');
@@ -14,7 +14,7 @@ export function createArticleContainer(articleData, index) {
     ))
     a.append(createTextElement('h2', articleData.title));
     a.append(createTextElement('p', articleData.description));
-    a.append(createTextElement('p', `Published: ${createDateString(Number(articleData.publishedDate))}`))
+    a.append(createDateBylineElement(articleData.publishedDate, articleData.updatedDate));
     a.classList.add('article-card');
     return a
 }
