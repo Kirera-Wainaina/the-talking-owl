@@ -20,7 +20,7 @@ export async function render(parentContainer, data) {
     container.append(createTextElement('h1', data.title))
     container.append(picture);
     container.append(createDescription(data.description))
-    container.append(createArticleContent(data.content, data.publishedDate));
+    container.append(createArticleContent(data.content, data.publishedDate, data.updatedDate));
     if (data.relatedArticle1 || data.relatedArticle2) {
         container.append(
             await createRelatedArticlesSection(data.relatedArticle1, data.relatedArticle2)
@@ -79,12 +79,25 @@ function createDescription(descriptionText) {
     return p
 }
 
-function createPublishedDate(milliseconds) {
+function createDateByline(publishedDate, updatedDate) {
+    console.log(publishedDate, updatedDate)
     const div = document.createElement('div');
-    div.id = 'publish-date';
+    div.id = 'date-byline';
     div.append(createClockIcon());
-    div.append(createTextElement('p', `Published: ${createDateString(milliseconds)}`))
+    if (isTwoWeeksSincePublishing()) {
+        div.append(createTextElement('p', `Updated: ${createDateString(updatedDate)}`))
+    } else {
+        div.append(createTextElement('p', `Published: ${createDateString(publishedDate)}`))
+    }
     return div;
+}
+
+function isTwoWeeksSincePublishing(publishedDate, updatedDate) {
+    const twoWeeksInMilliseconds = 2*7*24*60*60*1000;
+    const timeDifference = Number(updatedDate) - Number(publishedDate);
+    
+    if (timeDifference >= twoWeeksInMilliseconds) return true;
+    return false
 }
 
 function createAffiliateDisclaimer() {
@@ -107,9 +120,9 @@ function createClockIcon() {
     return img
 }
 
-function createArticleContent(content, date) {
+function createArticleContent(content, publishedDate, updatedDate) {
     const article = document.createElement('article');
-    article.append(createPublishedDate(date))
+    article.append(createDateByline(publishedDate, updatedDate))
     article.append(createAffiliateDisclaimer())
     article.innerHTML += content;
     return article;
