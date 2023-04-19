@@ -88,7 +88,7 @@ function createDateByline(publishedDate, updatedDate) {
     const div = document.createElement('div');
     div.id = 'date-byline';
     div.append(createClockIcon());
-    if (isTwoWeeksSincePublishing()) {
+    if (isOneWeekSincePublishing()) {
         div.append(createTextElement('p', `Updated: ${createDateString(updatedDate)}`))
     } else {
         div.append(createTextElement('p', `Published: ${createDateString(publishedDate)}`))
@@ -96,11 +96,11 @@ function createDateByline(publishedDate, updatedDate) {
     return div;
 }
 
-function isTwoWeeksSincePublishing(publishedDate, updatedDate) {
-    const twoWeeksInMilliseconds = 2*7*24*60*60*1000;
+function isOneWeekSincePublishing(publishedDate, updatedDate) {
+    const oneWeekInMilliseconds = 7*24*60*60*1000;
     const timeDifference = Number(updatedDate) - Number(publishedDate);
     
-    if (timeDifference >= twoWeeksInMilliseconds) return true;
+    if (timeDifference >= oneWeekInMilliseconds) return true;
     return false
 }
 
