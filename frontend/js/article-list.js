@@ -2,7 +2,7 @@
 * the pages that will need this are edit-article, general and tech pages
 */
 
-import { createDateBylineElement, createDateString, createImageElement, createTextElement } from "./general.js";
+import { createDateBylineElement, createImageElement, createTextElement } from "./general.js";
 
 export function createArticleContainer(articleData, index) {
     const a = document.createElement('a');
