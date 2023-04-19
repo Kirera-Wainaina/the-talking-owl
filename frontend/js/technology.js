@@ -1,9 +1,15 @@
-import { displayArticleList, getCurrentPageNumber, displayPageNumbers } from "./article-list.js";
+import { 
+    displayArticleList, 
+    getCurrentPageNumber, 
+    displayPageNumbers, 
+    setCanonicalLinkTagForPage1 
+} from "./article-list.js";
 
 document.addEventListener('DOMContentLoaded', async () =>{
     if (navigator.userAgent != 'thetalkingowl-puppeteer') return;
     retrieveArticleData();
     displayPageNumbers(await retrieveTechnologyArticleCount());
+    setCanonicalLinkTagForPage1('technology')
 })
 
 function retrieveArticleData() {

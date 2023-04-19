@@ -153,3 +153,16 @@ function createArticleCardImage(landscapeImage, landscapeImageText, index) {
     addLoadingAttribute(imageElement, index); // add loading attribute
     return imageElement
 }
+
+
+export function setCanonicalLinkTagForPage1(category) {
+    const params = new URLSearchParams(location.search);
+
+    if (params.get('page') == '1') {
+        const head = document.querySelector('head');
+        const link = document.createElement('link');
+        link.rel = 'canonical';
+        link.href = `https://thetalkingowl.com/${category}`;
+        head.append(link);
+    }
+}
