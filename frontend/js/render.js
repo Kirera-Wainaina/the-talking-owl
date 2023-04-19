@@ -20,7 +20,11 @@ export async function render(parentContainer, data) {
     container.append(createTextElement('h1', data.title))
     container.append(picture);
     container.append(createDescription(data.description))
-    container.append(createArticleContent(data.content, data.publishedDate, data.updatedDate));
+    container.append(createArticleContent(
+        data.content, 
+        data.publishedDate, 
+        data.updatedDate ?? data.publishedDate
+        ));
     if (data.relatedArticle1 || data.relatedArticle2) {
         container.append(
             await createRelatedArticlesSection(data.relatedArticle1, data.relatedArticle2)
