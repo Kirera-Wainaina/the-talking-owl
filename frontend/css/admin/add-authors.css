@@ -56,6 +56,15 @@ label {
     margin-bottom: 1em;
 }
 
+#profile-image-preview {
+    width: 10vw;
+    height: 10vw;
+    border-radius: 50%;
+    object-fit: cover;
+    align-self: center;
+    margin-bottom: 1.5em;
+}
+
 @media (orientation: portrait) {
     h1 {
         grid-column: 1 / 7;
@@ -64,5 +73,10 @@ label {
     form {
         grid-column: 1 / 7;
         margin: 1em;
+    }
+
+    #profile-image-preview {
+        width: 40vw;
+        height: 40vw;
     }
 }

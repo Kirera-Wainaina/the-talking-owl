@@ -16,5 +16,6 @@ function displayProfileImage(event) {
     const profileImageLabel = document.getElementById('profile-image-label');
     const img = document.createElement('img');
     img.src = URL.createObjectURL(event.target.files[0]);
+    img.id = 'profile-image-preview';
     profileImageLabel.insertAdjacentElement('afterend', img)
 }
