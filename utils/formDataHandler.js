@@ -48,7 +48,7 @@ class FormDataHandler {
         this.fileNumber += 1;
         this.uploadedFiles.push(filePath);
         if (!this.fields.fileNumber) throw new Error('fileNumber field not uploaded');
-        if (this.fileNumber == this.fields.fileNumber) resolve()
+        if (this.fileNumber == Number(this.fields.fileNumber)) resolve()
     }
 
     run() {
