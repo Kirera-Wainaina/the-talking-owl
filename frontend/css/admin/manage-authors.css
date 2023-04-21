@@ -42,6 +42,11 @@ h1 {
         flex-direction: column;
     }
 
+    #link-container a {
+        width: 60vw;
+        height: 20vh;
+    }
+
     #link-container a:active {
         box-shadow: var(--shadow);
     }
