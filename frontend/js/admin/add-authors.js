@@ -43,8 +43,14 @@ async function submitAuthor(event) {
 function handleSubmitAuthorResponse(response) {
     hideSpinningIcon('SAVE AUTHOR');
     if (response == 'forbidden') {
-        const slider = document.getElementById('forbidden-error');
-        slider.classList.remove('hide');
-        slider.onanimationend = () => slider.classList.add('hide');
+        displayErrorSlider('forbidden-error');
+    } else if (response == 'error') {
+        displayErrorSlider('server-error');
     }
+}
+
+function displayErrorSlider(elementId) {
+    const slider = document.getElementById(elementId);
+    slider.classList.remove('hide');
+    slider.onanimationend = () => slider.classList.add('hide');
 }
