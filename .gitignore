@@ -15,3 +15,11 @@ sitemap.xml
 
 #the cache dir for puppeteer
 .cache
+
+# everything other than x in uploaded
+uploaded/*
+!uploaded/x
+
+# everything other than x in converted
+converted/*
+!converted/x
