@@ -31,6 +31,7 @@ async function submitAuthor(event) {
 
     // const formdata = await enterDetailsIntoFormdata(event.target);
     const formdata = new FormData(event.target);
+    formdata.append('fileNumber', 1);
     fetch('/api/admin/add-author.js', {
         method: 'POST',
         body: formdata
