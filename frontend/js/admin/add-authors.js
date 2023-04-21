@@ -46,6 +46,8 @@ function handleSubmitAuthorResponse(response) {
         displayErrorSlider('forbidden-error');
     } else if (response == 'error') {
         displayErrorSlider('server-error');
+    } else {
+        location.href = '/admin/manage-authors'
     }
 }
 
