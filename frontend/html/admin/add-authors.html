@@ -77,22 +77,22 @@
       <label id="profile-image-label">
         Profile Image:
         <input type="button" value="Add Image" />
-        <input type="file" name="profilePhoto" accept="image/*">
+        <input type="file" name="profilePhoto" accept="image/*" required>
       </label>
 
       <label>
         Name:
-        <textarea name="authorName"></textarea>
+        <input type="text" name="authorName" required>
       </label>
 
       <label>
         Bio:
-        <input type="text" name="bio">
+        <textarea name="bio" maxlength="250" required></textarea>
       </label>
 
       <label>
         Admin Password:
-        <input type="password" name="adminPassword">
+        <input type="password" name="adminPassword" required>
       </label>
 
       <button type="submit">SAVE AUTHOR</button>
