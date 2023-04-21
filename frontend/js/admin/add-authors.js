@@ -37,20 +37,3 @@ async function submitAuthor(event) {
         body: formdata
     }).then(handleSubmitAuthorResponse)
 }
-
-async function enterDetailsIntoFormdata(form) {
-    const formdata = new FormData(form);
-    formdata.append('profileImage', await getImageBlob(form))
-
-    return formdata
-}
-
-function getImageBlob(form) {
-    const imageEl = form.querySelector('#profile-image-preview');
-    return fetch(imageEl.src)
-        .then(response => response.blob())
-}
-
-function handleSubmitAuthorResponse(response) {
-    console.log(response)
-}
