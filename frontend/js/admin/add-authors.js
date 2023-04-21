@@ -1,3 +1,5 @@
+import { showSpinningIcon } from "../general.js";
+
 document.addEventListener('DOMContentLoaded', () => {
     attachListenerToFileButton();
 
@@ -25,6 +27,7 @@ function displayProfileImage(event) {
 
 async function submitAuthor(event) {
     event.preventDefault();
+    showSpinningIcon(document.querySelector('button[type="submit"]'));
 
     // const formdata = await enterDetailsIntoFormdata(event.target);
     const formdata = new FormData(event.target);
