@@ -7,8 +7,43 @@ h1 {
     color: var(--primary);
 }
 
+#link-container {
+    grid-column: 1 / 13;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5vw;
+    margin-top: 1em;
+    height: 60vh;
+}
+
+#link-container a {
+    height: 20vh;
+    width: 10vw;
+    border: 1px solid lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    text-decoration: none;
+}
+
+#link-container a:hover {
+    box-shadow: var(--shadow);
+}
+
 @media (orientation: portrait) {
     h1 {
         grid-column: 1 / 7;
     }
+
+    #link-container {
+        grid-column: 1 / 7;
+        flex-direction: column;
+    }
+
+    #link-container a:active {
+        box-shadow: var(--shadow);
+    }
+    
 }
