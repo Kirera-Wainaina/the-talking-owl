@@ -8,7 +8,8 @@ exports.main = async function (request, response) {
     try {
         const [fields, files] = await new FormDataHandler(request).run();
         if (await isAdminPassword(fields.adminPassword)) {
-            console.log(files);
+            const convertedImageMetadata = await imageHandler.minimizeImage(files[0]); 
+            console.log(files[0]);
             console.log(files);
         } else {
             await fsPromises.unlink(files[0])
@@ -18,7 +19,6 @@ exports.main = async function (request, response) {
 
     } catch (error) {
         console.log(error);
-        await fsPromises.unlink(files[0])
         response.writeHead(500, { 'content-type': 'text/html'});
         response.end('error')
     }
