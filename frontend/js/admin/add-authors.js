@@ -1,4 +1,4 @@
-import { showSpinningIcon } from "../general.js";
+import { hideSpinningIcon, showSpinningIcon } from "../general.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     attachListenerToFileButton();
@@ -35,5 +35,16 @@ async function submitAuthor(event) {
     fetch('/api/admin/add-author.js', {
         method: 'POST',
         body: formdata
-    }).then(handleSubmitAuthorResponse)
+    })
+    .then(response => response.text())
+    .then(handleSubmitAuthorResponse)
+}
+
+function handleSubmitAuthorResponse(response) {
+    hideSpinningIcon('SAVE AUTHOR');
+    if (response == 'forbidden') {
+        const slider = document.getElementById('forbidden-error');
+        slider.classList.remove('hide');
+        slider.onanimationend = () => slider.classList.add('hide');
+    }
 }
