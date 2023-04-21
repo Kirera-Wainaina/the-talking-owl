@@ -1,5 +1,5 @@
 import { displaySliderAnimation, hideSpinningIcon, showSpinningIcon, toggleElementClass, 
-    createImageElement, createTextElement
+    createImageElement, createTextElement, generateRandomName
 } from "../general.js";
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -122,12 +122,6 @@ function getBlob(imageURL) {
             .then(response => resolve(response.blob()))
             .catch(error => reject(error))
     })
-}
-
-function generateRandomName() {
-    const number = Math.trunc(Math.random()*1e6);
-    const date = Date.now();
-    return `${number}-${date}`
 }
 
 function deactivateSubmitButton() {
