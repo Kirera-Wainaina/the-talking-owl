@@ -1,4 +1,4 @@
-import { hideSpinningIcon, showSpinningIcon } from "../general.js";
+import { generateRandomName, hideSpinningIcon, showSpinningIcon } from "../general.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     attachListenerToFileButton();
@@ -31,6 +31,7 @@ async function submitAuthor(event) {
 
     // const formdata = await enterDetailsIntoFormdata(event.target);
     const formdata = new FormData(event.target);
+    giveImageRandomName(formdata);
     formdata.append('fileNumber', 1);
     fetch('/api/admin/add-author.js', {
         method: 'POST',
@@ -55,4 +56,10 @@ function displayErrorSlider(elementId) {
     const slider = document.getElementById(elementId);
     slider.classList.remove('hide');
     slider.onanimationend = () => slider.classList.add('hide');
+}
+
+function giveImageRandomName(formdata) {
+    const img = formdata.get('profilePhoto');
+    formdata.append(generateRandomName(), img);
+    formdata.delete('profilePhoto');
 }
