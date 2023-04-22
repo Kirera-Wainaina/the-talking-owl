@@ -6,8 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const fileInput = document.querySelector('input[type="file"]');
     fileInput.addEventListener('change', displayProfileImage);
 
-    const form = document.querySelector('form');
-    form.addEventListener('submit', submitAuthor)
+    if (location.pathname === '/admin/add-authors') {
+        // this file is shared by edit-author.js,
+        // this event listener is only for this file
+        const form = document.querySelector('form');
+        form.addEventListener('submit', submitAuthor)    
+    }
 })
 
 function attachListenerToFileButton() {
