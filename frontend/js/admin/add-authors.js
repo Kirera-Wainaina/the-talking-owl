@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function attachListenerToFileButton() {
     const fileInput = document.querySelector('input[type="file"]');
-    const addImageButton = document.querySelector('input[value="Add Image"]');
+    const addImageButton = document.getElementById('choose-image');
     
     addImageButton.onclick = () => fileInput.click();
 }
