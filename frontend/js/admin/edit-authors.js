@@ -1,7 +1,7 @@
 import { createImageElement, createTextElement } from "../general.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const authorDetailsContainer = document.querySelector('#authors-details');
+    const authorDetailsContainer = document.querySelector('#author-list');
     const data = await retrieveAuthorDetails();
     const fragment = createAuthorContainers(data);
     
