@@ -14,9 +14,15 @@ function retrieveAuthorData() {
 function displayAuthorDetails(authorDetails) {
     createImagePreview(authorDetails.profileImageLink);
     displayAuthorName(authorDetails.authorName);
+    displayAuthorBio(authorDetails.bio);
 }
 
 function displayAuthorName(name) {
     const nameInput = document.querySelector('input[name="authorName"]');
     nameInput.value = name;
+}
+
+function displayAuthorBio(bio) {
+    const bioInput = document.querySelector('textarea[name="bio"]')
+    bioInput.value = bio;
 }
