@@ -4,8 +4,6 @@ const path = require('path');
 
 function minimizeImage(filePath) {
     const destination = path.join(__dirname, '..', 'converted');
-    console.log('destination: ', destination)
-    console.log('filePath: ', filePath)
 
     return imagemin([filePath], {
         destination,
