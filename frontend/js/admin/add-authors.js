@@ -55,7 +55,7 @@ async function submitAuthor(event) {
     .then(handleSubmitAuthorResponse)
 }
 
-function handleSubmitAuthorResponse(response) {
+export function handleSubmitAuthorResponse(response) {
     hideSpinningIcon('SAVE AUTHOR');
     if (response == 'forbidden') {
         displayErrorSlider('forbidden-error');
