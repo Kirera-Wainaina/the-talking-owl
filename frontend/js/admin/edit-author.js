@@ -40,6 +40,13 @@ function editAuthor(event) {
 
     const formdata = new FormData(event.target);
     changeImageName(formdata);
+    formdata.append('fileNumber', 1);
+    fetch('/api/edit-author', {
+        method: 'POST',
+        body: formdata
+    })
+    .then(response => response.text())
+    .then(handleEditAuthorResponse)
 }
 
 function setProfileImageName(name) {
@@ -54,4 +61,8 @@ function changeImageName(formdata) {
         formdata.append(imageElement.dataset.profileImageName, image);
         formdata.delete('profilePhoto')
     }
+}
+
+function handleEditAuthorResponse(response) {
+    
 }
