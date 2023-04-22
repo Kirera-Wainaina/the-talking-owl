@@ -38,9 +38,20 @@ function editAuthor(event) {
     event.preventDefault();
     showSpinningIcon(document.querySelector('button[type="submit"]'));
 
+    const formdata = new FormData(event.target);
+    changeImageName(formdata);
 }
 
 function setProfileImageName(name) {
     const image = document.getElementById('profile-image-preview');
     image.dataset.profileImageName = name;
+}
+
+function changeImageName(formdata) {
+    if (formdata.has('profilePhoto')) {
+        const image = formdata.get('profilePhoto');
+        const imageElement = document.getElementById('profile-image-preview');
+        formdata.append(imageElement.dataset.profileImageName, image);
+        formdata.delete('profilePhoto')
+    }
 }
