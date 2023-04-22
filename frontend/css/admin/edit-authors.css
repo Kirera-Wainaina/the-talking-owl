@@ -21,6 +21,15 @@ h1 {
     align-items: center;
     height: 15vh;
     gap: 2em;
+    padding: .5em;
+}
+
+.author-details:active {
+    background-color: var(--active-color);
+}
+
+.author-details:hover {
+    background-color: var(--hover-color);
 }
 
 .author-details img {

@@ -22,14 +22,15 @@ function createAuthorContainers(data) {
 }
 
 function createSingleAuthorContainer(authorDetails) {
-    const div = document.createElement('div');
-    div.append(createImageElement(
+    const a = document.createElement('a');
+    a.href = `/admin/edit-author?id=${authorDetails.id}`;
+    a.append(createImageElement(
         authorDetails.profileImageLink, 
         'profile image', 
         100, 
         100
     ))
-    div.append(createTextElement('p', authorDetails.authorName))
-    div.classList.add('author-details')
-    return div
+    a.append(createTextElement('p', authorDetails.authorName))
+    a.classList.add('author-details')
+    return a
 }
