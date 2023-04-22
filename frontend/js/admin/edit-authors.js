@@ -30,6 +30,6 @@ function createSingleAuthorContainer(authorDetails) {
         100
     ))
     div.append(createTextElement('p', authorDetails.authorName))
-    div.classList.add('details')
+    div.classList.add('author-details')
     return div
 }
