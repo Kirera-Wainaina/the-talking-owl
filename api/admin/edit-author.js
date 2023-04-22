@@ -21,13 +21,7 @@ exports.main = async function (request, response) {
             const dataToSave = createDataToSave(fields, cloudFileMetadata);
             const writeResult = await saveDataToFirestore(dataToSave, documentId);
 
-            if (writeResult) {
-                console.log('successfully updated the author details');
-                response.writeHead(200, { 'content-type': 'text/plain' });
-                response.end('success')
-            } else {
-                throw new Error('Error occurred while editing author')
-            }
+            handleWriteResultResponse(writeResult, response)
         } else {
             if (files.length) {
                 await fsPromises.unlink(files[0])
@@ -71,4 +65,14 @@ function saveDataToFirestore(data, documentId) {
                 documentSnapshot => documentSnapshot.ref.update(data)
             ))
         })
+}
+
+function handleWriteResultResponse(writeResult, response) {
+    if (writeResult) {
+        console.log('successfully updated the author details');
+        response.writeHead(200, { 'content-type': 'text/plain' });
+        response.end('success')
+    } else {
+        throw new Error('Error occurred while editing author')
+    }
 }
