@@ -30,6 +30,11 @@ h1 {
 
 #link-container a:hover {
     box-shadow: var(--shadow);
+    background-color: var(--hover-color);
+}
+
+#link-container a:active {
+    background-color: var(--active-color);
 }
 
 @media (orientation: portrait) {
