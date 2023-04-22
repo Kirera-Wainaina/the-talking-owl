@@ -12,12 +12,7 @@ exports.main = async function (request, response) {
         const documentId = fields.id;
 
         if (await isAdminPassword(fields.adminPassword)){
-            let cloudFileMetadata;
-            if (files.length) {
-                const [ convertedFileMetadata ] = await imageHandler.minimizeImage(files[0]);
-                const cloudFile = await storage.saveImage(convertedFileMetadata.destinationPath);
-                cloudFileMetadata = await storage.getFileMetadata(cloudFile);
-            }
+            const cloudFileMetadata = await saveImageAndReturnMetadata(files[0])
             const dataToSave = createDataToSave(fields, cloudFileMetadata);
             const writeResult = await saveDataToFirestore(dataToSave, documentId);
 
@@ -75,4 +70,11 @@ function handleWriteResultResponse(writeResult, response) {
     } else {
         throw new Error('Error occurred while editing author')
     }
+}
+
+async function saveImageAndReturnMetadata(filePath) {
+    if (!filePath) return
+    const [ convertedFileMetadata ] = await imageHandler.minimizeImage(filePath);
+    const cloudFile = await storage.saveImage(convertedFileMetadata.destinationPath);
+    return storage.getFileMetadata(cloudFile);
 }
