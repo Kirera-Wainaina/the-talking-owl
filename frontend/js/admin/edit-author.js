@@ -35,11 +35,13 @@ function displayAuthorBio(bio) {
 }
 
 function editAuthor(event) {
+    const params = new URLSearchParams(location.search);
     event.preventDefault();
     showSpinningIcon(document.querySelector('button[type="submit"]'));
 
     const formdata = new FormData(event.target);
     changeImageName(formdata);
+    formdata.append('id', params.get('id'));
     fetch('/api/admin/edit-author', {
         method: 'POST',
         body: formdata
