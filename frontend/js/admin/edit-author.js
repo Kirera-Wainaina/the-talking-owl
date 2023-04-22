@@ -1,4 +1,4 @@
-import { createImagePreview } from "./add-authors.js";
+import { createImagePreview, handleSubmitAuthorResponse } from "./add-authors.js";
 import { showSpinningIcon } from "../general.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -41,12 +41,12 @@ function editAuthor(event) {
     const formdata = new FormData(event.target);
     changeImageName(formdata);
     formdata.append('fileNumber', 1);
-    fetch('/api/edit-author', {
+    fetch('/api/admin/edit-author', {
         method: 'POST',
         body: formdata
     })
     .then(response => response.text())
-    .then(handleEditAuthorResponse)
+    .then(handleSubmitAuthorResponse)
 }
 
 function setProfileImageName(name) {
@@ -61,8 +61,4 @@ function changeImageName(formdata) {
         formdata.append(imageElement.dataset.profileImageName, image);
         formdata.delete('profilePhoto')
     }
-}
-
-function handleEditAuthorResponse(response) {
-    
 }
