@@ -1,6 +1,7 @@
 const FormDataHandler = require('../../utils/formDataHandler');
 const storage = require('../../utils/storage');
 const imageHandler = require('../../utils/imageHandler');
+const database = require('../../utils/database');
 const bcrypt = require('bcrypt');
 const fsPromises = require('fs/promises');
 
@@ -16,17 +17,25 @@ exports.main = async function (request, response) {
                 fsPromises.unlink(convertedImageMetadata.sourcePath),
                 fsPromises.unlink(convertedImageMetadata.destinationPath)
             ])
-            console.log(dataToSave)
+            const documentRef = await database.saveData(dataToSave, 'authors');
+
+            if (documentRef.id) {
+                console.log('successfully saved author');
+                response.writeHead(200, {'content-type': 'text/plain'})
+                response.end('success')
+            } else {
+                throw new Error('Error while saving to Firestore');
+            }
 
         } else {
             await fsPromises.unlink(files[0])
-            response.writeHead(403, {'content-type': 'text/html' });
+            response.writeHead(403, {'content-type': 'text/plain' });
             response.end('forbidden');
         }
 
     } catch (error) {
         console.log(error);
-        response.writeHead(500, { 'content-type': 'text/html'});
+        response.writeHead(500, { 'content-type': 'text/plain'});
         response.end('error')
     }
 }
