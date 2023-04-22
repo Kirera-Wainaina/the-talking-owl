@@ -3,13 +3,14 @@ const storage = require('../../utils/storage');
 const imageHandler = require('../../utils/imageHandler');
 const database = require('../../utils/database');
 const fsPromises = require('fs/promises');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const { FieldPath } = require('@google-cloud/firestore');
 
 exports.main = async function (request, response) {
     try {
         const [fields, files ] = await new FormDataHandler(request).run();
-        console.log(fields);
         const documentId = fields.id;
+
         if (await isAdminPassword(fields.adminPassword)){
             let cloudFileMetadata;
             if (files.length) {
@@ -18,8 +19,15 @@ exports.main = async function (request, response) {
                 cloudFileMetadata = await storage.getFileMetadata(cloudFile);
             }
             const dataToSave = createDataToSave(fields, cloudFileMetadata);
-            saveDataToFirestore(dataToSave, documentId);
-            console.log(dataToSave);
+            const writeResult = await saveDataToFirestore(dataToSave, documentId);
+
+            if (writeResult) {
+                console.log('successfully updated the author details');
+                response.writeHead(200, { 'content-type': 'text/plain' });
+                response.end('success')
+            } else {
+                throw new Error('Error occurred while editing author')
+            }
         } else {
             if (files.length) {
                 await fsPromises.unlink(files[0])
@@ -53,7 +61,14 @@ function createDataToSave(fields, cloudFileMetadata) {
     return fields
 }
 
-function saveDataToFirestore(data) {
+function saveDataToFirestore(data, documentId) {
     const collection = database.firestore.collection('authors');
-    collection.where()
+    return collection
+        .where(FieldPath.documentId(), '==', documentId)
+        .get()
+        .then(querysnapshot => {
+            return Promise.all(querysnapshot.docs.map(
+                documentSnapshot => documentSnapshot.ref.update(data)
+            ))
+        })
 }
