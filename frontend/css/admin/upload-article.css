@@ -14,6 +14,10 @@
     z-index: 3;
 }
 
+nav  {
+    margin-top: 6vh;
+}
+
 #upload-parent-container {
     grid-column: 3 / 11;
     font-size: 1.2em;
