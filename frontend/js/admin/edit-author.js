@@ -40,7 +40,6 @@ function editAuthor(event) {
 
     const formdata = new FormData(event.target);
     changeImageName(formdata);
-    formdata.append('fileNumber', 1);
     fetch('/api/admin/edit-author', {
         method: 'POST',
         body: formdata
@@ -55,10 +54,14 @@ function setProfileImageName(name) {
 }
 
 function changeImageName(formdata) {
-    if (formdata.has('profilePhoto')) {
+    const imageInput = document.querySelector('input[name="profilePhoto"]');
+    if (imageInput.files[0]) {
         const image = formdata.get('profilePhoto');
         const imageElement = document.getElementById('profile-image-preview');
-        formdata.append(imageElement.dataset.profileImageName, image);
-        formdata.delete('profilePhoto')
+        const profileImageName = imageElement.dataset.profileImageName
+            .replace('.webp', '');
+        formdata.append(profileImageName, image);
+        formdata.append('fileNumber', 1);
     }
+    formdata.delete('profilePhoto')
 }
