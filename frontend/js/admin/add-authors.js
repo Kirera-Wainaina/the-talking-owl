@@ -28,7 +28,7 @@ function displayProfileImage(event) {
     }
 }
 
-function createImagePreview(url) {
+export function createImagePreview(url) {
     const profileImageLabel = document.getElementById('profile-image-label');
     const img = document.createElement('img');
     img.src = url;
