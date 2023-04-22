@@ -13,4 +13,10 @@ function retrieveAuthorData() {
 
 function displayAuthorDetails(authorDetails) {
     createImagePreview(authorDetails.profileImageLink);
+    displayAuthorName(authorDetails.authorName);
+}
+
+function displayAuthorName(name) {
+    const nameInput = document.querySelector('input[name="authorName"]');
+    nameInput.value = name;
 }
