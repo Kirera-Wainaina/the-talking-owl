@@ -111,7 +111,7 @@ export function generateRandomName() {
 }
 
 export function handleResponse(responseText, spinningButtonText, redirectionURL) {
-    hideSpinningIcon(spinningButtonText);
+    spinningButtonText && hideSpinningIcon(spinningButtonText);
 
     if (responseText == 'forbidden') {
         displaySliderAnimation('forbidden-error');
