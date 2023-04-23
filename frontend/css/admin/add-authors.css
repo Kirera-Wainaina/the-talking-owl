@@ -65,6 +65,16 @@ label {
     margin-bottom: 1.5em;
 }
 
+#delete-icon {
+    position: fixed;
+    bottom: 2em;
+    right: 2em;
+    height: 4vw;
+    width: 4vw;
+    background-color: var(--secondary);
+    border-radius: 50%;
+}
+
 @media (orientation: portrait) {
     h1 {
         grid-column: 1 / 7;
@@ -79,4 +89,12 @@ label {
         width: 40vw;
         height: 40vw;
     }
+
+    #delete-icon {
+        right: 1em;
+        height: 8vh;
+        width: 8vh;
+        box-shadow: var(--shadow);
+    }
+
 }
