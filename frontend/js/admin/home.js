@@ -1,12 +1,17 @@
-import { showSpinningIcon, toggleElementClass  } from "../general.js";
+import { displaySliderAnimation, handleResponse, showSpinningIcon, toggleElementClass  } from "../general.js";
 
 const renderButton = document.querySelector('#menu button');
 renderButton.addEventListener('click', renderAllPages);
 
 async function renderAllPages(event) {
     showLoadingModal();
-    const response = await submitRenderAllPagesRequest();
-    handleRenderAllPagesResponse(response)
+    const responseText = await submitRenderAllPagesRequest();
+    hideLoadingModal()
+    if (responseText == 'success') {
+        displaySliderAnimation('render-success-slider');
+    } else {
+        handleResponse(responseText, null, location.href);
+    }
 }
 
 function showLoadingModal() {
@@ -25,24 +30,4 @@ function submitRenderAllPagesRequest() {
         '/api/admin/render-all-pages',
         { method: 'POST'}
     ).then(response => response.text())
-}
-
-function handleRenderAllPagesResponse(response) {
-    let slider;
-    hideLoadingModal();
-    if (response == 'success') {
-        slider = document.getElementById('render-success-slider');
-        slider.addEventListener(
-            'animationend', 
-            () => toggleElementClass(slider, 'hide')
-        );
-        toggleElementClass(slider, 'hide');
-    } else {
-        slider = document.getElementById('render-error-slider')
-        slider.addEventListener(
-            'animationend', 
-            () => toggleElementClass(slider, 'hide')
-        );
-        toggleElementClass(slider, 'hide')
-    }
 }
