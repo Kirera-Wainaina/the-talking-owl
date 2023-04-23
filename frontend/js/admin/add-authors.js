@@ -1,4 +1,4 @@
-import { generateRandomName, hideSpinningIcon, showSpinningIcon } from "../general.js";
+import { displaySliderAnimation, generateRandomName, hideSpinningIcon, showSpinningIcon } from "../general.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     attachListenerToFileButton();
@@ -58,18 +58,12 @@ async function submitAuthor(event) {
 export function handleSubmitAuthorResponse(response) {
     hideSpinningIcon('SAVE AUTHOR');
     if (response == 'forbidden') {
-        displayErrorSlider('forbidden-error');
+        displaySliderAnimation('forbidden-error');
     } else if (response == 'error') {
-        displayErrorSlider('server-error');
+        displaySliderAnimation('server-error')
     } else {
         location.href = '/admin/manage-authors'
     }
-}
-
-function displayErrorSlider(elementId) {
-    const slider = document.getElementById(elementId);
-    slider.classList.remove('hide');
-    slider.onanimationend = () => slider.classList.add('hide');
 }
 
 function giveImageRandomName(formdata) {
