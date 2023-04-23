@@ -75,6 +75,15 @@ label {
     border-radius: 50%;
 }
 
+#delete-icon:hover {
+    box-shadow: var(--shadow);
+    background-color: var(--hover-color);
+}
+
+#delete-icon:active {
+    background-color: var(--active-color);
+}
+
 @media (orientation: portrait) {
     h1 {
         grid-column: 1 / 7;
