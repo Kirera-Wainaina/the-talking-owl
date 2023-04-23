@@ -94,7 +94,10 @@ async function submitImages(event) {
         body: formdata,
     })
     .then(response => response.text())
-    .then(text => handleResponse(text, 'Upload Images', location.href))
+    .then(text => {
+        if (text == 'success') removeAllImagesFromUploadContainer()
+        handleResponse(text, 'Upload Images', location.href)
+    })
 }
 
 function getImageURLs(form) {
