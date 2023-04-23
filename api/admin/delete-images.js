@@ -13,10 +13,10 @@ exports.main = async function(request, response) {
 
         console.log('Image(s) were successfully deleted')
         response.writeHead(200, {'content-type': 'text/plain'})
-            .end('success')
+        response.end('success')
     } catch (error) {
         console.log(error);
         response.writeHead(500, {'content-type': 'text/plain'})
-            .end('fail');
+        response.end('error');
     }
 }
