@@ -39,15 +39,18 @@ class FormDataHandler {
     }
 
     handleClose(resolve) {
-        if (!this.thereIsFile) resolve();
         console.log('Data retrieved successfully');
+        if (this.thereIsFile) {
+            if (!this.fields.fileNumber) throw new Error('fileNumber field not uploaded');
+        } else {
+            resolve()
+        }
     }
 
     handleFileSaved(name, filePath, resolve) {
         console.log(`${name} written to disk`);
         this.fileNumber += 1;
         this.uploadedFiles.push(filePath);
-        if (!this.fields.fileNumber) throw new Error('fileNumber field not uploaded');
         if (this.fileNumber == Number(this.fields.fileNumber)) resolve()
     }
 
