@@ -110,11 +110,6 @@ export function generateRandomName() {
     return `${number}-${date}`
 }
 
-export function getIdFromUrlParams(params=location.search) {
-    const params = new URLSearchParams(params);
-    return params.get('id')
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     // toggle menu sidebar on phone viewport
     const menuIcon = document.querySelector('nav input');

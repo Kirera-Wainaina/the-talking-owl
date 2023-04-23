@@ -1,5 +1,5 @@
 import { createImagePreview, handleSubmitAuthorResponse } from "./add-authors.js";
-import { getIdFromUrlParams, showSpinningIcon } from "../general.js";
+import { getIdFromURL, showSpinningIcon } from "../general.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
     const [ authorDetails ] = await retrieveAuthorData();
@@ -39,7 +39,7 @@ function displayAuthorBio(bio) {
 }
 
 function editAuthor(event) {
-    const id = getIdFromUrlParams();
+    const id = getIdFromURL();
     event.preventDefault();
     showSpinningIcon(document.querySelector('button[type="submit"]'));
 
@@ -85,7 +85,7 @@ function deleteAuthor(event) {
     showSpinningIcon(document.getElementById('delete-icon'));
 
     const formdata = new FormData(event.target);
-    formdata.append(authorId, getIdFromUrlParams());
+    formdata.append(authorId, getIdFromURL());
 
     fetch('/api/admin/delete-author', {
         method: 'POST',
