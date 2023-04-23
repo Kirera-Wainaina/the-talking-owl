@@ -1,4 +1,9 @@
-import { showSpinningIcon, hideSpinningIcon, displaySliderAnimation } from '../general.js';
+import { 
+    showSpinningIcon, 
+    hideSpinningIcon, 
+    displaySliderAnimation, 
+    handleResponse 
+} from '../general.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('form');
@@ -12,8 +17,9 @@ function submitSitemap(event) {
     fetch('/api/admin/upload-sitemap', {
         body: formdata,
         method: 'POST'
-    }).then(response => response.text())
-    .then(handleResponse)
+    })
+    .then(response => response.text())
+    .then(text => handleResponse(text, 'UPLOAD SITEMAP', '/admin/home'))
 }
 
 function transferSitemapToFormData() {
@@ -22,13 +28,4 @@ function transferSitemapToFormData() {
     formdata.append('sitemap', input.files[0]);
     formdata.append('fileNumber', 1);
     return formdata
-}
-
-function handleResponse(responseText) {
-    if (responseText == 'success') {
-        hideSpinningIcon('UPLOAD SITEMAP');
-        location.href = '/admin/home';
-    } else {
-        displaySliderAnimation('sitemap-upload-error');
-    }
 }
