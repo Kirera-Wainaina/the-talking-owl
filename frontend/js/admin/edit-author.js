@@ -1,5 +1,5 @@
-import { createImagePreview, handleSubmitAuthorResponse } from "./add-authors.js";
-import { getIdFromURL, showSpinningIcon } from "../general.js";
+import { createImagePreview } from "./add-authors.js";
+import { getIdFromURL, handleResponse, showSpinningIcon } from "../general.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
     const [ authorDetails ] = await retrieveAuthorData();
@@ -51,7 +51,7 @@ function editAuthor(event) {
         body: formdata
     })
     .then(response => response.text())
-    .then(handleSubmitAuthorResponse)
+    .then(text => handleResponse(text, 'SAVE AUTHOR', '/admin/manage-authors'))
 }
 
 function setProfileImageName(name) {

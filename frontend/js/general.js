@@ -110,6 +110,18 @@ export function generateRandomName() {
     return `${number}-${date}`
 }
 
+export function handleResponse(responseText, spinningButtonText, redirectionURL) {
+    hideSpinningIcon(spinningButtonText);
+
+    if (responseText == 'forbidden') {
+        displaySliderAnimation('forbidden-error');
+    } else if (responseText == 'error') {
+        displaySliderAnimation('server-error');
+    } else {
+        location.href = redirectionURL;
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // toggle menu sidebar on phone viewport
     const menuIcon = document.querySelector('nav input');
