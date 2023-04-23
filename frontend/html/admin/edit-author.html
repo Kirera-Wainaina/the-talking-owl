@@ -82,7 +82,7 @@
 
     <h1>Edit Author</h1>
 
-    <form>
+    <form id="edit-form">
       <label id="profile-image-label">
         Profile Image:
         <input type="button" value="Change Image" id="choose-image"/>
@@ -105,6 +105,15 @@
       </label>
 
       <button type="submit">SAVE AUTHOR</button>
+    </form>
+
+    <form id="delete-form" class="hide">
+      <label>
+        Admin Password:
+        <input type="password" name="adminPassword" required>
+      </label>
+
+      <button type="submit">DELETE AUTHOR</button>
     </form>
 
     <input type="image" src="/frontend/images/delete-icon.svg" id="delete-icon"/>

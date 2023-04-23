@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         const form = document.querySelector('form');
         form.addEventListener('submit', editAuthor)
     }
+
+    const deleteIcon = document.getElementById('delete-icon');
+    deleteIcon.addEventListener('click', displayDeleteForm)
 })
 
 function retrieveAuthorData() {
@@ -66,4 +69,12 @@ function changeImageName(formdata) {
         formdata.append('fileNumber', 1);
     }
     formdata.delete('profilePhoto')
+}
+
+function displayDeleteForm() {
+    const editForm = document.getElementById('edit-form');
+    const deleteForm = document.getElementById('delete-form');
+
+    editForm.classList.toggle('hide');
+    deleteForm.classList.toggle('hide');
 }
