@@ -76,5 +76,16 @@ async function saveImageAndReturnMetadata(filePath) {
     if (!filePath) return
     const [ convertedFileMetadata ] = await imageHandler.minimizeImage(filePath);
     const cloudFile = await storage.saveImage(convertedFileMetadata.destinationPath);
+    await deleteAuthorImagesFromDisk(
+        convertedFileMetadata.sourcePath, 
+        convertedFileMetadata.destinationPath
+    )
     return storage.getFileMetadata(cloudFile);
+}
+
+function deleteAuthorImagesFromDisk(convertedFilePath, uploadedFilePath) {
+    return Promise.all([
+        fsPromises.unlink(convertedFilePath),
+        fsPromises.unlink(uploadedFilePath)
+    ])
 }
