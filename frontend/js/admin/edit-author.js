@@ -1,14 +1,15 @@
 import { createImagePreview, handleSubmitAuthorResponse } from "./add-authors.js";
-import { showSpinningIcon } from "../general.js";
+import { getIdFromUrlParams, showSpinningIcon } from "../general.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
     const [ authorDetails ] = await retrieveAuthorData();
     displayAuthorDetails(authorDetails);
 
-    if (location.pathname == '/admin/edit-author') {
-        const form = document.querySelector('form');
-        form.addEventListener('submit', editAuthor)
-    }
+    const editForm = document.getElementById('edit-form');
+    editForm.addEventListener('submit', editAuthor);
+
+    const deleteForm = document.getElementById('delete-form');
+    deleteForm.addEventListener('submit', deleteAuthor);
 
     const deleteIcon = document.getElementById('delete-icon');
     deleteIcon.addEventListener('click', displayDeleteForm)
@@ -38,13 +39,13 @@ function displayAuthorBio(bio) {
 }
 
 function editAuthor(event) {
-    const params = new URLSearchParams(location.search);
+    const id = getIdFromUrlParams();
     event.preventDefault();
     showSpinningIcon(document.querySelector('button[type="submit"]'));
 
     const formdata = new FormData(event.target);
     changeImageName(formdata);
-    formdata.append('id', params.get('id'));
+    formdata.append('id', id);
     fetch('/api/admin/edit-author', {
         method: 'POST',
         body: formdata
@@ -77,4 +78,18 @@ function displayDeleteForm() {
 
     editForm.classList.toggle('hide');
     deleteForm.classList.toggle('hide');
+}
+
+function deleteAuthor(event) {
+    event.preventDefault();
+    showSpinningIcon(document.getElementById('delete-icon'));
+
+    const formdata = new FormData(event.target);
+    formdata.append(authorId, getIdFromUrlParams());
+
+    fetch('/api/admin/delete-author', {
+        method: 'POST',
+        body: formdata
+    })
+    .then(response => response.text())
 }
