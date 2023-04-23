@@ -1,7 +1,7 @@
 import { createArticleContainer } from "./article-list.js";
 import { 
     createDateBylineElement,
-    createTextElement, getArticleId, 
+    createTextElement, getIdFromURL, 
     getArticleUrlTitle, urlifySentence 
 } from "./general.js";
 
@@ -201,7 +201,7 @@ function createRelatedArticlesHeading() {
 
 function createRelatedArticleContainer(url) {
     return new Promise((resolve, reject) => {
-        const id = getArticleId(url);
+        const id = getIdFromURL(url);
         const urlTitle = getArticleUrlTitle(url);
         
         // use index of five so image can have loading attribute

@@ -98,7 +98,7 @@ export function getArticleUrlTitle(articleUrl=location.href) {
     return urlTitle;
 }
 
-export function getArticleId(url=location.href) {
+export function getIdFromURL(url=location.href) {
     const urlObject = new URL(url);
     const params = new URLSearchParams(urlObject.search);
     return params.get('id');
@@ -110,8 +110,8 @@ export function generateRandomName() {
     return `${number}-${date}`
 }
 
-export function getIdFromUrlParams() {
-    const params = new URLSearchParams(location.search);
+export function getIdFromUrlParams(params=location.search) {
+    const params = new URLSearchParams(params);
     return params.get('id')
 }
 

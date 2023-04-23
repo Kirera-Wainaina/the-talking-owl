@@ -1,4 +1,4 @@
-import { getArticleId, getArticleUrlTitle } from './general.js';
+import { getIdFromURL, getArticleUrlTitle } from './general.js';
 import { renderOnArticlePage } from './render.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -14,7 +14,7 @@ function retrieveArticle() {
 &field=landscapeImage&field=landscapeImageText&field=portraitImage\
 &field=portraitImageText&field=publishedDate&field=updatedDate&\
 field=title&field=relatedArticle1&field=relatedArticle2&field=category\
-&id=${getArticleId()}&urlTitle=${getArticleUrlTitle()}`)
+&id=${getIdFromURL()}&urlTitle=${getArticleUrlTitle()}`)
     .then(response => response.json())
 }
 
