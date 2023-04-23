@@ -1,5 +1,5 @@
 import { displaySliderAnimation, hideSpinningIcon, showSpinningIcon, toggleElementClass, 
-    createImageElement, createTextElement, generateRandomName
+    createImageElement, createTextElement, generateRandomName, handleResponse
 } from "../general.js";
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -92,7 +92,9 @@ async function submitImages(event) {
     fetch('/api/admin/upload-images', {
         method: 'POST',
         body: formdata,
-    }).then(handleImageSaveResponse)
+    })
+    .then(response => response.text())
+    .then(text => handleResponse(text, 'Upload Images', location.href))
 }
 
 function getImageURLs(form) {
@@ -127,16 +129,6 @@ function getBlob(imageURL) {
 function deactivateSubmitButton() {
     const button = document.querySelector('button[type="submit"]');
     showSpinningIcon(button);
-}
-
-function handleImageSaveResponse(response) {
-    hideSpinningIcon('Upload Images');
-    if (response.status == 200) {
-        removeAllImagesFromUploadContainer();
-        location.reload();
-    } else {
-        displaySliderAnimation('image-upload-error');
-    }
 }
 
 function removeAllImagesFromUploadContainer() {
