@@ -111,7 +111,7 @@ function getImageURLs(form) {
 async function addImagesToFormData(imageURLs) {
     const formdata = new FormData();
     await Promise.all(imageURLs.map(imageURL => addSingleImageToFormData(formdata, imageURL)))
-    formdata.append('fileNumber', imageURLs.length)
+    formdata.append('fileNumber', imageURLs.length);
     return formdata
 }
 
@@ -264,15 +264,14 @@ function submitImageDataForDeletion(data) {
     fetch('/api/admin/delete-images', {
         method: 'POST',
         body: formdata
-    }).then(handleImageDeletionResponse)
-}
+    })
+    .then(response => response.text())
+    .then(text => {
+        handleResponse(text, null, location.href);
+        disableDeletion()
 
-function handleImageDeletionResponse(response) {
-    disableDeletion();
-    if (response.status == 200) {
-        location.reload()
-    } else {
-        toggleElementClass(document.getElementById('deleting-images-modal'), 'hide')
-        displaySliderAnimation('image-upload-error');
-    }
+        if (text == 'error') {
+            toggleElementClass(document.getElementById('deleting-images-modal'), 'hide')
+        }
+    })
 }
