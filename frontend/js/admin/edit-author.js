@@ -41,7 +41,7 @@ function displayAuthorBio(bio) {
 function editAuthor(event) {
     const id = getIdFromURL();
     event.preventDefault();
-    showSpinningIcon(document.querySelector('button[type="submit"]'));
+    showSpinningIcon(document.getElementById('save-author-button'));
 
     const formdata = new FormData(event.target);
     changeImageName(formdata);
@@ -82,10 +82,10 @@ function displayDeleteForm() {
 
 function deleteAuthor(event) {
     event.preventDefault();
-    showSpinningIcon(document.getElementById('delete-icon'));
+    showSpinningIcon(document.getElementById('delete-author-button'));
 
     const formdata = new FormData(event.target);
-    formdata.append(authorId, getIdFromURL());
+    formdata.append('authorId', getIdFromURL());
 
     fetch('/api/admin/delete-author', {
         method: 'POST',
