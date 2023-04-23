@@ -92,4 +92,5 @@ function deleteAuthor(event) {
         body: formdata
     })
     .then(response => response.text())
+    .then(text => handleResponse(text, 'DELETE AUTHOR', '/admin/manage-authors'))
 }
