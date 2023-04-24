@@ -1,5 +1,5 @@
 import { displaySliderAnimation } from "../general.js";
-import { createPreviewData, handleSubmit } from "./upload-article.js";
+import { createPreviewData, handleSubmit     } from "./upload-article.js";
 
 document.addEventListener('DOMContentLoaded', fetchArticleData);
 
@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 })
 
+document.addEventListener('author-displayed', setAuthor)
+
 function fetchArticleData() {
     const params = new URLSearchParams(location.search);
     fetch(`/api/articles?urlTitle=${params.get('urlTitle')}&id=${params.get('id')}`)
@@ -24,6 +26,7 @@ function inputDataIntoForm(data) {
     inputDataIntoInputElements(data);
     inputContentIntoTextArea(data.content);
     setCategory(data.category);
+    sessionStorage.setItem('authorId', data.authorId);
 }
 
 function inputDataIntoInputElements(data) {
@@ -69,4 +72,11 @@ function createDataToEdit() {
         id: params.get('id'),
         urlTitle: params.get('urlTitle')
     }
+}
+
+function setAuthor() {
+    const authorId = sessionStorage.getItem('authorId');
+    const option = document.querySelector(`option[value=${authorId}]`);
+    option.setAttribute('selected', '')
+    sessionStorage.removeItem('authorId')
 }

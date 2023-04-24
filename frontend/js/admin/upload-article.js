@@ -35,7 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 })
 
-document.addEventListener('DOMContentLoaded', displayAuthors)
+document.addEventListener('DOMContentLoaded', async () => {
+    await displayAuthors();
+    emitAuthorDisplayedEvent();
+})
 
 export function createPreviewData() {
     return {
@@ -107,7 +110,9 @@ async function displayAuthors() {
     const fragment = createAuthorOptionsFragment(authors);
     const select = document.querySelector('select[name="authorId"]');
     select.append(fragment); 
+    return
 }
+
 function retrieveAuthors() {
     return fetch('/api/authors?field=authorName&field=id')
         .then(response => response.json())
@@ -134,4 +139,9 @@ function hideNav() {
 function showNav() {
     const nav = document.querySelector('nav');
     nav.classList.remove('hide');
+}
+
+function emitAuthorDisplayedEvent() {
+    const event = new Event('author-displayed');
+    document.dispatchEvent(event);
 }
