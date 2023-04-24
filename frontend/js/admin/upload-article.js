@@ -9,8 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
     checkPreviewButton.addEventListener('click', () => {
         toggleElementClass(checkPreviewButton, 'hide');
         toggleElementClass(exitPreviewButton, 'hide');
-        toggleElementClass(document.getElementById('preview'), 'hide')
-        toggleElementClass(document.getElementById('upload-parent-container'), 'hide')
+        toggleElementClass(document.getElementById('preview'), 'hide');
+        toggleElementClass(document.getElementById('upload-parent-container'), 'hide');
+        hideNav();
     })
     checkPreviewButton.addEventListener('click', 
         () => render(document.getElementById('preview'), createPreviewData()))
@@ -122,4 +123,12 @@ function createSingleAuthorOption(author) {
     option.value = author.id;
     option.textContent = author.authorName;
     return option
+}
+
+function hideNav() {
+    const nav = document.querySelector('nav');
+    const mobileNav = document.querySelector('.nav-dropdown')
+
+    nav.classList.add('hide');
+    mobileNav.classList.add('hide');
 }
