@@ -13,8 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 })
 
-document.addEventListener('author-displayed', setAuthor)
-
 function fetchArticleData() {
     const params = new URLSearchParams(location.search);
     fetch(`/api/articles?urlTitle=${params.get('urlTitle')}&id=${params.get('id')}`)
@@ -72,11 +70,4 @@ function createDataToEdit() {
         id: params.get('id'),
         urlTitle: params.get('urlTitle')
     }
-}
-
-function setAuthor() {
-    const authorId = sessionStorage.getItem('authorId');
-    const option = document.querySelector(`option[value=${authorId}]`);
-    option.setAttribute('selected', '')
-    sessionStorage.removeItem('authorId')
 }

@@ -37,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', async () => {
     await displayAuthors();
-    emitAuthorDisplayedEvent();
 })
 
 export function createPreviewData() {
@@ -139,9 +138,4 @@ function hideNav() {
 function showNav() {
     const nav = document.querySelector('nav');
     nav.classList.remove('hide');
-}
-
-function emitAuthorDisplayedEvent() {
-    const event = new Event('author-displayed');
-    document.dispatchEvent(event);
 }
