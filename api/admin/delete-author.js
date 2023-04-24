@@ -8,10 +8,10 @@ exports.main = async function (request, response) {
         const [fields] = await new FormDataHandler(request).run();
         
         if (await isAdminPassword(fields.adminPassword)) {
-            const [ authorDetails ] = await database.getDocumentData(fields.authorId, 'authors');
+            const authorDetails = await database.getDocumentData(fields.authorId, 'authors');
             await storage.deleteFile(authorDetails.profileImageName);
-            const [ writeResult ] = await database.deleteDocument(fields.authorId, 'authors');
-            
+            const writeResult = await database.deleteDocument(fields.authorId, 'authors');
+
             if (writeResult.writeTime) {
                 console.log('Author deletion was a success');
                 response.writeHead(200, {'content-type': 'text/plain'})

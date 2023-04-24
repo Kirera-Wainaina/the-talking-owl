@@ -68,6 +68,7 @@ exports.deleteDocument = function(id, collectionName) {
         .then(querySnapshot => Promise.all(querySnapshot.docs.map(
             documentSnapshot => documentSnapshot.ref.delete()
         )))
+        .then(data => data[0])
 }
 
 exports.getDocumentData = function(id, collectionName) {
@@ -77,6 +78,7 @@ exports.getDocumentData = function(id, collectionName) {
         .then(querySnapshot => Promise.all(querySnapshot.docs.map(
             documentSnapshot => documentSnapshot.data()
         )))
+        .then(data => data[0])
 }
 
 function setSelectInQuery(query, fields) {
