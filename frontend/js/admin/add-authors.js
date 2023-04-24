@@ -1,8 +1,6 @@
 import { 
-    displaySliderAnimation, 
     generateRandomName, 
     handleResponse, 
-    hideSpinningIcon, 
     showSpinningIcon 
 } from "../general.js";
 
