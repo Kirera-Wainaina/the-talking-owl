@@ -33,6 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 })
 
+document.addEventListener('DOMContentLoaded', async () => {
+    const authors = await retrieveAuthors();
+    console.log(authors);
+})
+
 export function createPreviewData() {
     return {
         title: document.querySelector('input[name="title"]').value,
@@ -95,4 +100,9 @@ async function handleResponse(response) {
         }
         hideSpinningIcon('Submit Article');
     }
+}
+
+function retrieveAuthors() {
+    return fetch('/api/authors?field=authorName&field=id')
+        .then(response => response.json())
 }
