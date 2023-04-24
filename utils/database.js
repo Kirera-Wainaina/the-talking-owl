@@ -65,8 +65,18 @@ exports.getData = async function(urlParams, collectionName) {
 exports.deleteDocument = function(id, collectionName) {
     const collection = firestore.collection(collectionName);
     return collection.where(FieldPath.documentId(), '==', id).get()
-        .then(querySnaphot => querySnaphot.forEach(
-            async documentSnapshot => await documentSnapshot.ref.delete()))
+        .then(querySnapshot => Promise.all(querySnapshot.docs.map(
+            documentSnapshot => documentSnapshot.ref.delete()
+        )))
+}
+
+exports.getDocumentData = function(id, collectionName) {
+    const collection = firestore.collection(collectionName);
+    return collection.where(FieldPath.documentId(), '==', id)
+        .get()
+        .then(querySnapshot => Promise.all(querySnapshot.docs.map(
+            documentSnapshot => documentSnapshot.data()
+        )))
 }
 
 function setSelectInQuery(query, fields) {
