@@ -33,10 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 })
 
-document.addEventListener('DOMContentLoaded', async () => {
-    const authors = await retrieveAuthors();
-    console.log(authors);
-})
+document.addEventListener('DOMContentLoaded', displayAuthors)
 
 export function createPreviewData() {
     return {
@@ -102,7 +99,26 @@ async function handleResponse(response) {
     }
 }
 
+async function displayAuthors() {
+    const authors = await retrieveAuthors();
+    const fragment = createAuthorOptionsFragment(authors);
+    const select = document.querySelector('select[name="authorId"]');
+    select.append(fragment); 
+}
 function retrieveAuthors() {
     return fetch('/api/authors?field=authorName&field=id')
         .then(response => response.json())
+}
+
+function createAuthorOptionsFragment(authors) {
+    const fragment = new DocumentFragment();
+    authors.forEach(author => fragment.append(createSingleAuthorOption(author)));
+    return fragment
+}
+
+function createSingleAuthorOption(author) {
+    const option = document.createElement('option');
+    option.value = author.id;
+    option.textContent = author.authorName;
+    return option
 }
