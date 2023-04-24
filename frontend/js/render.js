@@ -2,7 +2,7 @@ import { createArticleContainer } from "./article-list.js";
 import { 
     createDateBylineElement,
     createTextElement, getIdFromURL, 
-    getArticleUrlTitle, urlifySentence 
+    getArticleUrlTitle, urlifySentence, createImageElement 
 } from "./general.js";
 
 export async function render(parentContainer, data) {
@@ -26,6 +26,7 @@ export async function render(parentContainer, data) {
         data.publishedDate, 
         data.updatedDate ?? data.publishedDate // some articles don't have an updatedDate
         ));
+    container.append(await createAuthor(data.authorId));
     if (data.relatedArticle1 || data.relatedArticle2) {
         container.append(
             await createRelatedArticlesSection(data.relatedArticle1, data.relatedArticle2)
@@ -219,4 +220,34 @@ function fetchRelatedArticleData(id, urlTitle) {
     return fetch(`/api/articles?field=title&field=description&field=landscapeImage\
 &field=landscapeImageText&field=publishedDate&id=${id}&urlTitle=${urlTitle}`)
     .then(response => response.json());
+}
+
+function fetchAuthor(authorId) {
+    return fetch(`/api/authors?field=authorName&field=bio&field=profileImageLink&id=${authorId}`)
+        .then(response => response.json())
+}
+
+async function createAuthor(authorId) {
+    const [ author ] = await fetchAuthor(authorId);
+    const div = document.createElement('div');
+    div.id = 'author-section';
+    div.append(createImageElement(
+        author.profileImageLink, 
+        `${author.authorName} profile image`, 
+        200, 
+        200
+    ));
+    div.append(createAuthorTextSection(author.bio, author.authorName));
+    return div
+}
+
+function createAuthorTextSection(bio, name) {
+    const div = document.createElement('div');
+    div.id = 'author-text';
+
+    div.append(createTextElement('p', bio));
+    div.append(createTextElement('p', name));
+    div.append(createTextElement('p', '- Author'));
+
+    return div
 }
