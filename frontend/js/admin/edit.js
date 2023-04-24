@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 })
 
+document.addEventListener('authors-available', setAuthor);
+document.addEventListener('article-available', setAuthor);
+
 function fetchArticleData() {
     const params = new URLSearchParams(location.search);
     fetch(`/api/articles?urlTitle=${params.get('urlTitle')}&id=${params.get('id')}`)
@@ -24,7 +27,10 @@ function inputDataIntoForm(data) {
     inputDataIntoInputElements(data);
     inputContentIntoTextArea(data.content);
     setCategory(data.category);
-    sessionStorage.setItem('authorId', data.authorId);
+    if (data.authorId) sessionStorage.setItem('authorId', data.authorId);
+
+    const event = new Event('article-available');
+    document.dispatchEvent(event);
 }
 
 function inputDataIntoInputElements(data) {
@@ -70,4 +76,21 @@ function createDataToEdit() {
         id: params.get('id'),
         urlTitle: params.get('urlTitle')
     }
+}
+
+function setAuthor() {
+    // function called on authors-available and article-available event
+    // if both sources of data are available, then the author can be set
+    // events are needed because, article and author data arrival is unpredictable
+    const authorId = sessionStorage.getItem('authorId');
+    const authorsAvailable = sessionStorage.getItem('authorsAvailable');
+    if (authorId && authorsAvailable) {
+        const option = document.querySelector(`option[value=${authorId}]`);
+        option.setAttribute('selected', '');
+        
+        sessionStorage.removeItem('authorId');
+        sessionStorage.removeItem('authorsAvailable');
+        return;
+    }
+    return;
 }

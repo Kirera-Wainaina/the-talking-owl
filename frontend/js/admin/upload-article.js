@@ -37,6 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', async () => {
     await displayAuthors();
+    sessionStorage.setItem('authorsAvailable', true);
+    
+    const event = new Event('authors-available');
+    document.dispatchEvent(event);
 })
 
 export function createPreviewData() {
