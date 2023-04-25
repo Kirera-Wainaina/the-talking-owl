@@ -26,6 +26,7 @@ function displayAuthorDetails(authorDetails) {
     setProfileImageName(authorDetails.profileImageName);
     displayAuthorName(authorDetails.authorName);
     displayAuthorBio(authorDetails.bio);
+    displayAuthorUrl(authorDetails.url);
 }
 
 function displayAuthorName(name) {
@@ -36,6 +37,11 @@ function displayAuthorName(name) {
 function displayAuthorBio(bio) {
     const bioInput = document.querySelector('textarea[name="bio"]')
     bioInput.value = bio;
+}
+
+function displayAuthorUrl(url) {
+    const urlInput = document.querySelector('input[name="url"]')
+    urlInput.value = url;
 }
 
 function editAuthor(event) {
