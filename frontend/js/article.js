@@ -5,9 +5,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     // if (navigator.userAgent != 'thetalkingowl-puppeteer') return;
     const [ data ] = await retrieveArticle();
     const [authorData] = await retrieveAuthor(data.authorId);
-    console.log(authorData)
+    
     renderOnArticlePage(data);
-    fillStructuredData(data);
+    fillStructuredData(data, authorData);
     fillOGElements(data, authorData.authorName);
 })
 
@@ -21,11 +21,11 @@ function retrieveArticle() {
 }
 
 function retrieveAuthor(authorId) {
-    return fetch(`/api/authors?field=authorName&id=${authorId}`)
+    return fetch(`/api/authors?field=authorName&field=url&id=${authorId}`)
     .then(response => response.json())
 }
 
-function fillStructuredData(article) {
+function fillStructuredData(article, author) {
     const structuredDataElement = document
         .querySelector('script[type="application/ld+json"]');
     const structuredData = JSON.parse(structuredDataElement.textContent);
@@ -35,6 +35,7 @@ function fillStructuredData(article) {
     if (article.updatedDate) {
         structuredData['dateModified'] = convertMillisecondsToISO(article.updatedDate);
     }
+    structuredData['author'] = [createStructuredDataAuthorObject(author)];
 
     structuredDataElement.textContent = JSON.stringify(structuredData);
 }
@@ -98,4 +99,12 @@ function setOGArticleUrl() {
 function setOGArticleDescription(description) {
     const element = document.querySelector('meta[name="og:description"]');
     element.setAttribute('content', description);
+}
+
+function createStructuredDataAuthorObject(author) {
+    return {
+        "@type": "Person",
+        "name": author.authorName,
+        "url": author.url
+    }
 }
