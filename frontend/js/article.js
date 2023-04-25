@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log(authorData)
     renderOnArticlePage(data);
     fillStructuredData(data);
-    fillOGElements(data);
+    fillOGElements(data, authorData.authorName);
 })
 
 function retrieveArticle() {
@@ -43,10 +43,10 @@ function convertMillisecondsToISO(milliseconds) {
     return new Date(Number(milliseconds)).toISOString();
 }
 
-function fillOGElements(article) {
+function fillOGElements(article, authorName) {
     setOGTitle(article.title);
     setOGPublishedTime(article.publishedDate);
-    setOGArticleAuthor('Kirera Wainaina');
+    setOGArticleAuthor(authorName);
     setOGArticleSection(article.category);
     setOGArticleImage(article.landscapeImage);
     setOGArticleImageAltText(article.landscapeImageText);
