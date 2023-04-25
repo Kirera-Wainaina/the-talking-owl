@@ -2,8 +2,10 @@ import { getIdFromURL, getArticleUrlTitle } from './general.js';
 import { renderOnArticlePage } from './render.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-    if (navigator.userAgent != 'thetalkingowl-puppeteer') return;
+    // if (navigator.userAgent != 'thetalkingowl-puppeteer') return;
     const [ data ] = await retrieveArticle();
+    const [authorData] = await retrieveAuthor(data.authorId);
+    console.log(authorData)
     renderOnArticlePage(data);
     fillStructuredData(data);
     fillOGElements(data);
@@ -12,9 +14,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 function retrieveArticle() {
     return fetch(`/api/articles?field=content&field=description\
 &field=landscapeImage&field=landscapeImageText&field=portraitImage\
-&field=portraitImageText&field=publishedDate&field=updatedDate&\
-field=title&field=relatedArticle1&field=relatedArticle2&field=category\
-&id=${getIdFromURL()}&urlTitle=${getArticleUrlTitle()}`)
+&field=portraitImageText&field=publishedDate&field=updatedDate\
+&field=title&field=relatedArticle1&field=relatedArticle2&field=category\
+&field=authorId&id=${getIdFromURL()}&urlTitle=${getArticleUrlTitle()}`)
+    .then(response => response.json())
+}
+
+function retrieveAuthor(authorId) {
+    return fetch(`/api/authors?field=authorName&id=${authorId}`)
     .then(response => response.json())
 }
 
@@ -83,6 +90,6 @@ function setOGArticleUrl() {
 }
 
 function setOGArticleDescription(description) {
-    const element = document.querySelector('meta=[name="og:description"]');
+    const element = document.querySelector('meta[name="og:description"]');
     element.setAttribute('content', description);
 }
