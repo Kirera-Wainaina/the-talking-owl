@@ -262,7 +262,7 @@ figure {
     margin-bottom: 2em;
     padding: 2em;
     gap: 1em;
-    align-items: center;
+    /* align-items: center; */
 }
 
 #author-section img {
@@ -274,6 +274,15 @@ figure {
 
 #author-text {
     flex: 2;
+}
+
+#author-text p:first-child {
+    font-style: italic;
+    margin-bottom: 1em;
+}
+
+#author-text p:nth-child(2) {
+    font-weight: bold;
 }
 
 @media (orientation: portrait) {
@@ -351,5 +360,18 @@ figure {
     
     table th, table td {
         padding: 0.5em;
+    }
+
+    #author-section {
+        grid-column: 1 / 7;
+        margin-left: 2em;
+        margin-right: 2em;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #author-section img {
+        width: 14vh;
+        height: 14vh;
     }
 }
