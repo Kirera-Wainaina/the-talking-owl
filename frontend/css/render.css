@@ -88,7 +88,7 @@ picture img, picture source {
 
 #date-byline {
     display: flex;
-    color: #333333;
+    color: var(--dark-gray);
     gap: 10px;
     margin-top: 2em;
     font-size: 12px;
@@ -283,6 +283,10 @@ figure {
 
 #author-text p:nth-child(2) {
     font-weight: bold;
+}
+
+#author-text p:nth-child(3) {
+    color: var(--dark-gray);
 }
 
 @media (orientation: portrait) {
