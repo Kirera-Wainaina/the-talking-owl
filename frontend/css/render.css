@@ -174,9 +174,9 @@ article img.portrait {
     background-color: var(--active-color);
 }
 
-#table-of-contents .h2-margin-left {
-    /* work with default */
-}
+/* #table-of-contents .h2-margin-left {
+    work with default
+} */
 
 #table-of-contents .h3-margin-left {
     padding-left: 8%;
