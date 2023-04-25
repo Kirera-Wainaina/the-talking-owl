@@ -46,6 +46,7 @@ function convertMillisecondsToISO(milliseconds) {
 function fillOGElements(article, authorName) {
     setOGTitle(article.title);
     setOGPublishedTime(article.publishedDate);
+    setOGModifiedTime(article.updatedDate);
     setOGArticleAuthor(authorName);
     setOGArticleSection(article.category);
     setOGArticleImage(article.landscapeImage);
@@ -61,6 +62,11 @@ function setOGTitle(title) {
 
 function setOGPublishedTime(timeInMilliseconds) {
     const element = document.querySelector('meta[name="og:article:published_time"]');
+    element.setAttribute('content', convertMillisecondsToISO(timeInMilliseconds));
+}
+
+function setOGModifiedTime(timeInMilliseconds) {
+    const element = document.querySelector('meta[name="og:article:modified_time"]');
     element.setAttribute('content', convertMillisecondsToISO(timeInMilliseconds));
 }
 
