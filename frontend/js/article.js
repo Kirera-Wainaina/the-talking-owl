@@ -2,13 +2,14 @@ import { getIdFromURL, getArticleUrlTitle } from './general.js';
 import { renderOnArticlePage } from './render.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-    // if (navigator.userAgent != 'thetalkingowl-puppeteer') return;
+    if (navigator.userAgent != 'thetalkingowl-puppeteer') return;
     const [ data ] = await retrieveArticle();
     const [authorData] = await retrieveAuthor(data.authorId);
-    
+
     renderOnArticlePage(data);
     fillStructuredData(data, authorData);
     fillOGElements(data, authorData.authorName);
+    insertMetaAuthorName(authorData.authorName);
 })
 
 function retrieveArticle() {
@@ -107,4 +108,9 @@ function createStructuredDataAuthorObject(author) {
         "name": author.authorName,
         "url": author.url
     }
+}
+
+function insertMetaAuthorName(name) {
+    const element = document.querySelector('meta[name="author"]');
+    element.setAttribute('content', name);
 }
